@@ -10,6 +10,39 @@ class MoviesView extends StatefulWidget {
 class _MoviesViewState extends State<MoviesView> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Movies view");
+    return Scaffold(
+        body:Column(
+            children:[
+
+              Text("Movies view"),
+                 TextFormField(
+                   decoration: const InputDecoration(
+                     border: UnderlineInputBorder(),
+                     labelText: 'Movie Title',
+                   )
+                 ),
+              TextFormField(
+                  decoration: const InputDecoration(
+                    border: UnderlineInputBorder(),
+                    labelText: 'Year of Movie',
+                  )
+              ),
+              TextFormField(
+                  decoration: const InputDecoration(
+                    border: UnderlineInputBorder(),
+                    labelText: 'Actor',
+                  )
+              ),
+              TextFormField(
+                  decoration: const InputDecoration(
+                    border: UnderlineInputBorder(),
+                    labelText: 'Director',
+                  )
+              )
+        ]
+        ),
+    );
+
+
+    }
   }
-}
