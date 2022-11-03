@@ -41,8 +41,18 @@ class _MoviesViewState extends State<MoviesView> {
               )
         ]
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: ()=>{
+            print('Consulting the scripts'),
+          },
+          child: const Icon(Icons.movie)
+
+
+
+      ),
     );
 
 
     }
   }
+
