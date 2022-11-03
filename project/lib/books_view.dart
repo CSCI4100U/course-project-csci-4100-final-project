@@ -38,8 +38,19 @@ class _BooksViewState extends State<BooksView> {
                   border: UnderlineInputBorder(),
                   labelText: 'Publisher',
                 )
-            )
+            ),
+
+
           ]
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: ()=>{
+          print('Consulting the scrolls'),
+        },
+        child: const Icon(Icons.book)
+
+
+
       ),
     );
   }
