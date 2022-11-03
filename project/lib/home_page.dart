@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'movies_view.dart';
-
+import 'books_view.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -26,11 +26,18 @@ class _HomePageState extends State<HomePage> {
         body: const TabBarView(
           children: [
             MoviesView(),
+            BooksView(),
             Text("Books tab"),
+
           ],
+
         ),
+
+
+
       ),
     );
+
+
   }
-}
 
