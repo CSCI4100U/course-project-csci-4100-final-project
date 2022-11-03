@@ -14,7 +14,7 @@ class _MoviesViewState extends State<MoviesView> {
         body:Column(
             children:[
 
-              Text("Movies view"),
+              Text("Movies Search"),
                  TextFormField(
                    decoration: const InputDecoration(
                      border: UnderlineInputBorder(),
