@@ -2,9 +2,9 @@
 
 Group members (3-5) (no Student IDs, only names and github usernames):
 
-1. 
+1. Alexander Giannoulis (Alex-Giannoulis)
 
-2. 
+2. Sejal Shingal (Sejal1109)
 
 3. 
 
