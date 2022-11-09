@@ -1,15 +1,25 @@
+import '';
 class Movie {
-  late final String imdbId;
+  final String results;
+  final int id;
+  final String title;
 
-  Movie({required this.imdbId});
+  const Movie({
+    required this.results,
+    required this.id,
+    required this.title,
+  });
 
-  Movie.fromMap(Map<String, Object?> map) {
-    imdbId = map["imdbId"] as String;
+  factory Movie.fromJson(Map<String, dynamic> json) {
+    return Movie(
+      results: json['results'],
+      id: json['id'],
+      title: json['title'],
+    );
   }
 
-  Map<String, Object?> toMap() {
-    return <String, Object?>{
-      "imdbId": imdbId,
-    };
+  String toString(){
+    return results.toString();
   }
 }
+
