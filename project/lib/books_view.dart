@@ -45,13 +45,26 @@ class _BooksViewState extends State<BooksView> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: ()=>{
-          print('Consulting the scrolls'),
+          showSnackBarBook(context),
         },
-        child: const Icon(Icons.book)
+        child: const Icon(Icons.search)
 
 
 
       ),
     );
+  }
+  void showSnackBarBook(BuildContext context){
+    var snackBar = SnackBar(
+      content: Text("Searching for book..."),
+      action: SnackBarAction(
+        label: "OK",
+        onPressed:() {
+          ScaffoldMessenger.of(context).removeCurrentSnackBar();
+        },
+      ),
+
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

@@ -43,16 +43,28 @@ class _MoviesViewState extends State<MoviesView> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: ()=>{
-            print('Consulting the scripts'),
+            showSnackBarMovie(context),
           },
-          child: const Icon(Icons.movie)
+          child: const Icon(Icons.search)
 
 
 
       ),
     );
 
-
     }
+  void showSnackBarMovie(BuildContext context){
+    var snackBar = SnackBar(
+        content: Text("Searching for movie..."),
+        action: SnackBarAction(
+          label: "OK",
+          onPressed:() {
+            ScaffoldMessenger.of(context).removeCurrentSnackBar();
+          },
+        ),
+
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+}
 
