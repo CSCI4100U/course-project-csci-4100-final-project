@@ -1,25 +1,25 @@
 import '';
 class Movie {
-  final String results;
-  final int id;
+  final String release;
+  final String poster;
   final String title;
 
   const Movie({
-    required this.results,
-    required this.id,
+    required this.release,
+    required this.poster,
     required this.title,
   });
 
-  factory Movie.fromJson(Map<String, dynamic> json) {
+  factory Movie.fromMap(Map map){
     return Movie(
-      results: json['results'],
-      id: json['id'],
-      title: json['title'],
+      poster: map['poster_path'],
+      release: map['release_date'],
+      title: map['title'],
     );
   }
 
   String toString(){
-    return results.toString();
+    return release.toString();
   }
 }
 
