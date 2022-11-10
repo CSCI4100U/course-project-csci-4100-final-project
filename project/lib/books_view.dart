@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'book.dart';
 import 'main.dart';
+import 'package:project/book_model.dart';
 class BooksView extends StatefulWidget {
   const BooksView({Key? key}) : super(key: key);
 
@@ -8,6 +10,11 @@ class BooksView extends StatefulWidget {
 }
 
 class _BooksViewState extends State<BooksView> {
+  var _model = BookModel();
+  var idVal;
+  var titleVal;
+  var authorVal;
+  var ratingVal;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,33 +26,40 @@ class _BooksViewState extends State<BooksView> {
                 decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
                   labelText: 'Book Title',
-                )
-            ),
-            TextFormField(
-                decoration: const InputDecoration(
-                  border: UnderlineInputBorder(),
-                  labelText: 'Year Published',
-                )
+                ),
+              onChanged: (value){
+                  titleVal = value;
+              },
             ),
             TextFormField(
                 decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
                   labelText: 'Author',
-                )
+                ),
+              onChanged: (value){
+                  authorVal = value;
+                  },
             ),
             TextFormField(
                 decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
-                  labelText: 'Publisher',
-                )
+                  labelText: 'Personal rating',
+                ),
+              onChanged: (value){
+                  ratingVal = value;
+              },
             ),
+
 
 
           ]
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ()=>{
-          showSnackBarBook(context),
+        onPressed: ()async{
+          Book insert = Book(title: titleVal, author: authorVal, rating: ratingVal);
+          idVal = await _model.insertBook(insert);
+          showSnackBarBook(context);
+          Navigator.pop(context, true);
         },
         child: const Icon(Icons.search)
 

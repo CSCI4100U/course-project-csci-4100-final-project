@@ -1,39 +1,44 @@
+import 'package:project/books_view.dart';
+
 import '';
 class Book {
-  final String results;
-  final int id;
-  final String title;
+  int? id;
+  String? title;
+  String? author;
+  int? rating;
 
-  const Book({
-    required this.results,
-    required this.id,
+  Book({
+    this.id,
     required this.title,
+    required this.author,
+    this.rating,
   });
 
   factory Book.fromJson(Map<String, dynamic> json) {
     return Book(
-      results: json['results'],
       id: json['id'],
       title: json['title'],
+      author: json['author'],
+      rating: json['rating'],
     );
   }
-  //Check this out when uncommented and check the errors about vars
-  //fromMap is needed
 
-  // Book.fromMap(Map map){
-  //   this.results = map['results'];
-  //   this.id = map['id'];
-  //   this.title = map['title'];
-  // }
+  Book.fromMap(Map map){
+    this.id = map['id'];
+    this.title = map['title'];
+    this.author = map['author'];
+    this.rating = map['rating'];
+  }
 
   String toString(){
-    return results.toString();
+    return 'BooksView[id: $id], title: $title, author: $author, rating: $rating';
   }
   Map<String, Object?> toMap(){
     return{
-      'results': this.results,
       'id': this.id,
       'title': this.title,
+      'author': this.author,
+      'rating': this.rating,
 
     };
   }
