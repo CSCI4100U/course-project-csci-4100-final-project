@@ -14,14 +14,14 @@ class Book {
     this.rating,
   });
 
-  factory Book.fromJson(Map<String, dynamic> json) {
-    return Book(
-      id: json['id'],
-      title: json['title'],
-      author: json['author'],
-      rating: json['rating'],
-    );
-  }
+  // factory Book.fromJson(Map<String, dynamic> json) {
+  //   return Book(
+  //     id: json['id'],
+  //     title: json['title'],
+  //     author: json['author'],
+  //     rating: json['rating'],
+  //   );
+  // }
 
   Book.fromMap(Map map){
     this.id = map['id'];

@@ -12,11 +12,8 @@ class DBUtils {
         //   rating: What the user rated the movie on a scale of 1-5
 
         // books
-        //   book_id: Need to get api for books, just a placeholder
-        //   have_read: Boolean value (1 or 0) whether the user has read the book or not
-        //   rating: How much the user enjoyed the book on a rating system of 1-5
         db.execute("CREATE TABLE movies(imdb_id VARCHAR PRIMARY KEY, watched INTEGER, rating INTEGER)");
-        db.execute ("CREATE TABLE books(id VARCHAR PRIMARY KEY, title TEXT, author TEXT, rating INTEGER)");
+        db.execute ("CREATE TABLE books(id INTEGER PRIMARY KEY, title TEXT, author TEXT, rating INTEGER)");
       },
       version: 1,
     );

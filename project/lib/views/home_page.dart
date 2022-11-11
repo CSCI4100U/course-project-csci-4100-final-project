@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'movies_view.dart';
 import 'books_view.dart';
 import '../views/home_view.dart';
+import 'addBook.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             HomeView(),
             MoviesView(),
-            BooksView(),
+            addBook(),
           ],
 
         ),
