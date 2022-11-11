@@ -1,7 +1,7 @@
 import 'db_utils.dart';
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';
-import 'package:project/book.dart';
+import '../classes/book.dart';
 class BookModel{
   Future insertBook(Book book) async{
     final db = await DBUtils.init();

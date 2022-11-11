@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "5477937447",
+    "project_id": "courseproject-c523a",
+    "storage_bucket": "courseproject-c523a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5477937447:android:c59fdbdc1fb09d00807902",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5477937447-ju95sv3ejto7mlk66er8jn5v5khd21js.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA03HvYAzsRWKS1RqP5er1EKAYPYkdBNVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5477937447-ju95sv3ejto7mlk66er8jn5v5khd21js.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

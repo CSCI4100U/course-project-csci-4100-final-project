@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'book.dart';
-import 'main.dart';
-import 'package:project/book_model.dart';
+import'../../classes/book.dart';
+import 'package:project/models/book_model.dart';
 class BooksView extends StatefulWidget {
   const BooksView({Key? key}) : super(key: key);
 
@@ -59,12 +58,8 @@ class _BooksViewState extends State<BooksView> {
           Book insert = Book(title: titleVal, author: authorVal, rating: ratingVal);
           idVal = await _model.insertBook(insert);
           showSnackBarBook(context);
-          Navigator.pop(context, true);
         },
         child: const Icon(Icons.search)
-
-
-
       ),
     );
   }

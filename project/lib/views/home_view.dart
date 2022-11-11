@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'movie.dart';
+import '../classes/movie.dart';
 
 import 'dart:async';
 import 'dart:convert';
@@ -20,10 +20,6 @@ class _MyAppState extends State<HomeView> {
 
     if (response.statusCode == 200) {
       List userMap =  jsonDecode(response.body)['results'];
-      print(userMap);
-
-      // var x = userMap.cast<String, String>();
-      // print(x);
 
       List<Movie> trending = [];
       for (var item in userMap){
@@ -40,7 +36,6 @@ class _MyAppState extends State<HomeView> {
       child: FutureBuilder<List<Movie>>(
         future: fetchAlbum(),
         builder: (context, snapshot) {
-          print(snapshot.data);
           if (snapshot.data == null) {
             return Text("Loading...");
           }
@@ -60,8 +55,6 @@ class _MyAppState extends State<HomeView> {
                 }
             );
           }
-          // By default, show a loading spinner.
-          return const CircularProgressIndicator();
         },
       ),
     );
