@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/movies_model.dart';
 import 'package:project/classes/movie.dart';
+import 'package:project/views/movie_tile.dart';
 
 class MoviesView extends StatefulWidget {
   const MoviesView({Key? key}) : super(key: key);
@@ -32,18 +33,14 @@ class _MoviesViewState extends State<MoviesView> {
           } else {
             // Movie list
             return ListView.builder(
-                itemCount: snapshot.data?.length,
-                itemBuilder: (context, index){
-                  return ListTile(
-                    leading: Container(
-                      width: 40,
-                      height: 90,
-                      child: Image.network("https://image.tmdb.org/t/p/w500/${snapshot.data![index].poster}"),
-                    ) ,
-                    title: Text(snapshot.data![index].title),
-                    subtitle: Text(snapshot.data![index].release) ,
-                  );
-                }
+              itemCount: snapshot.data?.length,
+              itemBuilder: (context, index){
+                return MovieTile(
+                  title: snapshot.data![index].title,
+                  release: snapshot.data![index].release,
+                  poster: snapshot.data![index].poster,
+                );
+              }
             );
           }
         },
