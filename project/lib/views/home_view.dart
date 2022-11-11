@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../classes/movie.dart';
-
+import 'package:project/views/movie_tile.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -43,14 +43,10 @@ class _MyAppState extends State<HomeView> {
             return ListView.builder(
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index){
-                  return ListTile(
-                    leading: Container(
-                      width: 40,
-                      height: 90,
-                      child: Image.network("https://image.tmdb.org/t/p/w500/${snapshot.data![index].poster}"),
-                    ) ,
-                    title: Text(snapshot.data![index].title),
-                    subtitle: Text(snapshot.data![index].release) ,
+                  return MovieTile(
+                    title: snapshot.data![index].title,
+                    release: snapshot.data![index].release,
+                    poster: snapshot.data![index].poster,
                   );
                 }
             );
