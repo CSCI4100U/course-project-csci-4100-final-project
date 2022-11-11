@@ -8,7 +8,7 @@ Group members (3-5) (no Student IDs, only names and github usernames):
 
 3. Ebubechukwu Okeke (ebube52)
 
-4. 
+4. David Dickson (David-A-DavidD)
 
 5.
 
