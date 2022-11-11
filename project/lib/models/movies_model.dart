@@ -11,8 +11,15 @@ class MoviesModel {
     var collection = await FirebaseFirestore.instance.collection("movieList").get();
     print("Successfully retrieved data from Firestore");
     for (var doc in collection.docs) {
-      movies.add(Movie.fromMap(doc.data()));
+      Movie movie = Movie.fromMap(doc.data());
+      movie.reference = doc.reference;
+      movies.add(movie);
     }
     return movies;
+  }
+
+  Future insertMovie(Movie movie) async {
+    DocumentReference ref = await FirebaseFirestore.instance.collection("movieList").add(movie.toMap());
+    movie.reference = ref;
   }
 }

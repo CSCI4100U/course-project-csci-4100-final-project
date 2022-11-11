@@ -1,10 +1,12 @@
-import '';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Movie {
   final String release;
   final String poster;
   final String title;
+  DocumentReference? reference;
 
-  const Movie({
+  Movie({
     required this.release,
     required this.poster,
     required this.title,
@@ -16,6 +18,14 @@ class Movie {
       release: map['release_date'],
       title: map['title'],
     );
+  }
+
+  Map<String, Object> toMap() {
+    return <String, Object>{
+      'poster_path': poster,
+      'release_date': release,
+      'title': title,
+    };
   }
 
   String toString(){
