@@ -36,22 +36,21 @@ class _HomePage extends State<HomePage>{
                       icon: Icon(Icons.calendar_today), //icon of text field
                       labelText: "Enter Date" //label text of field
                   ),
-                  readOnly: true,  //set it true, so that user will not able to edit text
+                  readOnly: true,  
                   onTap: () async {
                     DateTime? pickedDate = await showDatePicker(
                         context: context, initialDate: DateTime.now(),
-                        firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
+                        firstDate: DateTime(2000), 
                         lastDate: DateTime(2101)
                     );
 
                     if(pickedDate != null ){
-                      print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
+                      print(pickedDate); 
                       String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-                      print(formattedDate); //formatted date output using intl package =>  2021-03-16
-                      //you can implement different kind of Date Format here according to your requirement
+                      print(formattedDate); 
 
                       setState(() {
-                        dateinput.text = formattedDate; //set output date to TextField value.
+                        dateinput.text = formattedDate; 
                       });
                     }else{
                       print("Date is not selected");
