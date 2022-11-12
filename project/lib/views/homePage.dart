@@ -3,6 +3,9 @@ import 'movieView.dart';
 import 'booksView.dart';
 import '../views/homeView.dart';
 import 'addBookForm.dart';
+import'package:project/classes/notification_manager.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,7 +16,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  final _notifications = Notifications();
+
   Widget build(BuildContext context) {
+    tz.initializeTimeZones();
+    _notifications.init();
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -33,6 +40,10 @@ class _HomePageState extends State<HomePage> {
                 _showAboutDialog(context);
               },
             ),
+            IconButton(
+              onPressed: _notificationNow,
+              icon: Icon(Icons.notifications),
+            )
           ],
         ),
         body: const TabBarView(
@@ -48,8 +59,11 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
 
+  void _notificationNow() async {
+    _notifications.sendNotificationNow("Movie", "Book", "Book");
+  }
+}
 void _showAboutDialog(BuildContext context) {
   showAboutDialog(
     context: context,
