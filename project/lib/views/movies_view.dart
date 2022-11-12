@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/movies_model.dart';
 import 'package:project/classes/movie.dart';
-import 'package:project/views/movie_tile.dart';
+import 'package:project/components/movie_tile.dart';
 import 'package:project/views/add_movie_form.dart';
 
 class MoviesView extends StatefulWidget {

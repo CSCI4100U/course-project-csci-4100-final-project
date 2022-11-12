@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             HomeView(),
             MoviesView(),
-            addBook(),
+            BooksView(),
           ],
 
         ),

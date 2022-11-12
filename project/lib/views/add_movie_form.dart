@@ -28,7 +28,7 @@ class _AddMovieFormState extends State<AddMovieForm> {
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
                 labelText: "Movie Title",
-                hintText: "tt14641788",
+                hintText: "The Movie",
               ),
               validator: (value) {
                 if (value != null && value.isEmpty) {

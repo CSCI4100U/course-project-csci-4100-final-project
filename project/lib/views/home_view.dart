@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../classes/movie.dart';
-import 'package:project/views/movie_tile.dart';
+import 'package:project/components/movie_tile.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;

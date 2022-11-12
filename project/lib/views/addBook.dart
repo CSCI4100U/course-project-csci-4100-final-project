@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import'../../classes/book.dart';
-import 'package:project/models/book_model.dart';
+import 'package:project/classes/book.dart';
+
 class addBook extends StatefulWidget {
   const addBook({Key? key}) : super(key: key);
 
@@ -9,78 +9,82 @@ class addBook extends StatefulWidget {
 }
 
 class _addBookState extends State<addBook> {
-  var _model = BookModel();
-  var idVal;
-  var titleVal;
-  var authorVal;
-  var ratingVal;
+  final _formKey = GlobalKey<FormState>();
+  late String _title;
+  late String _author;
+  late int? _rating;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      appBar: AppBar(
+        title: const Text("Add Book"),
+      ),
+      body: Form(
+        key: _formKey,
+        child: Column(
           children: [
-
-            Text("Books Search"),
-            TextField(
+            TextFormField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: 'Book Title',
+                labelText: "Book Title",
+                hintText: "The Dragon",
               ),
-              onChanged: (value){
-                titleVal = value;
+              validator: (value) {
+                if (value != null && value.isEmpty) {
+                  return "Please enter a value";
+                }
+                return null;
+              },
+              onSaved: (value) {
+                _title = value!;
               },
             ),
-            TextField(
+            TextFormField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: 'Author',
+                labelText: "Author Name",
+                hintText: "John Doe",
               ),
-              onChanged: (value){
-                authorVal = value;
+              validator: (value) {
+                if (value != null && value.isEmpty) {
+                  return "Please enter a value";
+                }
+                return null;
+              },
+              onSaved: (value) {
+                _author = value!;
               },
             ),
-            TextField(
+            TextFormField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: 'Personal rating',
+                labelText: "Rating",
+                hintText: "9",
               ),
-              onChanged: (value){
-                ratingVal = int.tryParse(value);
+              validator: (value) {
+                if (value != null && value.isEmpty) {
+                  return "Please enter a value";
+                }
+                return null;
+              },
+              onSaved: (value) {
+                _rating = int.tryParse(value!);
               },
             ),
-          ]
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: ()async{
-            Book insert = Book(title: titleVal, author: authorVal);
-            if(ratingVal != null)
-            {
-              insert.rating = ratingVal;
-            }
-            idVal = await _model.insertBook(insert);
-            showSnackBarBook(context);
-            List<Book> currDB = await _model.getAllBooks();
-            for (Book todo in currDB){
-              print(todo);
-            }
-            print("Current items: $currDB");
-            print("Book inserted: $idVal,${insert.toString()}");
-          },
-          child: const Icon(Icons.search)
-      ),
-    );
-  }
-  void showSnackBarBook(BuildContext context){
-    var snackBar = SnackBar(
-      content: Text("Searching for book..."),
-      action: SnackBarAction(
-        label: "OK",
-        onPressed:() {
-          ScaffoldMessenger.of(context).removeCurrentSnackBar();
+        child: const Icon(Icons.save),
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            _formKey.currentState!.save();
+            Book book = Book(title: _title, author: _author, rating: _rating);
+            Navigator.of(context).pop(book);
+          }
         },
       ),
-
     );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
