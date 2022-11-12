@@ -1,45 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Movie {
+class MovieCast {
   int? id;
   final String release;
   final String poster;
   final String title;
-  int? budget;
-  String? overview;
-
-  int? runtime;
-  String? status;
-  String? tagline;
-  bool? video;
   DocumentReference? reference;
 
-  Movie({
+  MovieCast({
     this.id,
     required this.release,
     required this.poster,
     required this.title,
-    this.budget,
-    this.overview,
-    this.runtime,
-    this.status,
-    this.tagline,
-    this.video,
   });
 
-  factory Movie.fromMap(Map map){
-    return Movie(
+  factory MovieCast.fromMap(Map map){
+    return MovieCast(
       id: map['id'],
       poster: map['poster_path'],
       release: map['release_date'],
       title: map['title'],
-      budget:  map['budget'],
-      overview: map['overview'],
-      runtime: map['runtime'],
-      status: map['status'],
-      tagline: map['tagline'],
-      video: map['video']
-
     );
   }
 
@@ -52,7 +32,7 @@ class Movie {
   }
 
   String toString(){
-    return title.toString();
+    return release.toString();
   }
 }
 

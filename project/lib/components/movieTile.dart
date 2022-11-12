@@ -4,8 +4,9 @@ class MovieTile extends StatelessWidget {
   final String title;
   final String release;
   final String poster;
+  final num? rating;
 
-  const MovieTile({Key? key, required this.title, required this.release, required this.poster}) : super(key: key);
+  const MovieTile({Key? key, required this.title, required this.release, required this.poster, this.rating}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class MovieTile extends StatelessWidget {
         child: Image.network("https://image.tmdb.org/t/p/w500/$poster"),
       ) ,
       title: Text(title),
-      subtitle: Text(release),
+      subtitle: Text("Rating: $rating, Release Date: $release"),
     );
   }
 }

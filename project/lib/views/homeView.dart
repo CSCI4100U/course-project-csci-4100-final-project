@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../classes/movie.dart';
+import '../classes/trending.dart';
 import 'package:project/components/movieTile.dart';
 import 'dart:async';
 import 'movieDetails.dart';
@@ -16,14 +16,14 @@ class _MyAppState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    int? _selectedMovieID;
-    String? _selectedMovieName;
+    int? selectedMovieID;
+    String? selectedMovieName;
     return Center(
-      child: FutureBuilder<List<Movie>>(
+      child: FutureBuilder<List<Trending>>(
         future: _fetch,
         builder: (context, snapshot) {
           if (snapshot.data == null) {
-            return Text("Loading...");
+            return const Text("Loading...");
           }
           else {
             return ListView.builder(
@@ -31,30 +31,29 @@ class _MyAppState extends State<HomeView> {
                 itemBuilder: (context, index){
                   return GestureDetector(
                       onTap: () {
-                        _selectedMovieID = snapshot.data![index].id;
-                        _selectedMovieName = snapshot.data![index].title;
+                        selectedMovieID = snapshot.data![index].id;
+                        selectedMovieName = snapshot.data![index].title;
                         ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                                 duration: const Duration(seconds: 1),
-                                content: Text('Getting Movie Info for $_selectedMovieName')
+                                content: Text('Getting Movie Info for $selectedMovieName')
                             ));
-                          Future.delayed(const Duration(seconds: 2),
+                          Future.delayed(
+                              const Duration(seconds: 2),
                               (){
-                                Navigator.push(context, MaterialPageRoute(builder: (_) => MovieDetails(movieID: _selectedMovieID, movieName: _selectedMovieName,)));
+                                Navigator.push(context, MaterialPageRoute(builder: (_) => MovieDetails(movieID: selectedMovieID, movieName: selectedMovieName,)));
                               }
                           );
-
                         },
                       child: MovieTile(
                         title: snapshot.data![index].title,
                         release: snapshot.data![index].release,
                         poster: snapshot.data![index].poster,
+                        rating: snapshot.data![index].rating,
                       )
-                    );
-                }
-            );
-          }
-        },
+                  );
+                });
+          }},
       ),
     );
   }
