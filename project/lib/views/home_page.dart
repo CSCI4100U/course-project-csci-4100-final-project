@@ -26,6 +26,20 @@ class _HomePageState extends State<HomePage> {
               Tab(icon: Icon(Icons.book)),
             ],
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.info),
+              onPressed: () {
+                showAboutDialog(
+                  context: context,
+                  applicationName: "Final Project",
+                  applicationVersion: "0.1",
+                  applicationIcon: const Icon(Icons.movie),
+                  applicationLegalese: "Group members:\nAlexander Giannoulis\nSejal Shingal\nEbubechukwu Okeke\nDavid Dickson\nBence Takacs",
+                );
+              },
+            ),
+          ],
         ),
         body: const TabBarView(
           children: [
@@ -42,3 +56,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+void _showAboutDialog() {
+
+}
