@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'movies_view.dart';
-import 'books_view.dart';
-import '../views/home_view.dart';
-import 'addBook.dart';
+import 'movieView.dart';
+import 'booksView.dart';
+import '../views/homeView.dart';
+import 'addBookForm.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

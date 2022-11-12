@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import '../classes/movie.dart';
-import 'package:project/components/movie_tile.dart';
+import 'package:project/components/movieTile.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'movieDetails.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -32,6 +33,7 @@ class _MyAppState extends State<HomeView> {
   }
   @override
   Widget build(BuildContext context) {
+    String selectedMovie;
     return Center(
       child: FutureBuilder<List<Movie>>(
         future: fetchAlbum(),
@@ -43,11 +45,27 @@ class _MyAppState extends State<HomeView> {
             return ListView.builder(
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index){
-                  return MovieTile(
-                    title: snapshot.data![index].title,
-                    release: snapshot.data![index].release,
-                    poster: snapshot.data![index].poster,
-                  );
+                  return InkWell(
+                      onTap: () {
+                        selectedMovie = snapshot.data![index].title;
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                duration: const Duration(seconds: 1),
+                                content: Text('Getting Movie Info for $selectedMovie')
+                            ));
+                        setState(() {
+
+                          print("Selected Movie ${snapshot.data![index].title}");
+                          });
+                          Navigator.push(context, MaterialPageRoute(builder: (_) => MovieDetails(name: selectedMovie,)));
+                        },
+                      highlightColor: Colors.red,
+                      child: MovieTile(
+                        title: snapshot.data![index].title,
+                        release: snapshot.data![index].release,
+                        poster: snapshot.data![index].poster,
+                      )
+                    );
                 }
             );
           }
