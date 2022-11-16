@@ -23,7 +23,9 @@ class _MyAppState extends State<HomeView> {
         future: _fetch,
         builder: (context, snapshot) {
           if (snapshot.data == null) {
-            return const Text("Loading...");
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
           else {
             return ListView.builder(
