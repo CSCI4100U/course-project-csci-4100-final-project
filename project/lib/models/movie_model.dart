@@ -1,4 +1,4 @@
-import 'dbUtils.dart';
+import 'db_utils.dart';
 import 'package:project/classes/movie.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

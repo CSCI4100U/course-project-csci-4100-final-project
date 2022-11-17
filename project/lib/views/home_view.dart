@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../classes/trending.dart';
 import 'package:project/components/movieTile.dart';
 import 'dart:async';
-import 'movieDetails.dart';
-import '../models/fetchData.dart';
+import 'movie_details.dart';
+import '../models/fetch_data.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'views/homePage.dart';
+import 'views/home_page.dart';
 
 void main() {
   runApp(const MyApp());

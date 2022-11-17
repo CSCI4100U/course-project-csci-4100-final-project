@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../classes/book.dart';
-import 'addBookForm.dart';
-import '../models/bookModel.dart';
+import 'add_book_form.dart';
+import '../models/book_model.dart';
 
 
 class BooksView extends StatefulWidget {

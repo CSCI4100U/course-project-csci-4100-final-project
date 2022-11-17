@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:project/classes/movie.dart';
-import '../classes/movieCast.dart';
+import '../classes/movie_cast.dart';
 import '../classes/trending.dart';
 
 class Fetch{

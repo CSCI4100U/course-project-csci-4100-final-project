@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project/models/movieModel.dart';
+import 'package:project/models/movie_model.dart';
 import 'package:project/classes/movie.dart';
 import 'package:project/components/movieTile.dart';
-import 'package:project/views/addMovieForm.dart';
+import 'package:project/views/add_movie_form.dart';
 
 class MoviesView extends StatefulWidget {
   const MoviesView({Key? key}) : super(key: key);

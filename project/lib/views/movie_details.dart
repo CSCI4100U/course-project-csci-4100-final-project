@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../classes/movie.dart';
-import '../models/fetchData.dart';
+import '../models/fetch_data.dart';
 
 class MovieDetails extends StatefulWidget {
   const MovieDetails({Key? key, required this.movieID, required this.movieName})
