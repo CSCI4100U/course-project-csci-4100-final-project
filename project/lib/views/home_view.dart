@@ -42,8 +42,8 @@ class _MyAppState extends State<HomeView> {
                             ));
                           Future.delayed(
                               const Duration(seconds: 2),
-                              (){
-                                Navigator.push(context, MaterialPageRoute(builder: (_) => MovieDetails(movieID: selectedMovieID, movieName: selectedMovieName,)));
+                              () async {
+                                await Navigator.push(context, MaterialPageRoute(builder: (_) => MovieDetails(movieID: selectedMovieID, movieName: selectedMovieName,)));
                               }
                           );
                         },

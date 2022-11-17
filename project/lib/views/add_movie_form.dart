@@ -10,6 +10,7 @@ class AddMovieForm extends StatefulWidget {
 
 class _AddMovieFormState extends State<AddMovieForm> {
   final _formKey = GlobalKey<FormState>();
+  late String _imdbId;
   late String _title;
   late String _release;
   late String _poster;
@@ -27,15 +28,21 @@ class _AddMovieFormState extends State<AddMovieForm> {
             TextFormField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
+                labelText: "IMDB ID",
+                hintText: "tt0137523",
+              ),
+              validator: _notEmptyValidator,
+              onSaved: (value) {
+                _imdbId = value!;
+              }
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                border: UnderlineInputBorder(),
                 labelText: "Movie Title",
                 hintText: "The Movie",
               ),
-              validator: (value) {
-                if (value != null && value.isEmpty) {
-                  return "Please enter a value";
-                }
-                return null;
-              },
+              validator: _notEmptyValidator,
               onSaved: (value) {
                 _title = value!;
               },
@@ -46,12 +53,7 @@ class _AddMovieFormState extends State<AddMovieForm> {
                 labelText: "Release Date",
                 hintText: "2022-11-04",
               ),
-              validator: (value) {
-                if (value != null && value.isEmpty) {
-                  return "Please enter a value";
-                }
-                return null;
-              },
+              validator: _notEmptyValidator,
               onSaved: (value) {
                 _release = value!;
               },
@@ -62,12 +64,7 @@ class _AddMovieFormState extends State<AddMovieForm> {
                 labelText: "Poster URL",
                 hintText: "/tegBpjM5ODoYoM1NjaiHVLEA0QM.jpg",
               ),
-              validator: (value) {
-                if (value != null && value.isEmpty) {
-                  return "Please enter a value";
-                }
-                return null;
-              },
+              validator: _notEmptyValidator,
               onSaved: (value) {
                 _poster = value!;
               },
@@ -80,11 +77,18 @@ class _AddMovieFormState extends State<AddMovieForm> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
-            Movie movie = Movie(title: _title, release: _release, poster: _poster);
+            Movie movie = Movie(title: _title, release: _release, poster: _poster, imdbId: _imdbId);
             Navigator.of(context).pop(movie);
           }
         },
       ),
     );
+  }
+
+  String? _notEmptyValidator(String? value) {
+    if (value != null && value.isEmpty) {
+      return "Please enter a value";
+    }
+    return null;
   }
 }

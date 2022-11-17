@@ -30,12 +30,7 @@ class _addBookState extends State<addBook> {
                 labelText: "Book Title",
                 hintText: "The Dragon",
               ),
-              validator: (value) {
-                if (value != null && value.isEmpty) {
-                  return "Please enter a value";
-                }
-                return null;
-              },
+              validator: _notEmptyValidator,
               onSaved: (value) {
                 _title = value!;
               },
@@ -46,12 +41,7 @@ class _addBookState extends State<addBook> {
                 labelText: "Author Name",
                 hintText: "John Doe",
               ),
-              validator: (value) {
-                if (value != null && value.isEmpty) {
-                  return "Please enter a value";
-                }
-                return null;
-              },
+              validator: _notEmptyValidator,
               onSaved: (value) {
                 _author = value!;
               },
@@ -62,12 +52,7 @@ class _addBookState extends State<addBook> {
                 labelText: "Rating",
                 hintText: "9",
               ),
-              validator: (value) {
-                if (value != null && value.isEmpty) {
-                  return "Please enter a value";
-                }
-                return null;
-              },
+              validator: _notEmptyValidator,
               onSaved: (value) {
                 _rating = int.tryParse(value!);
               },
@@ -86,5 +71,12 @@ class _addBookState extends State<addBook> {
         },
       ),
     );
+  }
+
+  String? _notEmptyValidator(String? value) {
+    if (value != null && value.isEmpty) {
+      return "Please enter a value";
+    }
+    return null;
   }
 }
