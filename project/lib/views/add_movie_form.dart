@@ -10,7 +10,6 @@ class AddMovieForm extends StatefulWidget {
 
 class _AddMovieFormState extends State<AddMovieForm> {
   final _formKey = GlobalKey<FormState>();
-  late String _imdbId;
   late String _title;
   late String _release;
   late String _poster;
@@ -25,17 +24,6 @@ class _AddMovieFormState extends State<AddMovieForm> {
         key: _formKey,
         child: Column(
           children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: "IMDB ID",
-                hintText: "tt0137523",
-              ),
-              validator: _notEmptyValidator,
-              onSaved: (value) {
-                _imdbId = value!;
-              }
-            ),
             TextFormField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
@@ -77,7 +65,7 @@ class _AddMovieFormState extends State<AddMovieForm> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
-            Movie movie = Movie(title: _title, release: _release, poster: _poster, imdbId: _imdbId);
+            Movie movie = Movie(title: _title, release: _release, poster: _poster);
             Navigator.of(context).pop(movie);
           }
         },

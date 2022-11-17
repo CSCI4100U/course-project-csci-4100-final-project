@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/movie_model.dart';
 import 'package:project/classes/movie.dart';
-import 'package:project/components/movieTile.dart';
+import 'package:project/components/movie_tile.dart';
 import 'package:project/views/add_movie_form.dart';
 
 class MoviesView extends StatefulWidget {
@@ -37,11 +37,7 @@ class _MoviesViewState extends State<MoviesView> {
               return ListView.builder(
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index){
-                  return MovieTile(
-                    title: snapshot.data![index].title,
-                    release: snapshot.data![index].release,
-                    poster: snapshot.data![index].poster,
-                  );
+                  return MovieTile(movie: snapshot.data![index]);
                 }
               );
             }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project/classes/movie.dart';
 import '../classes/trending.dart';
-import 'package:project/components/movieTile.dart';
+import 'package:project/components/movie_tile.dart';
 import 'dart:async';
 import 'movie_details.dart';
 import '../models/fetch_data.dart';
@@ -19,15 +20,14 @@ class _MyAppState extends State<HomeView> {
     int? selectedMovieID;
     String? selectedMovieName;
     return Center(
-      child: FutureBuilder<List<Trending>>(
+      child: FutureBuilder<List<Movie>>(
         future: _fetch,
         builder: (context, snapshot) {
           if (snapshot.data == null) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          }
-          else {
+          } else {
             return ListView.builder(
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index){
@@ -47,12 +47,7 @@ class _MyAppState extends State<HomeView> {
                               }
                           );
                         },
-                      child: MovieTile(
-                        title: snapshot.data![index].title,
-                        release: snapshot.data![index].release,
-                        poster: snapshot.data![index].poster,
-                        rating: snapshot.data![index].rating,
-                      )
+                      child: MovieTile(movie: snapshot.data![index]),
                   );
                 });
           }},
