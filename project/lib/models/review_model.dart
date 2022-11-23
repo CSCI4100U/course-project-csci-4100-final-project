@@ -9,11 +9,17 @@ class ReviewModel {
     List<Review> reviews = [];
 
     var collection = await FirebaseFirestore.instance.collection("movieReviews").get();
-    for (var doc in collection.docs/*.where((element) => element["id"] == movieID)*/) {
+    for (var doc in collection.docs.where((element) => element["movie_id"] == movieID)) {
       Review review = Review.fromMap(doc.data());
+      review.reference = doc.reference;
       reviews.add(review);
     }
 
     return reviews;
+  }
+
+  Future addMovieReview(Review review) async {
+    DocumentReference reference = await FirebaseFirestore.instance.collection("movieReviews").add(review.toMap());
+    review.reference = reference;
   }
 }

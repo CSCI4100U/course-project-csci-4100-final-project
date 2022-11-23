@@ -11,7 +11,6 @@ class ReviewTile extends StatelessWidget {
     return ListTile(
       title: Text(review.title),
       subtitle: Text("${review.author}\n\n${review.content}"),
-      trailing: Text(review.rating.toString()),
     );
   }
 }
