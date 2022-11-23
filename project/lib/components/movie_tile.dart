@@ -4,8 +4,9 @@ import 'package:project/views/movie_details.dart';
 
 class MovieTile extends StatelessWidget {
   final Movie movie;
+  final double? rating;
 
-  const MovieTile({Key? key, required this.movie}) : super(key: key);
+  const MovieTile({Key? key, required this.movie, this.rating}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,18 @@ class MovieTile extends StatelessWidget {
           height: 90,
           child: Image.network("https://image.tmdb.org/t/p/w500/${movie.poster}"),
         ) ,
-        title: Text(movie.title),
-        subtitle: Text("Rating: N/A, Release Date: ${movie.release}"),
+        title: (rating == null) ?
+          Text(movie.title)
+        :
+          Row(
+            children: [
+              Text(movie.title),
+              const Padding(padding: EdgeInsets.symmetric(horizontal: 5.0)),
+              const Icon(Icons.star, color: Colors.amber),
+              Text(rating!.toStringAsFixed(1)),
+            ],
+          ),
+        subtitle: Text("Release Date: ${movie.release}"),
       ),
       onTap: () async {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {

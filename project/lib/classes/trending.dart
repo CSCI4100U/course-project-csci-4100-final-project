@@ -1,5 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+class Trending<T> {
+  T base;
+  double rating;
+
+  Trending({required this.base, required this.rating});
+}
+
+/*
 class Trending {
   int? id;
   final String release;
@@ -37,4 +45,4 @@ class Trending {
   String toString(){
     return release.toString();
   }
-}
+}*/

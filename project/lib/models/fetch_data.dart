@@ -6,26 +6,28 @@ import '../classes/trending.dart';
 
 class Fetch{
 
-  Future<List<Movie>> fetchTrending() async {
-    print("Starting");
+  Future<List<Trending<Movie>>> fetchTrendingMovies() async {
     var response = await http
         .get(Uri.parse('https://api.themoviedb.org/3/trending/movie/week?api_key=3504ebf3ee269a0d7dbc3e0e586c0768')
     );
     if (response.statusCode == 200) {
-      print("Got http 200");
       List userMap = jsonDecode(response.body)['results'];
-      print("A");
-      List<Movie> trending = [];
+      List<Trending<Movie>> trending = [];
       for (var item in userMap){
-        print("it ${item['title']}");
-        trending.add(Movie.fromMap(item));
+        Movie movie = Movie.fromMap(item);
+        double rating = (item['vote_average'] / 2);
+        Trending<Movie> t = Trending<Movie>(base: movie, rating: rating);
+        trending.add(t);
       }
-      print("B");
       return trending;
     } else {
       throw Exception('Failed to load trending movies');
     }
   }
+
+  /*Future<List<Trending<Book>>> fetchTrendingBooks() async {
+
+  }*/
 
   Future<Movie> fetchMovieDetails(int? id) async {
     String getId = id.toString();

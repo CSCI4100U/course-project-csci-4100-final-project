@@ -13,14 +13,14 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _MyAppState();
 }
 class _MyAppState extends State<HomeView> {
-  final _fetch = Fetch().fetchTrending();
+  final _fetch = Fetch().fetchTrendingMovies();
 
   @override
   Widget build(BuildContext context) {
     int? selectedMovieID;
     String? selectedMovieName;
     return Center(
-      child: FutureBuilder<List<Movie>>(
+      child: FutureBuilder<List<Trending<Movie>>>(
         future: _fetch,
         builder: (context, snapshot) {
           if (snapshot.data == null) {
@@ -33,8 +33,8 @@ class _MyAppState extends State<HomeView> {
                 itemBuilder: (context, index){
                   return GestureDetector(
                       onTap: () {
-                        selectedMovieID = snapshot.data![index].id;
-                        selectedMovieName = snapshot.data![index].title;
+                        selectedMovieID = snapshot.data![index].base.id;
+                        selectedMovieName = snapshot.data![index].base.title;
                         ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                                 duration: const Duration(seconds: 1),
@@ -47,7 +47,7 @@ class _MyAppState extends State<HomeView> {
                               }
                           );
                         },
-                      child: MovieTile(movie: snapshot.data![index]),
+                      child: MovieTile(movie: snapshot.data![index].base, rating: snapshot.data![index].rating),
                   );
                 });
           }},
