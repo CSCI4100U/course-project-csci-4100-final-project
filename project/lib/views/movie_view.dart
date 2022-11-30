@@ -4,6 +4,8 @@ import 'package:project/classes/movie.dart';
 import 'package:project/components/movie_tile.dart';
 import 'package:project/views/add_movie_form.dart';
 
+import '../components/drawer.dart';
+
 class MoviesView extends StatefulWidget {
   const MoviesView({Key? key}) : super(key: key);
 
@@ -16,6 +18,10 @@ class _MoviesViewState extends State<MoviesView> {
 
   @override Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("My Movies List"),
+      ),
+      drawer: NavDrawer(),
       body: Center(
         child: FutureBuilder<List<Movie>>(
           future: _model.getAllMovies(),

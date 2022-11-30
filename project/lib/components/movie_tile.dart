@@ -22,7 +22,9 @@ class MovieTile extends StatelessWidget {
         :
           Row(
             children: [
-              Text(movie.title),
+              Expanded(
+                child: Text(movie.title),
+              ),
               const Padding(padding: EdgeInsets.symmetric(horizontal: 5.0)),
               const Icon(Icons.star, color: Colors.amber),
               Text(rating!.toStringAsFixed(1)),

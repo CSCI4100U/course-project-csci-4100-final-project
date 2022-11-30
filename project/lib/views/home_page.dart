@@ -6,6 +6,7 @@ import 'add_book_form.dart';
 import'package:project/classes/notification_manager.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
+import '../components/drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,46 +19,14 @@ class _HomePageState extends State<HomePage> {
   @override
   final _notifications = Notifications();
 
+  @override
   Widget build(BuildContext context) {
     tz.initializeTimeZones();
     _notifications.init();
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Final Project"),
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.home)),
-              Tab(icon: Icon(Icons.movie)),
-              Tab(icon: Icon(Icons.book)),
-            ],
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.info),
-              onPressed: () {
-                _showAboutDialog(context);
-              },
-            ),
-            IconButton(
-              onPressed: _notificationNow,
-              icon: Icon(Icons.notifications),
-            )
-          ],
-        ),
-        body: const TabBarView(
-          children: [
-            HomeView(),
-            MoviesView(),
-            BooksView(),
-          ],
-
-        ),
-
-
-      ),
-    );
+    return const Scaffold(
+        drawer: NavDrawer(),
+        body: HomeView(title: 'Trending Movies',),
+      );
   }
 
   void _notificationNow() async {
