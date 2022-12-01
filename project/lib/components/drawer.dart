@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/views/books_view.dart';
 import '../views/home_view.dart';
 import '../views/movie_view.dart';
 import'package:project/classes/notification_manager.dart';
@@ -62,6 +63,20 @@ class _NavDrawerState extends State<NavDrawer> {
                 });
               },
             ),
+            //Book Button
+            ListTile(
+              leading: Icon(Icons.book),
+              title: const Text('Books'),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const BooksView()),
+                  );
+                });
+              },
+            ),
             const SizedBox(height: 30),
             Divider(color: Colors.white,),
             ListTile(
@@ -98,5 +113,6 @@ void _showAboutDialog(BuildContext context) {
     applicationLegalese: "Group members:\nAlexander Giannoulis\nSejal Shingal\nEbubechukwu Okeke\nDavid Dickson\nBence Takacs",
   );
 }
+
 
 
