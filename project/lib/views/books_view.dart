@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../classes/book.dart';
+import '../components/drawer.dart';
 import 'add_book_form.dart';
 import '../models/book_model.dart';
 
@@ -24,6 +25,10 @@ class _BooksViewState extends State<BooksView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("My Book List")
+      ),
+      drawer: NavDrawer(),
       body: Center(
           child: ListView.builder(
               itemCount: books.length,
