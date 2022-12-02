@@ -5,9 +5,23 @@ import '../classes/movie_cast.dart';
 import '../classes/trending.dart';
 
 class Fetch{
+  // Stores movies from My List after the initial load to prevent unnecessary API calls
   static Map<int, Movie> cachedMovies = {};
+  // Stores all trending movies after the initial load to prevent unnecessary API calls
+  static List<Trending<Movie>> cachedTrendingMovies = [];
+  // The timestamp of when the cachedTrendingMovies map was last updated
+  static DateTime cachedTrendingMoviesLastUpdated = DateTime(0);
 
   Future<List<Trending<Movie>>> fetchTrendingMovies() async {
+    // If the last time the trending movies were updated was below a threshold,
+    // return the cached version
+    DateTime now = DateTime.now();
+    if (now.difference(cachedTrendingMoviesLastUpdated).inMinutes < 10) {
+      return cachedTrendingMovies;
+    }
+
+    // Enough time has passed, so refresh trending movies from the API
+    cachedTrendingMoviesLastUpdated = now;
     var response = await http
         .get(Uri.parse('https://api.themoviedb.org/3/trending/movie/week?api_key=3504ebf3ee269a0d7dbc3e0e586c0768')
     );
@@ -20,6 +34,7 @@ class Fetch{
         Trending<Movie> t = Trending<Movie>(base: movie, rating: rating);
         trending.add(t);
       }
+      cachedTrendingMovies = trending;
       return trending;
     } else {
       throw Exception('Failed to load trending movies');
