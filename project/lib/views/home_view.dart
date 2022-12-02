@@ -14,8 +14,6 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _MyAppState();
 }
 class _MyAppState extends State<HomeView> {
-  final _fetch = Fetch().fetchTrendingMovies();
-
   @override
   Widget build(BuildContext context) {
     int? selectedMovieID;
@@ -27,7 +25,7 @@ class _MyAppState extends State<HomeView> {
         drawer: const NavDrawer(),
         body: Center(
         child: FutureBuilder<List<Trending<Movie>>>(
-          future: _fetch,
+          future: Fetch.fetchTrendingMovies(),
           builder: (context, snapshot) {
             if (snapshot.data == null) {
               return const Center(

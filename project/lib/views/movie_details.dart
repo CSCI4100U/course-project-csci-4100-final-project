@@ -13,7 +13,6 @@ class MovieDetails extends StatefulWidget {
 }
 
 class _MovieDetailsState extends State<MovieDetails> {
-  final _model = Fetch();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +20,7 @@ class _MovieDetailsState extends State<MovieDetails> {
           title: Text("${widget.movieName}"),
         ),
         body: FutureBuilder<Movie>(
-            future: _model.fetchMovieDetails(widget.movieID),
+            future: Fetch.fetchMovieDetails(widget.movieID),
             builder: (context, snapshot) {
               if (snapshot.data == null) {
                 return const Center(

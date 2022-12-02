@@ -5,8 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:project/models/fetch_data.dart';
 
 class MoviesModel {
-  final Fetch _fetch = Fetch();
-
   Future<List<Movie>> getAllMovies() async {
     List<Movie> movies = [];
 
@@ -23,7 +21,7 @@ class MoviesModel {
   }
 
   Future<Movie> getMovieFromID(int id) async {
-    return await _fetch.fetchMovieDetails(id);
+    return await Fetch.fetchMovieDetails(id);
   }
 
   Future insertMovie(Movie movie) async {

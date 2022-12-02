@@ -12,7 +12,7 @@ class Fetch{
   // The timestamp of when the cachedTrendingMovies map was last updated
   static DateTime cachedTrendingMoviesLastUpdated = DateTime(0);
 
-  Future<List<Trending<Movie>>> fetchTrendingMovies() async {
+  static Future<List<Trending<Movie>>> fetchTrendingMovies() async {
     // If the last time the trending movies were updated was below a threshold,
     // return the cached version
     DateTime now = DateTime.now();
@@ -45,7 +45,7 @@ class Fetch{
 
   }*/
 
-  Future<Movie> fetchMovieDetails(int? id) async {
+  static Future<Movie> fetchMovieDetails(int? id) async {
     if (cachedMovies.containsKey(id!)) {
       return cachedMovies[id]!;
     }
