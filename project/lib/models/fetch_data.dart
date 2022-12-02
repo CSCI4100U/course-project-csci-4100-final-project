@@ -5,6 +5,7 @@ import '../classes/movie_cast.dart';
 import '../classes/trending.dart';
 
 class Fetch{
+  static Map<int, Movie> cachedMovies = {};
 
   Future<List<Trending<Movie>>> fetchTrendingMovies() async {
     var response = await http
@@ -30,6 +31,10 @@ class Fetch{
   }*/
 
   Future<Movie> fetchMovieDetails(int? id) async {
+    if (cachedMovies.containsKey(id!)) {
+      return cachedMovies[id]!;
+    }
+
     String getId = id.toString();
     print('https://api.themoviedb.org/3/movie/$getId?api_key=3504ebf3ee269a0d7dbc3e0e586c0768&language=en-US');
     var response = await http
@@ -38,6 +43,7 @@ class Fetch{
     if (response.statusCode == 200) {
       var userMap =  jsonDecode(response.body);
       Movie movie = Movie.fromMap(userMap);
+      cachedMovies[id] = movie;
       return movie;
     }else {
       throw Exception('Failed to load trending movies');
