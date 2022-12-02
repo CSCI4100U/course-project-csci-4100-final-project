@@ -3,7 +3,7 @@ import '../classes/book.dart';
 import '../components/drawer.dart';
 import 'add_book_form.dart';
 import '../models/book_model.dart';
-
+import 'package:project/models/fetch_data_books.dart';
 
 class BooksView extends StatefulWidget {
   const BooksView({Key? key}) : super(key: key);
@@ -13,6 +13,7 @@ class BooksView extends StatefulWidget {
 }
 
 class _BooksViewState extends State<BooksView> {
+  final _fetch = FetchBooks().fetchTrendingBooks();
   var _model = BookModel();
   List<Book> books = [];
 
@@ -24,6 +25,8 @@ class _BooksViewState extends State<BooksView> {
 
   @override
   Widget build(BuildContext context) {
+    int? selectedBookID;
+    String? selectedBookName;
     return Scaffold(
       appBar: AppBar(
         title: Text("My Book List")
