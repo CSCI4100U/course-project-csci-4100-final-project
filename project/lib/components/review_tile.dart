@@ -15,7 +15,16 @@ class ReviewTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(5.0),
       ),
       child: ListTile(
-        title: Text(review.title),
+        title: Row(
+          children: [
+            Expanded(
+              child: Text(review.title),
+            ),
+            const Padding(padding: EdgeInsets.symmetric(horizontal: 5.0)),
+            const Icon(Icons.star, color: Colors.amber),
+            Text(review.rating.toString()),
+          ],
+        ),
         subtitle: Text("${review.author}\n\n${review.content}"),
       ),
     );
