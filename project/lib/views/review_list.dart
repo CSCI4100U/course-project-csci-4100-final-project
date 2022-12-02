@@ -44,10 +44,13 @@ class _ReviewListState extends State<ReviewList> {
               ),
             );
           }
-          return ListView.builder(
+          return ListView.separated(
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               return ReviewTile(review: snapshot.data![index]);
+            },
+            separatorBuilder: (context, index) {
+              return const Padding(padding: EdgeInsets.symmetric(vertical: 5.0));
             },
           );
         }

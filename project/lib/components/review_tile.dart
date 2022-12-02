@@ -8,9 +8,16 @@ class ReviewTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(review.title),
-      subtitle: Text("${review.author}\n\n${review.content}"),
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        color: Theme.of(context).cardColor,
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      child: ListTile(
+        title: Text(review.title),
+        subtitle: Text("${review.author}\n\n${review.content}"),
+      ),
     );
   }
 }

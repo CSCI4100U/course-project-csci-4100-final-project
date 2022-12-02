@@ -48,9 +48,9 @@ class _MovieDetailsState extends State<MovieDetails> {
                         style: const TextStyle(fontSize: 20, fontFamily: 'Lato'),
                         textAlign: TextAlign.center,
                       ),
-                      TextButton(
+                      ElevatedButton(
                         child: const Text("Reviews", style: TextStyle(fontSize: 18)),
-                        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => ReviewList(movieName: snapshot.data!.title!, movieID: snapshot.data!.id!))),
+                        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => ReviewList(movieName: snapshot.data!.title, movieID: snapshot.data!.id!))),
                       ),
                     ],
                   ),
