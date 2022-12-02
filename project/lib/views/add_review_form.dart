@@ -18,6 +18,7 @@ class _AddReviewFormState extends State<AddReviewForm> {
   late String _author;
   late String _title;
   late String _content;
+  int rating = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class _AddReviewFormState extends State<AddReviewForm> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
-            Review movie = Review(movieID: widget.id, title: _title, author: _author, content: _content, rating: 0);
+            Review movie = Review(movieID: widget.id, title: _title, author: _author, content: _content, rating: rating);
             Navigator.of(context).pop(movie);
           }
         },
@@ -72,6 +73,31 @@ class _AddReviewFormState extends State<AddReviewForm> {
                 _content = value!;
               },
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.star, color: rating >= 1 ? Colors.amber : Colors.grey),
+                  onPressed: () => setState(() => rating = 1),
+                ),
+                IconButton(
+                  icon: Icon(Icons.star, color: rating >= 2 ? Colors.amber : Colors.grey),
+                  onPressed: () => setState(() => rating = 2),
+                ),
+                IconButton(
+                  icon: Icon(Icons.star, color: rating >= 3 ? Colors.amber : Colors.grey),
+                  onPressed: () => setState(() => rating = 3),
+                ),
+                IconButton(
+                  icon: Icon(Icons.star, color: rating >= 4 ? Colors.amber : Colors.grey),
+                  onPressed: () => setState(() => rating = 4),
+                ),
+                IconButton(
+                  icon: Icon(Icons.star, color: rating >= 5 ? Colors.amber : Colors.grey),
+                  onPressed: () => setState(() => rating = 5),
+                ),
+              ]
+            )
           ],
         ),
       ),
