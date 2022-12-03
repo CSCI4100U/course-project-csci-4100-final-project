@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
                   translationLoader: FileTranslationLoader(
                     useCountryCode: false,
                     fallbackFile: 'en',
+                    basePath: 'assets/i18n'
                   ),
 
                 )
