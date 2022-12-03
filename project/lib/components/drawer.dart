@@ -5,6 +5,7 @@ import '../views/movie_view.dart';
 import'package:project/classes/notification_manager.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
+import 'package:firebase_auth/firebase_auth.dart';
 
 class NavDrawer extends StatefulWidget {
   const NavDrawer({Key? key}) : super(key: key);
@@ -94,6 +95,13 @@ class _NavDrawerState extends State<NavDrawer> {
                 _notificationNow;
               },
             ),
+            const SizedBox(height: 30),
+            Divider(color: Colors.white,),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: const Text('Logout'),
+              onTap: _logout,
+            )
           ],
         ),
       ),
@@ -102,6 +110,10 @@ class _NavDrawerState extends State<NavDrawer> {
   }
   void _notificationNow() async {
     _notifications.sendNotificationNow("Movie", "Book", "Book");
+  }
+
+  void _logout() async {
+    await FirebaseAuth.instance.signOut();
   }
 }
 void _showAboutDialog(BuildContext context) {

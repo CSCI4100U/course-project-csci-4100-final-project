@@ -7,6 +7,8 @@ import'package:project/classes/notification_manager.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import '../components/drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:project/views/auth/login_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,10 +25,23 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     tz.initializeTimeZones();
     _notifications.init();
-    return const Scaffold(
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return const Scaffold(
+            drawer: NavDrawer(),
+            body: HomeView(title: 'Trending Movies'),
+          );
+        } else {
+          return const LoginPage();
+        }
+      }
+    );
+    /*return const Scaffold(
         drawer: NavDrawer(),
         body: HomeView(title: 'Trending Movies',),
-      );
+      );*/
   }
 
   void _notificationNow() async {
