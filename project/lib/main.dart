@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'views/home_page.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +29,20 @@ class MyApp extends StatelessWidget {
                   primarySwatch: Colors.purple
               ),
               home: const HomePage(),
+              localizationsDelegates: [
+                FlutterI18nDelegate(
+                  missingTranslationHandler: (key, locale){
+                    print("MISSING KEY: $key, Language Code: ${locale!.languageCode}");
+                  },
+                  translationLoader: FileTranslationLoader(
+                    useCountryCode: false,
+                    fallbackFile: 'en',
+                  ),
+
+                )
+              ],
+
+
             );
           }
           else{
