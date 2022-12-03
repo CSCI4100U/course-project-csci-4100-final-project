@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:project/views/auth/register_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   String? _email;
   String? _password;
+  final _regexEmail = RegExp('^.+@.+\..+\$');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('Register'),
       ),
       body: Form(
         key: _formKey,
@@ -29,7 +29,10 @@ class _LoginPageState extends State<LoginPage> {
               autocorrect: false,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
+                  return 'Please enter your email.';
+                }
+                if (!_regexEmail.hasMatch(value)) {
+                  return 'Invalid email format.';
                 }
                 return null;
               },
@@ -44,22 +47,43 @@ class _LoginPageState extends State<LoginPage> {
               autocorrect: false,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your password';
+                  return 'Please enter your password.';
                 }
+                if (value.length < 10) {
+                  return 'Password must have at least 10 characters.';
+                }
+
                 return null;
               },
               onSaved: (value) {
                 _password = value;
               },
+              onChanged: (value) {
+                _password = value;
+              },
+            ),
+            TextFormField(
+              decoration: const InputDecoration(label: Text('Confirm Password')),
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your password.';
+                }
+                if (value != _password) {
+                  return 'Password does not match.';
+                }
+                return null;
+              },
+              onSaved: (value) {
+
+              },
             ),
             ElevatedButton.icon(
               icon: const Icon(Icons.lock_open),
-              label: const Text('Sign In'),
-              onPressed: _signIn,
-            ),
-            TextButton(
+              label: const Text('Register'),
               onPressed: _register,
-              child: const Text('Register Now'),
             )
           ],
         ),
@@ -67,28 +91,25 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Future _signIn() async {
+  Future _register() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      UserCredential? cred;
       try {
-        UserCredential cred = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(
-          email: _email!.trim(),
-          password: _password!.trim(),
-        );
+        cred = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email!.trim(), password: _password!.trim());
       } on FirebaseAuthException catch (e) {
         String msg = 'An error occurred.';
         if (e.code == 'invalid-email') {
           msg = 'Invalid email.';
-        } else if (e.code == 'user-disabled') {
-          msg = 'Account disabled.';
-        } else if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-          msg = 'Incorrect username and password combination.';
+        } else if (e.code == 'email-already-in-use') {
+          msg = 'Email already in use.';
+        } else if (e.code == 'weak-password') {
+          msg = 'Password is not strong enough.';
         }
         await showDialog<void>(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Login Error'),
+            title: const Text('Registration Error'),
             content: Text(msg),
             actions: [
               TextButton(
@@ -100,10 +121,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         return;
       }
+      Navigator.of(context).pop();
     }
-  }
-
-  Future _register() async {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const RegisterPage()));
   }
 }
