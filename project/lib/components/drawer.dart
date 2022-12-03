@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/views/books_view.dart';
+import 'package:project/views/map_view.dart';
 import '../views/home_view.dart';
 import '../views/movie_view.dart';
 import'package:project/classes/notification_manager.dart';
@@ -64,7 +65,6 @@ class _NavDrawerState extends State<NavDrawer> {
                 });
               },
             ),
-            //Book Button
             ListTile(
               leading: Icon(Icons.book),
               title: const Text('Books'),
@@ -74,6 +74,19 @@ class _NavDrawerState extends State<NavDrawer> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const BooksView()),
+                  );
+                });
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.not_listed_location),
+              title: const Text('Find Locations'),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const mapView()),
                   );
                 });
               },
