@@ -33,6 +33,8 @@ class _MyAppState extends State<HomeView> {
               );
             } else {
               return ListView.builder(
+                  addAutomaticKeepAlives: false,
+                  addRepaintBoundaries: false,
                   itemCount: snapshot.data?.length,
                   itemBuilder: (context, index){
                     return GestureDetector(

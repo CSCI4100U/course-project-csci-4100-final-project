@@ -41,6 +41,8 @@ class _MoviesViewState extends State<MoviesView> {
             } else {
               // Movie list
               return ListView.builder(
+                  addAutomaticKeepAlives: false,
+                  addRepaintBoundaries: false,
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index){
                   return MovieTile(movie: snapshot.data![index]);
