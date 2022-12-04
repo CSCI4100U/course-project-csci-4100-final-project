@@ -86,7 +86,7 @@ class _NavDrawerState extends State<NavDrawer> {
                 setState(() {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const mapView()),
+                    MaterialPageRoute(builder: (context) => mapView()),
                   );
                 });
               },
