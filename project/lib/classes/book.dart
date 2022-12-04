@@ -1,17 +1,19 @@
 import 'package:project/views/books_view.dart';
 
 import '';
-class Book {
-  int? id;
+class Book<B>{
+  // int? id;
+  String? description;
   String? title;
-  String? author;
-  int? rating;
+  // String? author;
+  // int? rating;
 
   Book({
-    this.id,
+    // this.id,
     required this.title,
-    required this.author,
-    this.rating,
+    required this.description,
+    // required this.author,
+    // this.rating,
   });
 
   // factory Book.fromJson(Map<String, dynamic> json) {
@@ -24,23 +26,27 @@ class Book {
   // }
 
   Book.fromMap(Map map){
-    this.id = map['id'];
+    // this.id = map['id'];
+    this.description = map['description'];
     this.title = map['title'];
-    this.author = map['author'];
-    this.rating = map['rating'];
+    // this.author = map['author'];
+    // this.rating = map['rating'];
   }
 
   String toString(){
-    return 'BooksView[id: $id], title: $title, author: $author, rating: $rating';
+    //return 'BooksView[id: $id], title: $title, author: $author, rating: $rating';
+    return 'BooksView[description: $description, title: $title';
   }
   Map<String, Object?> toMap(){
     return{
-      'id': this.id,
+      // 'id': this.id,
       'title': this.title,
-      'author': this.author,
-      'rating': this.rating,
+      'description':this.description,
+      // 'author': this.author,
+      // 'rating': this.rating,
 
     };
   }
 }
+
 
