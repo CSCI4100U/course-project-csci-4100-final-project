@@ -42,10 +42,6 @@ class Fetch{
     }
   }
 
-  /*Future<List<Trending<Book>>> fetchTrendingBooks() async {
-
-  }*/
-
   static Future<Movie> fetchMovieDetails(int? id) async {
     if (cachedMovies.containsKey(id!)) {
       return cachedMovies[id]!;
@@ -70,7 +66,7 @@ class Fetch{
     List<GeoLocation> nearby = [];
     double lat = l.latitude;
     double long = l.longitude;
-    print('https://api.tomtom.com/search/2/search/cinema.json?key=$accessTokFind&lat=$lat&lon=$long&radius=25000&language=en-US');
+    //print('https://api.tomtom.com/search/2/search/cinema.json?key=$accessTokFind&lat=$lat&lon=$long&radius=25000&language=en-US');
     var response = await http
         .get(Uri.parse('https://api.tomtom.com/search/2/search/cinema.json?key=$accessTokFind&lat=$lat&lon=$long&radius=25000&language=en-US')
     );
@@ -91,23 +87,5 @@ class Fetch{
       throw Exception('Failed to load trending movies');
     }
   }
-  //
-  // Future<MovieCast> fetchMovieCast(int? id) async {
-  //   String getId = id.toString();
-  //   print('https://api.themoviedb.org/3/movie/$getId/credits?api_key=<<api_key>>&language=en-US');
-  //   var response = await http
-  //       .get(Uri.parse('https://api.themoviedb.org/3/movie/$getId/credits?api_key=<<api_key>>&language=en-US')
-  //   );
-  //   if (response.statusCode == 200) {
-  //     List userMap =  jsonDecode(response.body)['cast'];
-  //     List<MovieCast> cast = [];
-  //     for (var item in userMap){
-  //       trending.add(Cast.fromMap(item));
-  //     }
-  //     return trending;
-  //   }else {
-  //     throw Exception('Failed to load trending movies');
-  //   }
-  // }
 
 }
