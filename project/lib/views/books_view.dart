@@ -39,7 +39,7 @@ class _BooksViewState extends State<BooksView> {
                 return ListTile(
                   title: Text("${books[index].title}"),
                   subtitle: Text(
-                      "Author: ${"${books[index].author}"} Rating: ${books[index].rating}"),
+                      "Author: ${"${books[index].title}"} Rating: ${books[index].description}"),
                 );
               }
           )
@@ -65,9 +65,12 @@ class _BooksViewState extends State<BooksView> {
     List result = await _model.getAllBooks();
     setState(() {
       for(Book i in result){
-        books.add(Book(title: i.title, author: i.author, rating: i.rating));
+        books.add(Book(title: i.title, description: i.description));
+
+        //books.add(Book(title: i.title, author: i.author, rating: i.rating));
       }
     });
 
   }
 }
+
