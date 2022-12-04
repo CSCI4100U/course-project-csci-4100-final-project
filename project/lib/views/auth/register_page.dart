@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -18,39 +19,39 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: Text(FlutterI18n.translate(context, "Register.Register")),
       ),
       body: Form(
         key: _formKey,
         child: Column(
           children: [
             TextFormField(
-              decoration: const InputDecoration(label: Text('Email')),
-              autocorrect: false,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email.';
+                decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Register.Email"))),
+                autocorrect: false,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return FlutterI18n.translate(context, "Register.E_null");
+                  }
+                  if (!_regexEmail.hasMatch(value)) {
+                    return FlutterI18n.translate(context, "Register.E_invalid");
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _email = value;
                 }
-                if (!_regexEmail.hasMatch(value)) {
-                  return 'Invalid email format.';
-                }
-                return null;
-              },
-              onSaved: (value) {
-                _email = value;
-              }
             ),
             TextFormField(
-              decoration: const InputDecoration(label: Text('Password')),
+              decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Register.Password"))),
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your password.';
+                  return FlutterI18n.translate(context, "Register.P_null");
                 }
                 if (value.length < 10) {
-                  return 'Password must have at least 10 characters.';
+                  return FlutterI18n.translate(context, "Register.P_format");
                 }
 
                 return null;
@@ -63,16 +64,16 @@ class _RegisterPageState extends State<RegisterPage> {
               },
             ),
             TextFormField(
-              decoration: const InputDecoration(label: Text('Confirm Password')),
+              decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Register.Pass_confirm"))),
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your password.';
+                  return FlutterI18n.translate(context, "Register.P_null");
                 }
                 if (value != _password) {
-                  return 'Password does not match.';
+                  return FlutterI18n.translate(context, "Register.P_match");
                 }
                 return null;
               },
@@ -82,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             ElevatedButton.icon(
               icon: const Icon(Icons.lock_open),
-              label: const Text('Register'),
+              label: Text(FlutterI18n.translate(context, "Register.Register")),
               onPressed: _register,
             )
           ],

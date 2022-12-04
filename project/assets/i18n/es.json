@@ -1,0 +1,22 @@
+{
+  "Login": {
+    "Email": "Nombre de usuario",
+    "Password": "Contraseña",
+    "Sign_in": "Iniciar sesión",
+    "Register": "Regístrate ahora",
+    "Title": "Acceso",
+    "E_null": "Por favor introduzca su correo electrónico",
+    "P_null": "Por favor introduzca su contraseña"
+  },
+  "Register": {
+    "Email": "Nombre de usuario",
+    "Password": "Contraseña",
+    "Pass_confirm": "Confirmar Contraseña",
+    "Register": "Registro",
+    "E_null": "Por favor introduzca su correo electrónico",
+    "P_null": "Por favor introduzca su contraseña",
+    "E_invalid": "Formato de correo inválido",
+    "P_format": "La contraseña debe tener al menos diez caracteres",
+    "P_match": "Las contraseñas no coinciden"
+  }
+}

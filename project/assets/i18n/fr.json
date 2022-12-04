@@ -1,0 +1,22 @@
+{
+  "Login": {
+    "Email": "Nom d'utilisateur",
+    "Password": "Mot de passe",
+    "Sign_in": "S'identifier",
+    "Register": "S'inscrire maintenant",
+    "Title": "Connexion",
+    "E_null": "S'il vous plait entrez votrevotre e-mail",
+    "P_null": "S'il vous plait entrez votre mot de passe"
+  },
+  "Register": {
+    "Email": "Nom d'utilisateur",
+    "Password": "Mot de passe",
+    "Pass_confirm": "Confirmez le mot de passe",
+    "Register": "S'inscrire",
+    "E_null": "S'il vous plait entrez votrevotre e-mail",
+    "P_null": "S'il vous plait entrez votre mot de passe",
+    "E_invalid": "Format d'email invalide",
+    "P_format": "Le mot de passe doit comporter au moins dix caractÃ¨res",
+    "P_match": "Le mot de passe ne correspond pas"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "Login": {
+    "Email": "Email",
+    "Password": "Password",
+    "Sign_in": "Sign In",
+    "Register": "Register Now",
+    "Title": "Login",
+    "E_null": "Please enter your email",
+    "P_null": "Please enter your password"
+  },
+  "Register": {
+    "Email": "Email",
+    "Password": "Password",
+    "Pass_confirm": "Confirm Password",
+    "Register": "Register",
+    "E_null": "Please enter your email",
+    "P_null": "Please enter your password",
+    "E_invalid": "Invalid email format",
+    "P_format": "Password must have at least 10 characters",
+    "P_match": "Password does not match"
+  }
+}

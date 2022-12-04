@@ -40,9 +40,15 @@ class MyApp extends StatelessWidget {
                     basePath: 'assets/i18n'
                   ),
 
-                )
+                ),
+                GlobalMaterialLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
               ],
-
+              supportedLocales: [
+                Locale('en'),
+                Locale('fr'),
+                Locale('es')
+              ],
 
             );
           }
