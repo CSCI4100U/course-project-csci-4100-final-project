@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project/views/auth/register_page.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -18,55 +19,90 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+          title: Text(FlutterI18n.translate(context, "Login.Title")),
+          actions: [
+            PopupMenuButton(
+                itemBuilder: (context){
+                  return [
+                    PopupMenuItem<int>(
+                      value: 0,
+                      child: Text("EN"),
+                    ),
+                    PopupMenuItem<int>(
+                      value: 1,
+                      child: Text("ES"),
+                    ),
+                    PopupMenuItem<int>(
+                      value: 2,
+                      child: Text("FR"),
+                    ),
+                  ];
+                },
+
+                onSelected: (value) async {
+                  if (value == 0) {
+                    Locale newLocale = Locale('en');
+                    await FlutterI18n.refresh(context, newLocale);
+                    setState(() {
+
+                    });
+                  } else if (value == 1) {
+                    Locale newLocale = Locale('es');
+                    await FlutterI18n.refresh(context, newLocale);
+                    setState(() {
+
+                    });
+                  } else if (value == 2) {
+                    Locale newLocale = Locale('fr');
+                    await FlutterI18n.refresh(context, newLocale);
+                    setState(() {
+
+                    });
+                  }
+                }
+            ),
+          ]
       ),
       body: Form(
         key: _formKey,
         child: Column(
           children: [
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                  decoration: const InputDecoration(label: Text('Email')),
-                  autocorrect: false,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _email = value;
-                  }
-              ),
-            ),
-
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                decoration: const InputDecoration(label: Text('Password')),
-                obscureText: true,
-                enableSuggestions: false,
+            TextFormField(
+                decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Login.Email"))),
                 autocorrect: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter your password';
+                    return FlutterI18n.translate(context, "Login.E_null");
                   }
                   return null;
                 },
                 onSaved: (value) {
-                  _password = value;
-                },
-              ),
+                  _email = value;
+                }
+            ),
+            TextFormField(
+              decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Login.Password"))),
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return FlutterI18n.translate(context, "Login.P_null");
+                }
+                return null;
+              },
+              onSaved: (value) {
+                _password = value;
+              },
             ),
             ElevatedButton.icon(
               icon: const Icon(Icons.lock_open),
-              label: const Text('Sign In'),
+              label: Text(FlutterI18n.translate(context, "Login.Sign_in")),
               onPressed: _signIn,
             ),
             TextButton(
               onPressed: _register,
-              child: const Text('Register Now'),
+              child: Text(FlutterI18n.translate(context, "Login.Register")),
             )
           ],
         ),

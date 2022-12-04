@@ -13,6 +13,7 @@ class _addBookState extends State<addBook> {
   late String _title;
   late String _author;
   late int? _rating;
+  late String? _description;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +66,7 @@ class _addBookState extends State<addBook> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
-            Book book = Book(title: _title, author: _author, rating: _rating);
+            Book book = Book(title: _title, description: _description);
             Navigator.of(context).pop(book);
           }
         },
