@@ -68,7 +68,7 @@ class Fetch{
     double long = l.longitude;
     //print('https://api.tomtom.com/search/2/search/cinema.json?key=$accessTokFind&lat=$lat&lon=$long&radius=25000&language=en-US');
     var response = await http
-        .get(Uri.parse('https://api.tomtom.com/search/2/search/cinema.json?key=$accessTokFind&lat=$lat&lon=$long&radius=25000&language=en-US')
+        .get(Uri.parse('https://api.tomtom.com/search/2/search/cinema.json?key=$accessTokFind&lat=$lat&lon=$long&radius=15000&language=en-US')
     );
     if (response.statusCode == 200) {
       var userMap =  jsonDecode(response.body)['results'];
