@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../classes/mapMarker.dart';
+import '../models/fetch_data.dart';
 
 class mapView extends StatefulWidget {
   mapView({Key? key}) : super(key: key);
@@ -15,7 +16,8 @@ class mapView extends StatefulWidget {
 }
 
 class _mapViewState extends State<mapView> {
-
+  String accessTok = "pk.eyJ1Ijoic2VqYWxzaGluZ2FsIiwiYSI6ImNsYjhrYTgyaTBsc3Izd3BqYmEzcG1tOXkifQ.2uiODbeyAxZZuYC-qj1OVQ";
+  String accessTokFind = "PBYeQYsneEBM84M9wPPjPtQVcM1UQPOn";
   int selectedIndex = 0;
   List<GeoLocation> placeholder = [];
   late MapController mapController;
@@ -67,39 +69,49 @@ class _mapViewState extends State<mapView> {
           )
         ],
       ),
-      body: Stack(
-        children: [
-          widget.isLoad ? FlutterMap(
-            mapController: mapController,
-            options: MapOptions(
-              minZoom: 5,
-              maxZoom: 18,
-              zoom: 13,
-              center: _positionMessage,
-            ),
-            layers: [
-              TileLayerOptions(
-                urlTemplate:
-                "https://api.mapbox.com/styles/v1/sejalshingal/clb8kgiuq004b14nzrnvvvcwj/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2VqYWxzaGluZ2FsIiwiYSI6ImNsYjhrYTgyaTBsc3Izd3BqYmEzcG1tOXkifQ.2uiODbeyAxZZuYC-qj1OVQ",
-              ),
-              MarkerLayerOptions(
-                markers: [
-                  for (int i = 0; i < placeholder.length; i++)
-                    Marker(
-                      height: 40,
-                      width: 40,
-                      point: placeholder[i].latlng,
-                      builder: (_) {
-                        return GestureDetector(
-                          onTap: () {},
-                          child: const Icon(Icons.location_on),
-                        );
-                        },
+      drawer: NavDrawer(),
+      body: Center(
+        child: widget.isLoad ? FutureBuilder<List<GeoLocation>>(
+          future: Fetch.fetchLocations(accessTokFind,_positionMessage),
+          builder: (context, snapshot) {
+            if (snapshot.data == null) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return FlutterMap(
+                  mapController: mapController,
+                  options: MapOptions(
+                    minZoom: 5,
+                    maxZoom: 18,
+                    zoom: 13,
+                    center: _positionMessage,
+                  ),
+                  layers: [
+                    TileLayerOptions(
+                      urlTemplate:
+                      "https://api.mapbox.com/styles/v1/sejalshingal/clb8kgiuq004b14nzrnvvvcwj/tiles/256/{z}/{x}/{y}@2x?access_token=$accessTok",
                     ),
-                ],
-              ),
-            ]) : const Center(child: CircularProgressIndicator())
-        ],
+                    MarkerLayerOptions(
+                      markers: [
+                        for (dynamic i = 0; i < snapshot.data?.length; i++)
+                          Marker(
+                            height: 40,
+                            width: 40,
+                            point: snapshot.data![i].latlng,
+                            builder: (_) {
+                              return GestureDetector(
+                                onTap: () {},
+                                child: const Icon(Icons.location_on),
+                              );
+                              },
+                          ),
+                      ],
+                    ),
+                  ]
+              );
+            }},
+        ) : const Center(child: CircularProgressIndicator()),
       ),
     );
   }
@@ -124,4 +136,5 @@ class _mapViewState extends State<mapView> {
       });
     }
   }
+
 }

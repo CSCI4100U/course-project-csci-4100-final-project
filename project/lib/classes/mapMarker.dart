@@ -1,18 +1,42 @@
 import 'package:latlong2/latlong.dart';
 
-class MapMarker{
-  final String image;
+class MarkerTitle{
   final String title;
-  final String address;
-  final LatLng location;
-  final int rating;
 
-  MapMarker({
-    required this.image,
+  factory MarkerTitle.fromMap(Map map){
+    return MarkerTitle(
+      title: map['name'],
+    );
+  }
+  MarkerTitle({
     required this.title,
+  });
+}
+class MarkerAddress{
+  final String address;
+
+  factory MarkerAddress.fromMap(Map map){
+    return MarkerAddress(
+      address: map['freeformAddress'],
+    );
+  }
+  MarkerAddress({
     required this.address,
-    required this.location,
-    required this.rating,
+  });
+}
+class MarkerLocation{
+  final double lat;
+  final double long;
+
+  factory MarkerLocation.fromMap(Map map){
+    return MarkerLocation(
+      lat: map['lat'],
+      long: map['lon'],
+    );
+  }
+  MarkerLocation({
+    required this.lat,
+    required this.long
   });
 }
 class GeoLocation{

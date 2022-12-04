@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:latlong2/latlong.dart';
 import 'package:project/classes/movie.dart';
-import '../classes/movie_cast.dart';
+import '../classes/mapMarker.dart';
 import '../classes/trending.dart';
 
 class Fetch{
@@ -60,6 +61,32 @@ class Fetch{
       Movie movie = Movie.fromMap(userMap);
       cachedMovies[id] = movie;
       return movie;
+    }else {
+      throw Exception('Failed to load trending movies');
+    }
+  }
+
+  static Future<List<GeoLocation>> fetchLocations(String accessTokFind, LatLng l) async {
+    List<GeoLocation> nearby = [];
+    double lat = l.latitude;
+    double long = l.longitude;
+    print('https://api.tomtom.com/search/2/search/cinema.json?key=$accessTokFind&lat=$lat&lon=$long&radius=25000&language=en-US');
+    var response = await http
+        .get(Uri.parse('https://api.tomtom.com/search/2/search/cinema.json?key=$accessTokFind&lat=$lat&lon=$long&radius=25000&language=en-US')
+    );
+    if (response.statusCode == 200) {
+      var userMap =  jsonDecode(response.body)['results'];
+      for (var item in userMap){
+        var nameData = item["poi"];
+        MarkerTitle name = MarkerTitle.fromMap(nameData);
+        var addressData = item["address"];
+        MarkerAddress add = MarkerAddress.fromMap(addressData);
+        var locData = item["position"];
+        MarkerLocation loc = MarkerLocation.fromMap(locData);
+        GeoLocation G = GeoLocation(name: name.title, address: add.address, latlng: LatLng(loc.lat, loc.long));
+        nearby.add(G);
+      }
+      return nearby;
     }else {
       throw Exception('Failed to load trending movies');
     }
