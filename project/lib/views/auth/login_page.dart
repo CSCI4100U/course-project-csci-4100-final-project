@@ -24,33 +24,40 @@ class _LoginPageState extends State<LoginPage> {
         key: _formKey,
         child: Column(
           children: [
-            TextFormField(
-              decoration: const InputDecoration(label: Text('Email')),
-              autocorrect: false,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
-                }
-                return null;
-              },
-              onSaved: (value) {
-                _email = value;
-              }
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextFormField(
+                  decoration: const InputDecoration(label: Text('Email')),
+                  autocorrect: false,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _email = value;
+                  }
+              ),
             ),
-            TextFormField(
-              decoration: const InputDecoration(label: Text('Password')),
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your password';
-                }
-                return null;
-              },
-              onSaved: (value) {
-                _password = value;
-              },
+
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextFormField(
+                decoration: const InputDecoration(label: Text('Password')),
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _password = value;
+                },
+              ),
             ),
             ElevatedButton.icon(
               icon: const Icon(Icons.lock_open),
