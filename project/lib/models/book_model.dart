@@ -31,7 +31,7 @@ class BookModel{
       'books',
       book.toMap(),
       where: 'id = ?',
-      whereArgs: [book.id],
+      // whereArgs: [book.id],
     );
   }
   Future<int> deleteBookById(int? id) async{
