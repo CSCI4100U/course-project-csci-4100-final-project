@@ -9,11 +9,11 @@ class FetchBooks{
   // Stores movies from My List after the initial load to prevent unnecessary API calls
   static Map<int, Book> cachedBooks = {};
   // Stores all trending movies after the initial load to prevent unnecessary API calls
-  static List<Trending<Book>> cachedTrendingBooks = [];
+  static List<Book<Book>> cachedTrendingBooks = [];
   // The timestamp of when the cachedTrendingMovies map was last updated
   static DateTime cachedTrendingBooksLastUpdated = DateTime(0);
 
-  Future<List<Trending<Book>>> fetchTrendingBooks() async {
+  Future<List<Book<Book>>> fetchTrendingBooks() async {
     // If the last time the trending movies were updated was below a threshold,
     // return the cached version
     DateTime now = DateTime.now();
@@ -24,20 +24,22 @@ class FetchBooks{
     // Enough time has passed, so refresh trending movies from the API
     cachedTrendingBooksLastUpdated = now;
     var response = await http
-    .get(Uri.parse('https://openlibrary.org/works/OL45883W.json')
+    .get(Uri.parse('https://openlibrary.org/works/OL5819895W.json')
     //.get(Uri.parse('https://api.themoviedb.org/3/trending/movie/week?api_key=3504ebf3ee269a0d7dbc3e0e586c0768')
     );
     if (response.statusCode == 200) {
-      List userMap = jsonDecode(response.body)['results'];
-      List<Trending<Book>> trending = [];
+      List userMap = jsonDecode(response.body)['description']['title'];
+      List<Book<Book>> books = [];
       for (var item in userMap){
-        Book movie = Book.fromMap(item);
-        double rating = (item['vote_average'] / 2);
-        Trending<Book> t = Trending<Book>(base: movie, rating: rating);
-        trending.add(t);
+        Book book = Book.fromMap(item);
+        String description =(item['description']);
+        String title = (item['title']);
+        // double rating = (item['title']);
+        Book<Book> t = Book(title: title, description: description);
+        books.add(t);
       }
-      cachedTrendingBooks = trending;
-      return trending;
+      cachedTrendingBooks = books;
+      return books;
     } else {
       throw Exception('Failed to load trending books');
     }
@@ -53,10 +55,10 @@ class FetchBooks{
     }
 
     String getId = id.toString();
-    print('https://openlibrary.org/works/OL45883W.json');
+    print('https://openlibrary.org/works/OL5819895W.json');
     //print('https://api.themoviedb.org/3/movie/$getId?api_key=3504ebf3ee269a0d7dbc3e0e586c0768&language=en-US');
     var response = await http
-        .get(Uri.parse('https://api.themoviedb.org/3/movie/$getId?api_key=3504ebf3ee269a0d7dbc3e0e586c0768&language=en-US')
+        .get(Uri.parse('https://openlibrary.org/works/OL5819895W.json')
     );
     if (response.statusCode == 200) {
       var userMap =  jsonDecode(response.body);
@@ -87,3 +89,4 @@ class FetchBooks{
 // }
 
 }
+
