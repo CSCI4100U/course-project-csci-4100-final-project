@@ -25,24 +25,22 @@ class _mapViewState extends State<mapView> {
   void initState(){
     super.initState();
     mapController = MapController();
-  }
-  @override
-  Widget build(BuildContext context) {
     Geolocator.isLocationServiceEnabled().then((value) => null);
     Geolocator.requestPermission().then((value) => null);
     Geolocator.checkPermission().then(
             (LocationPermission permission)
         {
-          //print("Check Location Permission: $permission");
+          print("Check Location Permission: $permission");
         }
     );
-
     Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
           accuracy: LocationAccuracy.best
       ),
     ).listen(_updateLocationStream);
-
+  }
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Find Cinema Near Me"),
@@ -110,17 +108,20 @@ class _mapViewState extends State<mapView> {
         userLocation.latitude,
         userLocation.longitude
     );
-    setState(() {
-      if(widget.isLoad == false){
-        _positionMessage =  LatLng(userLocation.latitude, userLocation.longitude);
-        GeoLocation curr = GeoLocation(
-            name: places[0].name!,
-            address: "${places[0].subThoroughfare!} ${places[0].thoroughfare!}",
-            latlng: LatLng(userLocation.latitude, userLocation.longitude)
-        );
-        placeholder.add(curr);
-      }
-      widget.isLoad = true;
-    });
+    if (mounted) {
+      setState(() {
+        if(widget.isLoad == false){
+          _positionMessage =  LatLng(userLocation.latitude, userLocation.longitude);
+          GeoLocation curr = GeoLocation(
+              name: places[0].name!,
+              address: "${places[0].subThoroughfare!} ${places[0].thoroughfare!}",
+              latlng: LatLng(userLocation.latitude, userLocation.longitude)
+          );
+          placeholder.add(curr);
+        }
+        widget.isLoad = true;
+
+      });
+    }
   }
 }
