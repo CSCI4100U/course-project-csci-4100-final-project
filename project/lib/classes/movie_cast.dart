@@ -1,12 +1,12 @@
 class MovieCast {
   final String name;
-  final String profile;
+  final String? profile;
   final String character;
   final num popularity;
 
   MovieCast({
     required this.name,
-    required this.profile,
+    this.profile,
     required this.character,
     required this.popularity,
   });
@@ -23,7 +23,6 @@ class MovieCast {
   Map<String, Object> toMap() {
     return <String, Object>{
       'name': name,
-      'profile_path': profile,
       'character': character,
       'popularity': popularity,
     };

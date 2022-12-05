@@ -86,9 +86,9 @@ class Fetch{
   static Future<List<MovieCast>> fetchMovieCast(int? id) async {
 
     String getId = id.toString();
-    print('https://api.themoviedb.org/3/movie/$getId/credits?api_key=<<api_key>>&language=en-US');
+    //print('https://api.themoviedb.org/3/movie/$getId/credits?api_key=<<api_key>>&language=en-US');
     var response = await http
-        .get(Uri.parse('https://api.themoviedb.org/3/movie/$getId/credits?api_key=<<api_key>>&language=en-US')
+        .get(Uri.parse('https://api.themoviedb.org/3/movie/$getId/credits?api_key=3504ebf3ee269a0d7dbc3e0e586c0768&language=en-US')
     );
     if (response.statusCode == 200) {
       List userMap =  jsonDecode(response.body)['cast'];
