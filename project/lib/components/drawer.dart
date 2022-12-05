@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:project/views/account_view.dart';
 import 'package:project/views/books_view.dart';
 import 'package:project/views/map_view.dart';
 import '../views/trending_movies_view.dart';
@@ -31,13 +32,23 @@ class _NavDrawerState extends State<NavDrawer> {
           children: [
             SizedBox(
               height: 150,
-              child: DrawerHeader(
-                  decoration: const BoxDecoration(
-                    color: Colors.purple,
-                  ),
-                  child: Container(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const AccountView()),
+                    );
+                  });
+                },
+                child: DrawerHeader(
+                      decoration: const BoxDecoration(
+                        color: Colors.purple,
+                      ),
+                      child: Container(
 
-                  )
+                      )
+                  ),
               ),
             ),
             ListTile(
