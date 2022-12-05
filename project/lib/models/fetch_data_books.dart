@@ -1,4 +1,4 @@
-import 'dart:convert';
+/*import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:project/classes/movie.dart';
 import '../classes/movie_cast.dart';
@@ -9,11 +9,11 @@ class FetchBooks{
   // Stores movies from My List after the initial load to prevent unnecessary API calls
   static Map<int, Book> cachedBooks = {};
   // Stores all trending movies after the initial load to prevent unnecessary API calls
-  static List<Book<Book>> cachedTrendingBooks = [];
+  static List<Trending<Book>> cachedTrendingBooks = [];
   // The timestamp of when the cachedTrendingMovies map was last updated
   static DateTime cachedTrendingBooksLastUpdated = DateTime(0);
 
-  Future<List<Book<Book>>> fetchTrendingBooks() async {
+  Future<List<Trending<Book>>> fetchTrendingBooks() async {
     // If the last time the trending movies were updated was below a threshold,
     // return the cached version
     DateTime now = DateTime.now();
@@ -90,3 +90,4 @@ class FetchBooks{
 
 }
 
+*/

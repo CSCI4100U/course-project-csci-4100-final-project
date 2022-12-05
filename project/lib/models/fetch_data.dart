@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:project/classes/movie.dart';
+import '../classes/book.dart';
 import '../classes/mapMarker.dart';
 import '../classes/movie_cast.dart';
 import '../classes/trending.dart';
@@ -60,6 +61,23 @@ class Fetch{
       return movie;
     }else {
       throw Exception('Failed to load trending movies');
+    }
+  }
+
+  static Future<Book> fetchBookDetails(String id) async {
+    var response = await http
+        .get(Uri.parse('https://openlibrary.org/works/$id.json')
+    );
+    if (response.statusCode == 200) {
+      Map raw = jsonDecode(response.body);
+      Book book = Book(
+        id: id,
+        title: raw['title'],
+        description: raw['description']['value'],
+      );
+      return book;
+    } else {
+      throw Exception('Failed to load book');
     }
   }
 

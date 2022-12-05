@@ -1,15 +1,17 @@
 import 'package:project/views/books_view.dart';
 
 import '';
-class Book<B>{
+class Book{
   // int? id;
-  String? description;
-  String? title;
+  late String id;
+  late String description;
+  late String title;
   // String? author;
   // int? rating;
 
   Book({
     // this.id,
+    required this.id,
     required this.title,
     required this.description,
     // required this.author,
@@ -27,24 +29,25 @@ class Book<B>{
 
   Book.fromMap(Map map){
     // this.id = map['id'];
-    this.description = map['description'];
-    this.title = map['title'];
+    id = map['id'];
+    description = map['description'];
+    title = map['title'];
     // this.author = map['author'];
     // this.rating = map['rating'];
   }
 
+  @override
   String toString(){
     //return 'BooksView[id: $id], title: $title, author: $author, rating: $rating';
-    return 'BooksView[description: $description, title: $title';
+    return 'Book(id: $id, description: $description, title: $title';
   }
   Map<String, Object?> toMap(){
-    return{
-      // 'id': this.id,
-      'title': this.title,
-      'description':this.description,
+    return {
+      'id': id,
+      'title': title,
+      'description':description,
       // 'author': this.author,
       // 'rating': this.rating,
-
     };
   }
 }
