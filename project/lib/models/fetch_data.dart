@@ -6,6 +6,7 @@ import '../classes/book.dart';
 import '../classes/mapMarker.dart';
 import '../classes/movie_cast.dart';
 import '../classes/trending.dart';
+import '../classes/trending_book.dart';
 
 class Fetch{
   // Stores movies from My List after the initial load to prevent unnecessary API calls
@@ -15,6 +16,7 @@ class Fetch{
   // The timestamp of when the cachedTrendingMovies map was last updated
   static DateTime cachedTrendingMoviesLastUpdated = DateTime(0);
 
+  //MOVIE FETCH FUNCTIONS
   static Future<List<Trending<Movie>>> fetchTrendingMovies() async {
     // If the last time the trending movies were updated was below a threshold,
     // return the cached version
@@ -64,25 +66,6 @@ class Fetch{
     }
   }
 
-  static Future<Book> fetchBookDetails(String id) async {
-    var response = await http
-        .get(Uri.parse('https://openlibrary.org/works/$id.json')
-    );
-    if (response.statusCode == 200) {
-      Map raw = jsonDecode(response.body);
-      print(raw['title']);
-      print(raw['description']);
-      Book book = Book(
-        id: id,
-        title: raw['title'],
-        description: raw['description'] != null ? raw['description']['value'] : 'No description found.',
-      );
-      return book;
-    } else {
-      throw Exception('Failed to load book');
-    }
-  }
-
   static Future<List<MovieCast>> fetchMovieCast(int? id) async {
 
     String getId = id.toString();
@@ -102,7 +85,44 @@ class Fetch{
     }
   }
 
+  //BOOK FETCH FUNCTIONS
+  static Future<Book> fetchBookDetails(String id) async {
+    var response = await http
+        .get(Uri.parse('https://openlibrary.org/works/$id.json')
+    );
+    if (response.statusCode == 200) {
+      Map raw = jsonDecode(response.body);
+      print(raw['title']);
+      print(raw['description']);
+      Book book = Book(
+        id: id,
+        title: raw['title'],
+        description: raw['description'] != null ? raw['description']['value'] : 'No description found.',
+      );
+      return book;
+    } else {
+      throw Exception('Failed to load book');
+    }
+  }
 
+  static Future<List<TrendingBook>> fetchTrendingBooks() async {
+    var response = await http
+        .get(Uri.parse('https://openlibrary.org/trending/weekly.json')
+    );
+    if (response.statusCode == 200) {
+      List userMap = jsonDecode(response.body)['works'];
+      List<TrendingBook> trending = [];
+      for (var item in userMap){
+        TrendingBook book = TrendingBook.fromMap(item);
+        trending.add(book);
+      }
+      return trending;
+    } else {
+      throw Exception('Failed to load book');
+    }
+  }
+
+  //LOCATION FETCH FUNCTIONS
   static Future<List<GeoLocation>> fetchLocations(String accessTokFind, LatLng l) async {
     List<GeoLocation> nearby = [];
     double lat = l.latitude;

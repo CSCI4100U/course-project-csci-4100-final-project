@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'movie_view.dart';
 import 'books_view.dart';
-import '../views/home_view.dart';
+import '../views/trending_movies.dart';
 import 'add_book_form.dart';
 import'package:project/classes/notification_manager.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         if (snapshot.hasData) {
           return const Scaffold(
             drawer: NavDrawer(),
-            body: HomeView(),
+            body: TrendingMovies(),
           );
         } else {
           return const LoginPage();

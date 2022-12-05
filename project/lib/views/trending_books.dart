@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project/views/home_view.dart';
-
+import 'package:project/classes/trending_book.dart';
+import 'package:project/views/trending_movies.dart';
 import '../components/drawer.dart';
-import 'chart_page.dart';
+import '../models/fetch_data.dart';
 
 class TrendingBooks extends StatefulWidget {
   const TrendingBooks({Key? key}) : super(key: key);
@@ -13,6 +13,7 @@ class TrendingBooks extends StatefulWidget {
 
 class _TrendingBooksState extends State<TrendingBooks> {
   String _value = "book";
+
   @override
   Widget build(BuildContext context) {
     int? selectedMovieID;
@@ -41,8 +42,8 @@ class _TrendingBooksState extends State<TrendingBooks> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (_) =>
-                                HomeView(),
+                          builder: (_) =>
+                              TrendingMovies(),
                         ));
                   }
                 });
@@ -51,55 +52,48 @@ class _TrendingBooksState extends State<TrendingBooks> {
           ),
         ),
         // title: Text(FlutterI18n.translate(context, "Home.Trending")),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.insert_chart),
-            onPressed: () {
-              // if (_trending.isNotEmpty) {
-              //   Navigator.of(context).push(MaterialPageRoute(
-              //       builder: (_) => ChartPage(trending: _trending)));
-              // }
-            },
-          )
-        ],
       ),
       drawer: const NavDrawer(),
       body: Center(
-        // child: FutureBuilder<List<Trending<Movie>>>(
-        //   future: Fetch.fetchTrendingMovies(),
-        //   builder: (context, snapshot) {
-        //     if (snapshot.data == null) {
-        //       return const Center(
-        //         child: CircularProgressIndicator(),
-        //       );
-        //     } else {
-        //       _trending = snapshot.data!;
-        //       return ListView.builder(
-        //           addAutomaticKeepAlives: false,
-        //           addRepaintBoundaries: false,
-        //           itemCount: snapshot.data?.length,
-        //           itemBuilder: (context, index){
-        //             return GestureDetector(
-        //               onTap: () {
-        //                 selectedMovieID = snapshot.data![index].base.id;
-        //                 selectedMovieName = snapshot.data![index].base.title;
-        //                 ScaffoldMessenger.of(context).showSnackBar(
-        //                     SnackBar(
-        //                         duration: const Duration(seconds: 1),
-        //                         content: Text('Getting Movie Info for $selectedMovieName')
-        //                     ));
-        //                 Future.delayed(
-        //                     const Duration(seconds: 2),
-        //                         () async {
-        //                       await Navigator.push(context, MaterialPageRoute(builder: (_) => MovieDetails(movieID: selectedMovieID, movieName: selectedMovieName,)));
-        //                     }
-        //                 );
-        //               },
-        //               child: MovieTile(movie: snapshot.data![index].base, rating: snapshot.data![index].rating),
-        //             );
-        //           });
-        //     }},
-        // ),
+        child: FutureBuilder<List<TrendingBook>>(
+          future: Fetch.fetchTrendingBooks(),
+          builder: (context, snapshot) {
+            if (snapshot.data == null) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return ListView.builder(
+                  addAutomaticKeepAlives: false,
+                  addRepaintBoundaries: false,
+                  itemCount: snapshot.data?.length,
+                  itemBuilder: (context, index){
+                    return ListTile(
+                      leading: Image.network("https://covers.openlibrary.org/b/id/${snapshot.data![index].cover}.jpg"),
+                      title: Text(snapshot.data![index].title),
+                      subtitle: Text(snapshot.data![index].author),
+                    );
+                    // return GestureDetector(
+                    //   onTap: () {
+                    //     selectedMovieID = snapshot.data![index];
+                    //     selectedMovieName = snapshot.data![index];
+                    //     ScaffoldMessenger.of(context).showSnackBar(
+                    //         SnackBar(
+                    //             duration: const Duration(seconds: 1),
+                    //             content: Text('Getting Movie Info for $selectedMovieName')
+                    //         ));
+                    //     Future.delayed(
+                    //         const Duration(seconds: 2),
+                    //         //     () async {
+                    //         //   await Navigator.push(context, MaterialPageRoute(builder: (_) => MovieDetails(movieID: selectedMovieID, movieName: selectedMovieName,)));
+                    //         // }
+                    //     );
+                    //   },
+                    //   child:
+                    // );
+                  });
+            }},
+        ),
       ),
     );
   }
