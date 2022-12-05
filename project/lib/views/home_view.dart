@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/classes/movie.dart';
 import 'package:project/components/drawer.dart';
+import 'package:project/views/trending_books.dart';
 import '../classes/trending.dart';
 import 'package:project/components/movie_tile.dart';
 import 'dart:async';
@@ -10,21 +11,51 @@ import '../models/fetch_data.dart';
 import 'package:project/views/chart_page.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const HomeView({Key? key}) : super(key: key);
   @override
   State<HomeView> createState() => _MyAppState();
 }
 class _MyAppState extends State<HomeView> {
   List<Trending<Movie>> _trending = [];
-
+  String _value = "movie";
   @override
   Widget build(BuildContext context) {
     int? selectedMovieID;
     String? selectedMovieName;
     return Scaffold(
       appBar: AppBar(
-        title: Text(FlutterI18n.translate(context, "Home.Trending")),
+        title: Theme(
+          data: ThemeData.dark(),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              value: _value,
+              items: const <DropdownMenuItem<String>>[
+                DropdownMenuItem(
+                  value: 'movie',
+                  child: Text('Trending Movies'),
+                ),
+                DropdownMenuItem(
+                  value: 'book',
+                  child: Text('Trending Books'),
+                )
+              ],
+              onChanged: (String? value) {
+                setState(() {
+                  _value = value!;
+                  if(_value == "book"){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) =>
+                                TrendingBooks()
+                        ));
+                  }
+                });
+              },
+            ),
+          ),
+        ),
+        // title: Text(FlutterI18n.translate(context, "Home.Trending")),
         actions: [
           IconButton(
             icon: const Icon(Icons.insert_chart),

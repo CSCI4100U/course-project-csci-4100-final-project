@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         if (snapshot.hasData) {
           return const Scaffold(
             drawer: NavDrawer(),
-            body: HomeView(title: 'Trending Movies'),
+            body: HomeView(),
           );
         } else {
           return const LoginPage();
