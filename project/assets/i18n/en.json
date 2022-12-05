@@ -40,5 +40,16 @@
   },
   "Map": {
     "Find_cin": "Find Cinema Near Me"
+  },
+  "Review": {
+    "Rev": "Reviews",
+    "No_rev": "No reviews yet, be te first one to add a review!"
+  },
+  "Rev_form": {
+    "Add_rev": "Add your review",
+    "Name": "Your Name",
+    "Title": "Title",
+    "Rev_line": "Your Review",
+    "Enter": "Please enter a value"
   }
 }

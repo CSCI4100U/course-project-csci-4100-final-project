@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/classes/review.dart';
 import 'package:project/components/review_tile.dart';
 import 'package:project/models/review_model.dart';
@@ -21,7 +22,7 @@ class _ReviewListState extends State<ReviewList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("${widget.movieName} Reviews"),
+        title: Text(FlutterI18n.translate(context, "Review.Rev")),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addReview,
@@ -37,9 +38,9 @@ class _ReviewListState extends State<ReviewList> {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Icon(Icons.question_mark, color: Colors.blue, size: 50.0),
-                  Text("No reviews yet. Be the first to add one!")
+                  Text(FlutterI18n.translate(context, "Review.No_rev"))
                 ],
               ),
             );

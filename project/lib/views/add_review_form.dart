@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/classes/review.dart';
 
 class AddReviewForm extends StatefulWidget {
@@ -24,7 +25,7 @@ class _AddReviewFormState extends State<AddReviewForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add review: ${widget.title}"),
+        title: Text(FlutterI18n.translate(context, "Rev_form.Add_rev")),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -41,10 +42,10 @@ class _AddReviewFormState extends State<AddReviewForm> {
         child: Column(
           children: [
             TextFormField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: "Your Name",
-                hintText: "Your Name",
+                labelText: FlutterI18n.translate(context, "Rev_form.Name"),
+                hintText: FlutterI18n.translate(context, "Rev_form.Name"),
               ),
               validator: _notEmptyValidator,
               onSaved: (value) {
@@ -52,10 +53,10 @@ class _AddReviewFormState extends State<AddReviewForm> {
               },
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: "Title",
-                hintText: "Title",
+                labelText: FlutterI18n.translate(context, "Rev_form.Title"),
+                hintText: FlutterI18n.translate(context, "Rev_form.Titile"),
               ),
               validator: _notEmptyValidator,
               onSaved: (value) {
@@ -63,10 +64,10 @@ class _AddReviewFormState extends State<AddReviewForm> {
               },
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: "Review",
-                hintText: "Review",
+                labelText: FlutterI18n.translate(context, "Rev_form.Rev_line"),
+                hintText: FlutterI18n.translate(context, "Rev_form.Rev_line"),
               ),
               validator: _notEmptyValidator,
               onSaved: (value) {
@@ -106,7 +107,7 @@ class _AddReviewFormState extends State<AddReviewForm> {
 
   String? _notEmptyValidator(String? value) {
     if (value != null && value.isEmpty) {
-      return "Please enter a value";
+      return FlutterI18n.translate(context, "Rev_form.Enter");
     }
     return null;
   }

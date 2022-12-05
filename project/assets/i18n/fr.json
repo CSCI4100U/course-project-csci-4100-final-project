@@ -40,5 +40,18 @@
   },
   "Map": {
     "Find_cin": "Trouver un cinéma près de moi"
+  },
+  "Review": {
+    "Rev": "Commentaires",
+    "No_rev": "Pas encore d'avis, soyez le premier à ajouter un avis!"
+  },
+  "Rev_form": {
+    "Add_rev": "Ajoutez votre avis",
+    "Name": "Votre nom",
+    "Title": "Titre",
+    "Rev_line": "Votre avis",
+    "Enter": "Veuillez inscrire une valeur "
   }
+
+
 }
