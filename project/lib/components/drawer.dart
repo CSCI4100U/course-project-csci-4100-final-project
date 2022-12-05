@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/views/books_view.dart';
 import 'package:project/views/map_view.dart';
-import '../views/trending_movies.dart';
+import '../views/trending_movies_view.dart';
 import '../views/movie_view.dart';
 import'package:project/classes/notification_manager.dart';
 import 'package:timezone/timezone.dart' as tz;

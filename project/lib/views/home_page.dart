@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'movie_view.dart';
 import 'books_view.dart';
-import '../views/trending_movies.dart';
+import '../views/trending_movies_view.dart';
 import 'add_book_form.dart';
 import'package:project/classes/notification_manager.dart';
 import 'package:timezone/timezone.dart' as tz;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/classes/trending_book.dart';
-import 'package:project/views/trending_movies.dart';
+import 'package:project/views/trending_movies_view.dart';
 import '../components/drawer.dart';
 import '../models/fetch_data.dart';
 
