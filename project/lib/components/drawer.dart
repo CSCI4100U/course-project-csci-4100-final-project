@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/views/books_view.dart';
 import 'package:project/views/map_view.dart';
 import '../views/home_view.dart';
@@ -41,7 +42,7 @@ class _NavDrawerState extends State<NavDrawer> {
             ),
             ListTile(
               leading: Icon(Icons.home),
-              title: const Text('Home', style: TextStyle(),),
+              title: Text(FlutterI18n.translate(context, "Drawer.Home"), style: TextStyle(),),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
@@ -54,7 +55,7 @@ class _NavDrawerState extends State<NavDrawer> {
             ),
             ListTile(
               leading: Icon(Icons.list_alt),
-              title: const Text('My List'),
+              title: Text(FlutterI18n.translate(context, "Drawer.My_list")),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
@@ -67,7 +68,7 @@ class _NavDrawerState extends State<NavDrawer> {
             ),
             ListTile(
               leading: Icon(Icons.book),
-              title: const Text('Books'),
+              title: Text(FlutterI18n.translate(context, "Drawer.Books")),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
@@ -80,7 +81,7 @@ class _NavDrawerState extends State<NavDrawer> {
             ),
             ListTile(
               leading: Icon(Icons.not_listed_location),
-              title: const Text('Find Locations'),
+              title: Text(FlutterI18n.translate(context, "Drawer.Find_loc")),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
@@ -95,7 +96,7 @@ class _NavDrawerState extends State<NavDrawer> {
             Divider(color: Colors.white,),
             ListTile(
               leading: Icon(Icons.info),
-              title: const Text('Licenses'),
+              title: Text(FlutterI18n.translate(context, "Drawer.Licenses")),
               onTap: () {
                 Navigator.pop(context);
                 _showAboutDialog(context);
@@ -112,7 +113,7 @@ class _NavDrawerState extends State<NavDrawer> {
             Divider(color: Colors.white,),
             ListTile(
               leading: Icon(Icons.logout),
-              title: const Text('Logout'),
+              title: Text(FlutterI18n.translate(context, "Drawer.Logout")),
               onTap: _logout,
             )
           ],

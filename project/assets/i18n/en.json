@@ -22,5 +22,13 @@
   },
   "Home": {
     "Trending": "Trending"
+  },
+  "Drawer": {
+    "Home": "Home",
+    "My_list": "My List",
+    "Books": "Books",
+    "Find_loc": "Find Locations",
+    "Licenses": "Licenses",
+    "Logout": "Logout"
   }
 }

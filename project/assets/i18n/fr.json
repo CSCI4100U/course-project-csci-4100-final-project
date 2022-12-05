@@ -22,5 +22,13 @@
   },
   "Home": {
     "Trending": "Tendance"
+  },
+  "Drawer": {
+    "Home": "Page d'accueil",
+    "My_list": "Ma liste",
+    "Books": "Livre",
+    "Find_loc": "Trouver des emplacements",
+    "Licenses": "licences",
+    "Logout": "Se déconnecter"
   }
 }
