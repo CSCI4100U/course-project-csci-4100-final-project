@@ -1,38 +1,36 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class MovieCast {
-  int? id;
-  final String release;
-  final String poster;
-  final String title;
-  DocumentReference? reference;
+  final String name;
+  final String profile;
+  final String character;
+  final num popularity;
 
   MovieCast({
-    this.id,
-    required this.release,
-    required this.poster,
-    required this.title,
+    required this.name,
+    required this.profile,
+    required this.character,
+    required this.popularity,
   });
 
   factory MovieCast.fromMap(Map map){
     return MovieCast(
-      id: map['id'],
-      poster: map['poster_path'],
-      release: map['release_date'],
-      title: map['title'],
+      name: map['name'],
+      profile: map['profile_path'],
+      character: map['character'],
+      popularity: map['popularity'],
     );
   }
 
   Map<String, Object> toMap() {
     return <String, Object>{
-      'poster_path': poster,
-      'release_date': release,
-      'title': title,
+      'name': name,
+      'profile_path': profile,
+      'character': character,
+      'popularity': popularity,
     };
   }
 
   String toString(){
-    return release.toString();
+    return name.toString();
   }
 }
 

@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:project/classes/movie.dart';
 import '../classes/mapMarker.dart';
+import '../classes/movie_cast.dart';
 import '../classes/trending.dart';
 
 class Fetch{
@@ -17,7 +18,7 @@ class Fetch{
     // If the last time the trending movies were updated was below a threshold,
     // return the cached version
     DateTime now = DateTime.now();
-    if (now.difference(cachedTrendingMoviesLastUpdated).inMinutes < 10) {
+    if (now.difference(cachedTrendingMoviesLastUpdated).inDays < 1) {
       return cachedTrendingMovies;
     }
 
@@ -62,6 +63,26 @@ class Fetch{
     }
   }
 
+  static Future<List<MovieCast>> fetchMovieCast(int? id) async {
+
+    String getId = id.toString();
+    print('https://api.themoviedb.org/3/movie/$getId/credits?api_key=<<api_key>>&language=en-US');
+    var response = await http
+        .get(Uri.parse('https://api.themoviedb.org/3/movie/$getId/credits?api_key=<<api_key>>&language=en-US')
+    );
+    if (response.statusCode == 200) {
+      List userMap =  jsonDecode(response.body)['cast'];
+      List<MovieCast> cast = [];
+      for (var item in userMap){
+        cast.add(MovieCast.fromMap(item));
+      }
+      return cast;
+    }else {
+      throw Exception('Failed to load trending movies');
+    }
+  }
+
+
   static Future<List<GeoLocation>> fetchLocations(String accessTokFind, LatLng l) async {
     List<GeoLocation> nearby = [];
     double lat = l.latitude;
@@ -87,5 +108,6 @@ class Fetch{
       throw Exception('Failed to load trending movies');
     }
   }
+
 
 }
