@@ -44,9 +44,14 @@ class _MoviesViewState extends State<MoviesView> {
               return ListView.builder(
                   addAutomaticKeepAlives: false,
                   addRepaintBoundaries: false,
-                itemCount: snapshot.data?.length,
-                itemBuilder: (context, index){
-                  return MovieTile(movie: snapshot.data![index]);
+                  itemCount: snapshot.data?.length,
+                  itemBuilder: (context, index){
+                  return GestureDetector(
+                    onTap: (){
+
+                    },
+                    child: MovieTile(movie: snapshot.data![index]),
+                  );
                 }
               );
             }
