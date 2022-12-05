@@ -51,5 +51,12 @@
     "Title": "Título",
     "Rev_line": "Tu reseña",
     "Enter": "porfavor introduzca un valor"
+  },
+  "Add_mov": {
+    "Add_movT": "Añadir película",
+    "Mov_T": "Título de la película",
+    "Release": "Liberar",
+    "URL": "Enlace del póster",
+    "Hint": "La película"
   }
 }

@@ -51,5 +51,12 @@
     "Title": "Title",
     "Rev_line": "Your Review",
     "Enter": "Please enter a value"
+  },
+  "Add_mov": {
+    "Add_movT": "Add Movie",
+    "Mov_T": "Movie Title",
+    "Release": "Release Date",
+    "URL": "Poster URL",
+    "Hint": "The Movie"
   }
 }

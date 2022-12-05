@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/classes/movie.dart';
 
 class AddMovieForm extends StatefulWidget {
@@ -18,17 +19,17 @@ class _AddMovieFormState extends State<AddMovieForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Movie"),
+        title: Text(FlutterI18n.translate(context, "Add_mov.Add_movT")),
       ),
       body: Form(
         key: _formKey,
         child: Column(
           children: [
             TextFormField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: "Movie Title",
-                hintText: "The Movie",
+                labelText: FlutterI18n.translate(context, "Add_mov.Mov_T"),
+                hintText: FlutterI18n.translate(context, "Add_mov.Hint"),
               ),
               validator: _notEmptyValidator,
               onSaved: (value) {
@@ -36,9 +37,9 @@ class _AddMovieFormState extends State<AddMovieForm> {
               },
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: "Release Date",
+                labelText: FlutterI18n.translate(context, "Add_mov.Release"),
                 hintText: "2022-11-04",
               ),
               validator: _notEmptyValidator,
@@ -47,9 +48,9 @@ class _AddMovieFormState extends State<AddMovieForm> {
               },
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: "Poster URL",
+                labelText: FlutterI18n.translate(context, "Add_mov.URL"),
                 hintText: "/tegBpjM5ODoYoM1NjaiHVLEA0QM.jpg",
               ),
               validator: _notEmptyValidator,
@@ -75,7 +76,7 @@ class _AddMovieFormState extends State<AddMovieForm> {
 
   String? _notEmptyValidator(String? value) {
     if (value != null && value.isEmpty) {
-      return "Please enter a value";
+      return FlutterI18n.translate(context, "Rev_form.Enter");
     }
     return null;
   }

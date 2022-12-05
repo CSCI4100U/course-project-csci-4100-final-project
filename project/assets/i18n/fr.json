@@ -51,6 +51,13 @@
     "Title": "Titre",
     "Rev_line": "Votre avis",
     "Enter": "Veuillez inscrire une valeur "
+  },
+  "Add_mov": {
+    "Add_movT": "Ajouter un film",
+    "Mov_T": "Titre du film",
+    "Release": "Date de sortie",
+    "URL": "Lien affiche",
+    "Hint": "Le film"
   }
 
 
