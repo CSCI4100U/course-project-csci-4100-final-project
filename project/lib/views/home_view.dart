@@ -7,6 +7,7 @@ import 'package:project/components/movie_tile.dart';
 import 'dart:async';
 import 'movie_details.dart';
 import '../models/fetch_data.dart';
+import 'package:project/views/chart_page.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key, required this.title}) : super(key: key);
@@ -15,6 +16,8 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _MyAppState();
 }
 class _MyAppState extends State<HomeView> {
+  List<Trending<Movie>> _trending = [];
+
   @override
   Widget build(BuildContext context) {
     int? selectedMovieID;
@@ -22,6 +25,17 @@ class _MyAppState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(FlutterI18n.translate(context, "Home.Trending")),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.insert_chart),
+            onPressed: () {
+              if (_trending.isNotEmpty) {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => ChartPage(trending: _trending)));
+              }
+            },
+          )
+        ],
       ),
         drawer: const NavDrawer(),
         body: Center(
@@ -33,6 +47,7 @@ class _MyAppState extends State<HomeView> {
                 child: CircularProgressIndicator(),
               );
             } else {
+              _trending = snapshot.data!;
               return ListView.builder(
                   addAutomaticKeepAlives: false,
                   addRepaintBoundaries: false,
