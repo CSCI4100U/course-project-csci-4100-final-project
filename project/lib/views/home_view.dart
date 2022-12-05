@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/classes/movie.dart';
 import 'package:project/components/drawer.dart';
 import '../classes/trending.dart';
@@ -20,7 +21,7 @@ class _MyAppState extends State<HomeView> {
     String? selectedMovieName;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(FlutterI18n.translate(context, "Home.Trending")),
       ),
         drawer: const NavDrawer(),
         body: Center(

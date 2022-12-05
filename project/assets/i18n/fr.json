@@ -6,7 +6,8 @@
     "Register": "S'inscrire maintenant",
     "Title": "Connexion",
     "E_null": "S'il vous plait entrez votrevotre e-mail",
-    "P_null": "S'il vous plait entrez votre mot de passe"
+    "P_null": "S'il vous plait entrez votre mot de passe",
+    "Lang_mod": "Langue: FR"
   },
   "Register": {
     "Email": "Nom d'utilisateur",
@@ -18,5 +19,8 @@
     "E_invalid": "Format d'email invalide",
     "P_format": "Le mot de passe doit comporter au moins dix caractÃ¨res",
     "P_match": "Le mot de passe ne correspond pas"
+  },
+  "Home": {
+    "Trending": "Tendance"
   }
 }

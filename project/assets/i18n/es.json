@@ -6,7 +6,8 @@
     "Register": "Regístrate ahora",
     "Title": "Acceso",
     "E_null": "Por favor introduzca su correo electrónico",
-    "P_null": "Por favor introduzca su contraseña"
+    "P_null": "Por favor introduzca su contraseña",
+    "Lang_mod": "Idioma: ES"
   },
   "Register": {
     "Email": "Nombre de usuario",
@@ -18,5 +19,8 @@
     "E_invalid": "Formato de correo inválido",
     "P_format": "La contraseña debe tener al menos diez caracteres",
     "P_match": "Las contraseñas no coinciden"
+  },
+  "Home": {
+    "Trending": "Tendencias"
   }
 }

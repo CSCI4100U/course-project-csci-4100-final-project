@@ -6,7 +6,8 @@
     "Register": "Register Now",
     "Title": "Login",
     "E_null": "Please enter your email",
-    "P_null": "Please enter your password"
+    "P_null": "Please enter your password",
+    "Lang_mod": "Language: EN"
   },
   "Register": {
     "Email": "Email",
@@ -18,5 +19,8 @@
     "E_invalid": "Invalid email format",
     "P_format": "Password must have at least 10 characters",
     "P_match": "Password does not match"
+  },
+  "Home": {
+    "Trending": "Trending"
   }
 }

@@ -21,6 +21,10 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
           title: Text(FlutterI18n.translate(context, "Login.Title")),
           actions: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(50, 20, 0, 20),
+              child: Text(FlutterI18n.translate(context, "Login.Lang_mod")),
+            ),
             PopupMenuButton(
                 itemBuilder: (context){
                   return [
@@ -61,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 }
             ),
+
           ]
       ),
       body: Form(
