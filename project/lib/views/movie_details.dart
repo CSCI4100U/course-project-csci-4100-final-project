@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../classes/movie.dart';
 import '../models/fetch_data.dart';
 import 'package:project/views/review_list.dart';
@@ -27,6 +28,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                   child: CircularProgressIndicator(),
                 );
               } else {
+                final video = YoutubePlayer.convertUrlToId("https://www.youtube.com/watch?v=YMx8Bbev6T4&ab_channel=FlutterUIDev");
                 return ListView(
                   children: [
                     Row(
@@ -34,13 +36,45 @@ class _MovieDetailsState extends State<MovieDetails> {
                         const Padding(padding: EdgeInsets.fromLTRB(5, 40, 10, 10)),
                         Text(
                           snapshot.data!.title,
-                          style: const TextStyle(
-                            color: Colors.grey,
+                          style: TextStyle(
+                            color: Colors.grey.shade900,
                             fontSize: 30,
+                            fontWeight: FontWeight.bold,
                             fontFamily: 'Lato',
                           ),
                           textAlign: TextAlign.center,
-                      ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Padding(padding: EdgeInsets.fromLTRB(5, 0, 10, 10)),
+                        Text(
+                          " ${snapshot.data!.release} - ${snapshot.data!.runtime} mins - ${snapshot.data!.status} ",
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Lato',
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          child: YoutubePlayer(
+                            controller: YoutubePlayerController(
+                                initialVideoId: video!,
+                                flags: const YoutubePlayerFlags(
+                                  autoPlay: false,
+                                )
+                            ),
+                            showVideoProgressIndicator: true,
+                          )
+                        )
                       ],
                     )
                   ],
