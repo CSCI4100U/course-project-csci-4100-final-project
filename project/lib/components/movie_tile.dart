@@ -10,8 +10,7 @@ class MovieTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: ListTile(
+    return ListTile(
         leading: Container(
           width: 40,
           height: 90,
@@ -31,12 +30,6 @@ class MovieTile extends StatelessWidget {
             ],
           ),
         subtitle: Text("Release Date: ${movie.release}"),
-      ),
-      onTap: () async {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return MovieDetails(movieID: movie.id, movieName: movie.title);
-        }));
-      },
-    );
+      );
   }
 }
