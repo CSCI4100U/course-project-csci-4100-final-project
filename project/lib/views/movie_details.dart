@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../classes/movie.dart';
 import '../models/fetch_data.dart';
 import 'package:project/views/review_list.dart';
@@ -28,7 +27,6 @@ class _MovieDetailsState extends State<MovieDetails> {
                   child: CircularProgressIndicator(),
                 );
               } else {
-                final video = YoutubePlayer.convertUrlToId("https://www.youtube.com/watch?v=YMx8Bbev6T4&ab_channel=FlutterUIDev");
                 return ListView(
                   children: [
                     Row(
@@ -63,17 +61,16 @@ class _MovieDetailsState extends State<MovieDetails> {
                     ),
                     Row(
                       children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: YoutubePlayer(
-                            controller: YoutubePlayerController(
-                                initialVideoId: video!,
-                                flags: const YoutubePlayerFlags(
-                                  autoPlay: false,
-                                )
+                        Expanded(
+                          child: Image.network(
+                                "https://image.tmdb.org/t/p/w500/${snapshot.data!.poster}"),
+                        ),
+                        Expanded(
+                            child:Text(
+                              "${snapshot.data!.overview}",
+                              style: const TextStyle(fontSize: 20, fontFamily: 'Lato'),
+                              textAlign: TextAlign.center,
                             ),
-                            showVideoProgressIndicator: true,
-                          )
                         )
                       ],
                     )
@@ -88,8 +85,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                 //               alignment: Alignment.center,
                 //               padding: EdgeInsets.all(10),
                 //               height: 250,
-                //               child: Image.network(
-                //                   "https://image.tmdb.org/t/p/w500/${snapshot.data!.poster}"),
+                //               child:
                 //             )
                 //           ],
                 //       ),
