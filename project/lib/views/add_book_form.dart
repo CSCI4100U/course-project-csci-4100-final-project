@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:project/classes/book.dart';
 
-class addBook extends StatefulWidget {
-  const addBook({Key? key}) : super(key: key);
+class AddBookForm extends StatefulWidget {
+  const AddBookForm({Key? key}) : super(key: key);
 
   @override
-  State<addBook> createState() => _addBookState();
+  State<AddBookForm> createState() => _AddBookFormState();
 }
 
-class _addBookState extends State<addBook> {
+class _AddBookFormState extends State<AddBookForm> {
   final _formKey = GlobalKey<FormState>();
-  late String _title;
-  late String _author;
-  late int? _rating;
-  late String? _description;
+  String? _id;
+  String? _title;
+  String? _description;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +27,19 @@ class _addBookState extends State<addBook> {
             TextFormField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
+                labelText: "Book ID",
+                hintText: "OpenLibrary identifier",
+              ),
+              validator: _notEmptyValidator,
+              onSaved: (value) {
+                _id = value!;
+              },
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                border: UnderlineInputBorder(),
                 labelText: "Book Title",
-                hintText: "The Dragon",
+                hintText: "Title",
               ),
               validator: _notEmptyValidator,
               onSaved: (value) {
@@ -39,23 +49,12 @@ class _addBookState extends State<addBook> {
             TextFormField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: "Author Name",
-                hintText: "John Doe",
+                labelText: "Book Description",
+                hintText: "Description",
               ),
               validator: _notEmptyValidator,
               onSaved: (value) {
-                _author = value!;
-              },
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: "Rating",
-                hintText: "9",
-              ),
-              validator: _notEmptyValidator,
-              onSaved: (value) {
-                _rating = int.tryParse(value!);
+                _description = value!;
               },
             ),
           ],
@@ -66,7 +65,7 @@ class _addBookState extends State<addBook> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
-            Book book = Book(title: _title, description: _description);
+            Book book = Book(id: _id!, title: _title!, description: _description!);
             Navigator.of(context).pop(book);
           }
         },

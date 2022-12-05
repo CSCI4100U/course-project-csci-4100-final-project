@@ -13,9 +13,9 @@ class DBUtils {
 
         // books
         db.execute("CREATE TABLE movies(imdb_id VARCHAR PRIMARY KEY, watched INTEGER, rating INTEGER)");
-        db.execute ("CREATE TABLE books(id INTEGER PRIMARY KEY, title TEXT, author TEXT, rating INTEGER)");
+        db.execute ("CREATE TABLE books(id VARCHAR PRIMARY KEY, title TEXT, description TEXT)");
       },
-      version: 1,
+      version: 2,
     );
     return database;
   }

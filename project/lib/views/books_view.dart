@@ -3,7 +3,7 @@ import '../classes/book.dart';
 import '../components/drawer.dart';
 import 'add_book_form.dart';
 import '../models/book_model.dart';
-import 'package:project/models/fetch_data_books.dart';
+import 'package:project/models/fetch_data.dart';
 
 class BooksView extends StatefulWidget {
   const BooksView({Key? key}) : super(key: key);
@@ -13,12 +13,11 @@ class BooksView extends StatefulWidget {
 }
 
 class _BooksViewState extends State<BooksView> {
-  final _fetch = FetchBooks().fetchTrendingBooks();
-  var _model = BookModel();
+  final _model = BookModel();
   List<Book> books = [];
 
   @override
-  void initstate(){
+  void initState(){
     super.initState();
     _getData();
   }
@@ -47,7 +46,7 @@ class _BooksViewState extends State<BooksView> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () async {
-          Book? book = await Navigator.of(context).push(MaterialPageRoute(builder: (_) => const addBook()));
+          Book? book = await Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AddBookForm()));
           if (book == null) {
             return;
           }
@@ -62,12 +61,10 @@ class _BooksViewState extends State<BooksView> {
   }
   _getData() async{
     books.clear();
-    List result = await _model.getAllBooks();
+    List<Book> result = await _model.getAllBooks();
     setState(() {
-      for(Book i in result){
-        books.add(Book(title: i.title, description: i.description));
-
-        //books.add(Book(title: i.title, author: i.author, rating: i.rating));
+      for(Book book in result){
+        books.add(book);
       }
     });
 
