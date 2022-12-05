@@ -35,7 +35,7 @@ class _AddBookFormState extends State<AddBookForm> {
                 _id = value!;
               },
             ),
-            TextFormField(
+            /*TextFormField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
                 labelText: "Book Title",
@@ -56,7 +56,7 @@ class _AddBookFormState extends State<AddBookForm> {
               onSaved: (value) {
                 _description = value!;
               },
-            ),
+            ),*/
           ],
         ),
       ),
@@ -65,8 +65,8 @@ class _AddBookFormState extends State<AddBookForm> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
-            Book book = Book(id: _id!, title: _title!, description: _description!);
-            Navigator.of(context).pop(book);
+            //Book book = Book(id: _id!, title: _title!, description: _description!);
+            Navigator.of(context).pop(_id);
           }
         },
       ),

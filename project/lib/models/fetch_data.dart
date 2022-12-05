@@ -70,10 +70,12 @@ class Fetch{
     );
     if (response.statusCode == 200) {
       Map raw = jsonDecode(response.body);
+      print(raw['title']);
+      print(raw['description']);
       Book book = Book(
         id: id,
         title: raw['title'],
-        description: raw['description']['value'],
+        description: raw['description'] != null ? raw['description']['value'] : 'No description found.',
       );
       return book;
     } else {

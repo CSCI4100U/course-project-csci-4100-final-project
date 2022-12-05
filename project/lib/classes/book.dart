@@ -27,14 +27,14 @@ class Book{
   //   );
   // }
 
-  Book.fromMap(Map map){
+  /*Book.fromMap(Map map){
     // this.id = map['id'];
     id = map['id'];
     description = map['description'];
     title = map['title'];
     // this.author = map['author'];
     // this.rating = map['rating'];
-  }
+  }*/
 
   @override
   String toString(){
@@ -44,8 +44,8 @@ class Book{
   Map<String, Object?> toMap(){
     return {
       'id': id,
-      'title': title,
-      'description':description,
+      //'title': title,
+      //'description':description,
       // 'author': this.author,
       // 'rating': this.rating,
     };

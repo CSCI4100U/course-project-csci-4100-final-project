@@ -46,14 +46,13 @@ class _BooksViewState extends State<BooksView> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () async {
-          Book? book = await Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AddBookForm()));
-          if (book == null) {
+          String? id = await Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AddBookForm()));
+          if (id == null) {
             return;
           }
-          await _model.insertBook(book);
-          setState(() {
-            _getData();
-          });
+          Book book = await Fetch.fetchBookDetails(id);
+          _model.insertBook(book);
+          setState(() => books.add(book));
         },
       )
     );
@@ -67,7 +66,6 @@ class _BooksViewState extends State<BooksView> {
         books.add(book);
       }
     });
-
   }
 }
 

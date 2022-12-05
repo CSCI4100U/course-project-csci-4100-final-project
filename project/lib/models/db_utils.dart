@@ -13,7 +13,7 @@ class DBUtils {
 
         // books
         db.execute("CREATE TABLE movies(imdb_id VARCHAR PRIMARY KEY, watched INTEGER, rating INTEGER)");
-        db.execute ("CREATE TABLE books(id VARCHAR PRIMARY KEY, title TEXT, description TEXT)");
+        db.execute("CREATE TABLE books(id VARCHAR PRIMARY KEY)");
       },
       version: 2,
     );

@@ -2,24 +2,25 @@ import 'db_utils.dart';
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import '../classes/book.dart';
+import 'package:project/models/fetch_data.dart';
+
 class BookModel{
   Future insertBook(Book book) async{
     final db = await DBUtils.init();
     return db.insert(
       'books',
       book.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
+      conflictAlgorithm: ConflictAlgorithm.ignore,
     );
   }
 
   Future getAllBooks() async{
     final db = await DBUtils.init();
     final List maps = await db.query('books');
+    print(maps.length);
     List<Book> result = [];
-    for (int i = 0; i<maps.length; i++){
-      result.add(
-        Book.fromMap(maps[i])
-      );
+    for (int i = 0; i < maps.length; i++){
+      result.add(await Fetch.fetchBookDetails(maps[i]['id']));
     }
     return result;
   }
