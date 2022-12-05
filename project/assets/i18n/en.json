@@ -30,5 +30,9 @@
     "Find_loc": "Find Locations",
     "Licenses": "Licenses",
     "Logout": "Logout"
+  },
+  "Mov_tab": {
+    "Mov_list": "My Movies List",
+    "Con_fail": "Failed to connect to cloud storage, try again later!"
   }
 }

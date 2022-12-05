@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/models/movie_model.dart';
 import 'package:project/classes/movie.dart';
 import 'package:project/components/movie_tile.dart';
@@ -19,7 +20,7 @@ class _MoviesViewState extends State<MoviesView> {
   @override Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Movies List"),
+        title: Text(FlutterI18n.translate(context, "Mov_tab.Mov_list")),
       ),
       drawer: NavDrawer(),
       body: Center(
@@ -30,9 +31,9 @@ class _MoviesViewState extends State<MoviesView> {
               // Error
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Icon(Icons.error, color: Colors.red, size: 50.0),
-                  Text("Failed to connect to cloud storage. Please try again later.")
+                  Text(FlutterI18n.translate(context, "Mov_tab.Con_fail"))
                 ],
               );
             } else if (!snapshot.hasData) {
@@ -66,63 +67,5 @@ class _MoviesViewState extends State<MoviesView> {
     );
   }
 
-  /*
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-            children:[
-              Text("Movies Search"),
-                 TextFormField(
-                   decoration: const InputDecoration(
-                     border: UnderlineInputBorder(),
-                     labelText: 'Movie Title',
-                   )
-                 ),
-              TextFormField(
-                  decoration: const InputDecoration(
-                    border: UnderlineInputBorder(),
-                    labelText: 'Year of Movie',
-                  )
-              ),
-              TextFormField(
-                  decoration: const InputDecoration(
-                    border: UnderlineInputBorder(),
-                    labelText: 'Actor',
-                  )
-              ),
-              TextFormField(
-                  decoration: const InputDecoration(
-                    border: UnderlineInputBorder(),
-                    labelText: 'Director',
-                  )
-              )
-        ]
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: ()=>{
-            showSnackBarMovie(context),
-          },
-          child: const Icon(Icons.search)
-
-
-
-      ),
-    );
-
-    }
-  void showSnackBarMovie(BuildContext context){
-    var snackBar = SnackBar(
-        content: Text("Searching for movie..."),
-        action: SnackBarAction(
-          label: "OK",
-          onPressed:() {
-            ScaffoldMessenger.of(context).removeCurrentSnackBar();
-          },
-        ),
-
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }*/
 }
 
