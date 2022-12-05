@@ -34,5 +34,11 @@
   "Mov_tab": {
     "Mov_list": "Ma liste de films",
     "Con_fail": "Échec de la connexion au stockage cloud, réessayez plus tard!"
+  },
+  "Book_tab": {
+    "Book_list": "Ma liste de livres"
+  },
+  "Map": {
+    "Find_cin": "Trouver un cinéma près de moi"
   }
 }

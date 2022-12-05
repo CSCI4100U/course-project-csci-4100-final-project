@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/components/drawer.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geocoding/geocoding.dart';
@@ -46,7 +47,7 @@ class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Find Cinema Near Me"),
+        title: Text(FlutterI18n.translate(context, "Map.Find_cin")),
         actions: [
           IconButton(
               onPressed: (){

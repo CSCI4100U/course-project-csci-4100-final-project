@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import '../classes/book.dart';
 import '../components/drawer.dart';
 import 'add_book_form.dart';
@@ -28,7 +29,7 @@ class _BooksViewState extends State<BooksView> {
     String? selectedBookName;
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Book List")
+        title: Text(FlutterI18n.translate(context, "Book_tab.Book_list"))
       ),
       drawer: NavDrawer(),
       body: Center(
