@@ -27,33 +27,66 @@ class _MovieDetailsState extends State<MovieDetails> {
                   child: CircularProgressIndicator(),
                 );
               } else {
-                return SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.all(10),
-                        height: 400,
-                        child: Image.network(
-                            "https://image.tmdb.org/t/p/w500/${snapshot.data!.poster}"),
+                return ListView(
+                  children: [
+                    Row(
+                      children: [
+                        const Padding(padding: EdgeInsets.fromLTRB(5, 40, 10, 10)),
+                        Text(
+                          snapshot.data!.title,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 30,
+                            fontFamily: 'Lato',
+                          ),
+                          textAlign: TextAlign.center,
                       ),
-                      Text(
-                        snapshot.data!.title,
-                        style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        "${snapshot.data!.overview}",
-                        style: const TextStyle(fontSize: 20, fontFamily: 'Lato'),
-                        textAlign: TextAlign.center,
-                      ),
-                      ElevatedButton(
-                        child: const Text("Reviews", style: TextStyle(fontSize: 18)),
-                        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => ReviewList(movieName: snapshot.data!.title, movieID: snapshot.data!.id!))),
-                      ),
-                    ],
-                  ),
+                      ],
+                    )
+                  ],
                 );
+                // return ChildScrollView(
+                //   child: Row(
+                //     children: [
+                //       Column(
+                //           children: [
+                //             Container(
+                //               alignment: Alignment.center,
+                //               padding: EdgeInsets.all(10),
+                //               height: 250,
+                //               child: Image.network(
+                //                   "https://image.tmdb.org/t/p/w500/${snapshot.data!.poster}"),
+                //             )
+                //           ],
+                //       ),
+                //
+                //     ],
+                //   ),
+                  // child: Column(
+                  //   children: [
+                  //     Container(
+                  //       alignment: Alignment.center,
+                  //       padding: EdgeInsets.all(10),
+                  //       height: 400,
+                  //       child: Image.network(
+                  //           "https://image.tmdb.org/t/p/w500/${snapshot.data!.poster}"),
+                  //     ),
+                  //     Text(
+                  //       snapshot.data!.title,
+                  //       style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
+                  //       textAlign: TextAlign.center,
+                  //     ),
+                  //     Text(
+                  //       "${snapshot.data!.overview}",
+                  //       style: const TextStyle(fontSize: 20, fontFamily: 'Lato'),
+                  //       textAlign: TextAlign.center,
+                  //     ),
+                  //     ElevatedButton(
+                  //       child: const Text("Reviews", style: TextStyle(fontSize: 18)),
+                  //       onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => ReviewList(movieName: snapshot.data!.title, movieID: snapshot.data!.id!))),
+                  //     ),
+                  //   ],
+                  // ),
               }
             }));
   }
