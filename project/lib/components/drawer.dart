@@ -105,9 +105,8 @@ class _NavDrawerState extends State<NavDrawer> {
             ListTile(
               leading: Icon(Icons.notification_important),
               title: const Text('Notif Button'),
-              onTap: () {
-                _notificationNow;
-              },
+              onTap: _notificationNow
+
             ),
             const SizedBox(height: 30),
             Divider(color: Colors.white,),
@@ -139,6 +138,8 @@ void _showAboutDialog(BuildContext context) {
     applicationLegalese: "Group members:\nAlexander Giannoulis\nSejal Shingal\nEbubechukwu Okeke\nDavid Dickson\nBence Takacs",
   );
 }
+
+
 
 
 
