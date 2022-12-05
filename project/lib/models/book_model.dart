@@ -17,7 +17,6 @@ class BookModel{
   Future getAllBooks() async{
     final db = await DBUtils.init();
     final List maps = await db.query('books');
-    print(maps.length);
     List<Book> result = [];
     for (int i = 0; i < maps.length; i++){
       result.add(await Fetch.fetchBookDetails(maps[i]['id']));
