@@ -66,8 +66,8 @@ class _AddMovieFormState extends State<AddMovieForm> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
-            Movie movie = Movie(title: _title, release: _release, poster: _poster);
-            Navigator.of(context).pop(movie);
+            // Movie movie = Movie(title: _title, release: _release, poster: _poster);
+            // Navigator.of(context).pop(movie);
           }
         },
       ),

@@ -6,6 +6,7 @@ import 'package:project/components/movie_tile.dart';
 import 'package:project/views/add_movie_form.dart';
 
 import '../components/drawer.dart';
+import '../models/movie_search_delegate.dart';
 import 'movie_details.dart';
 
 class MoviesView extends StatefulWidget {
@@ -24,6 +25,21 @@ class _MoviesViewState extends State<MoviesView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(FlutterI18n.translate(context, "Mov_tab.Mov_list")),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () async {
+              var movie = await showSearch(
+                context: context,
+                delegate: MovieSearchDelegate(),
+              );
+              if (movie != null) {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) =>
+                    MovieDetails(movieID: movie!.id, movieName: movie.title)));
+              }
+            },
+          ),
+        ],
       ),
       drawer: NavDrawer(),
       body: Center(
@@ -72,17 +88,6 @@ class _MoviesViewState extends State<MoviesView> {
             }
           },
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () async {
-          Movie? movie = await Navigator.of(context).push(MaterialPageRoute(builder: (_) => AddMovieForm()));
-          if (movie == null) {
-            return;
-          }
-          await _model.insertMovie(movie);
-          setState(() {});
-        },
       ),
     );
   }

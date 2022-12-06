@@ -30,6 +30,7 @@ class MoviesModel {
   }
 
   Future insertMovie(Movie movie) async {
+    movie.userID = FirebaseAuth.instance.currentUser!.uid.toString();
     DocumentReference ref = await FirebaseFirestore.instance.collection("movieList").add(movie.toMap());
     movie.reference = ref;
   }

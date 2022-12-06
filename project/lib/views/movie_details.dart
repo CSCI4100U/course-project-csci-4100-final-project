@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:project/views/movie_view.dart';
 import '../classes/movie.dart';
 import '../classes/movie_cast.dart';
 import '../models/fetch_data.dart';
 import 'package:project/views/review_list.dart';
+
+import '../models/movie_model.dart';
 
 class MovieDetails extends StatefulWidget {
   const MovieDetails({Key? key, required this.movieID, required this.movieName})
@@ -14,11 +17,19 @@ class MovieDetails extends StatefulWidget {
 }
 
 class _MovieDetailsState extends State<MovieDetails> {
+  final MoviesModel _model = MoviesModel();
+  Movie? currentMovie;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text("${widget.movieName}"),
+          actions: [
+            IconButton(
+                onPressed: _addToDB,
+                icon: Icon(Icons.playlist_add)
+            ),
+          ],
         ),
         body: Column(
           children: [
@@ -31,21 +42,25 @@ class _MovieDetailsState extends State<MovieDetails> {
                       child: CircularProgressIndicator(),
                     );
                   } else {
+                    currentMovie = snapshot.data;
                     return Expanded(
                       child: ListView(
                         children: [
                           Row(
                             children: [
                               const Padding(padding: EdgeInsets.fromLTRB(5, 40, 10, 10)),
-                              Text(
-                                snapshot.data!.title,
-                                style: TextStyle(
-                                  color: Colors.grey.shade900,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Lato',
-                                ),
-                                textAlign: TextAlign.center,
+                              Flexible(
+                                child:
+                                  Text(
+                                    snapshot.data!.title,
+                                    style: TextStyle(
+                                      color: Colors.grey.shade900,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Lato',
+                                    ),
+                                    textAlign: TextAlign.left,
+                                  ),
                               ),
                             ],
                           ),
@@ -99,47 +114,6 @@ class _MovieDetailsState extends State<MovieDetails> {
                         ],
                       ),
                     );
-                    // return ChildScrollView(
-                    //   child: Row(
-                    //     children: [
-                    //       Column(
-                    //           children: [
-                    //             Container(
-                    //               alignment: Alignment.center,
-                    //               padding: EdgeInsets.all(10),
-                    //               height: 250,
-                    //               child:
-                    //             )
-                    //           ],
-                    //       ),
-                    //
-                    //     ],
-                    //   ),
-                    // child: Column(
-                    //   children: [
-                    //     Container(
-                    //       alignment: Alignment.center,
-                    //       padding: EdgeInsets.all(10),
-                    //       height: 400,
-                    //       child: Image.network(
-                    //           "https://image.tmdb.org/t/p/w500/${snapshot.data!.poster}"),
-                    //     ),
-                    //     Text(
-                    //       snapshot.data!.title,
-                    //       style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
-                    //       textAlign: TextAlign.center,
-                    //     ),
-                    //     Text(
-                    //       "${snapshot.data!.overview}",
-                    //       style: const TextStyle(fontSize: 20, fontFamily: 'Lato'),
-                    //       textAlign: TextAlign.center,
-                    //     ),
-                    //     ElevatedButton(
-                    //       child: const Text("Reviews", style: TextStyle(fontSize: 18)),
-                    //       onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => ReviewList(movieName: snapshot.data!.title, movieID: snapshot.data!.id!))),
-                    //     ),
-                    //   ],
-                    // ),
                   }
                 }),
             const SizedBox(
@@ -177,8 +151,10 @@ class _MovieDetailsState extends State<MovieDetails> {
 
                                         SizedBox(
                                           width: 60,
-                                          child: Image.network(
-                                              "https://image.tmdb.org/t/p/w500/${snapshot.data![index].profile}"),
+                                          child: snapshot.data![index].profile != null ? Image.network(
+                                              "https://image.tmdb.org/t/p/w500/${snapshot.data![index].profile}") :
+                                          Image.network(
+                                              "https://static.thenounproject.com/attribution/4289718-600.png")
                                         ),
                                         const Padding(padding: EdgeInsets.all(10)),
                                         SizedBox(
@@ -216,5 +192,22 @@ class _MovieDetailsState extends State<MovieDetails> {
           ],
         )
     );
+  }
+  void _addToDB() async{
+    if(currentMovie != null){
+      await _model.insertMovie(currentMovie!);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) =>
+                  MoviesView()
+          ));
+    }
+    else {
+      const SnackBar(
+          duration: Duration(seconds: 1),
+          content: Text('Error Adding to Firebase')
+      );
+    }
   }
 }

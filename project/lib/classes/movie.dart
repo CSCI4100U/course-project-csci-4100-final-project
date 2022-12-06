@@ -1,21 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Movie {
-  int? id;
+  int id;
   final String release;
   final String poster;
   final String title;
   int? budget;
   String? overview;
-
   int? runtime;
   String? status;
   String? tagline;
   bool? video;
   DocumentReference? reference;
+  String userID = "NA";
+
 
   Movie({
-    this.id,
+    required this.id,
     required this.release,
     required this.poster,
     required this.title,
@@ -47,6 +49,8 @@ class Movie {
       'poster_path': poster,
       'release_date': release,
       'title': title,
+      'id' : id,
+      'user_id': userID,
     };
   }
 
