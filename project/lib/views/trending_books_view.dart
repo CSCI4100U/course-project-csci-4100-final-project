@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/classes/book.dart';
 import 'package:project/views/trending_movies_view.dart';
 import '../components/drawer.dart';
@@ -29,14 +30,14 @@ class _TrendingBooksState extends State<TrendingBooks> {
           child: DropdownButtonHideUnderline(
             child: DropdownButton<String>(
               value: _value,
-              items: const <DropdownMenuItem<String>>[
+              items: <DropdownMenuItem<String>>[
                 DropdownMenuItem(
                   value: 'movie',
-                  child: Text('Trending Movies'),
+                  child: Text((FlutterI18n.translate(context, "Home.Trending"))),
                 ),
                 DropdownMenuItem(
                   value: 'book',
-                  child: Text('Trending Books'),
+                  child: Text((FlutterI18n.translate(context, "Home.TrendingB"))),
                 )
               ],
               onChanged: (String? value) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter_new/flutter.dart' as charts;
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/classes/trending.dart';
 import 'package:project/classes/movie.dart';
 
@@ -23,7 +24,7 @@ class _ChartPageState extends State<ChartPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: const Text("Trending Stats"),
+        title: Text((FlutterI18n.translate(context, "Chart.Title"))),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -41,15 +42,15 @@ class _ChartPageState extends State<ChartPage> {
                 ],
                 animate: true,
                 behaviors: [
-                  charts.ChartTitle('Ratings of Trending Movies',
+                  charts.ChartTitle((FlutterI18n.translate(context, "Chart.C_title")),
                       behaviorPosition: charts.BehaviorPosition.top,
                       titleOutsideJustification: charts.OutsideJustification.start,
                       innerPadding: 30),
-                  charts.ChartTitle('Rating',
+                  charts.ChartTitle((FlutterI18n.translate(context, "Chart.Rating")),
                       behaviorPosition: charts.BehaviorPosition.bottom,
                       titleOutsideJustification:
                       charts.OutsideJustification.middleDrawArea),
-                  charts.ChartTitle('Number of Movies',
+                  charts.ChartTitle((FlutterI18n.translate(context, "Chart.Num_mov")),
                       behaviorPosition: charts.BehaviorPosition.start,
                       titleOutsideJustification:
                       charts.OutsideJustification.middleDrawArea),
@@ -57,13 +58,25 @@ class _ChartPageState extends State<ChartPage> {
               ),
             ),
             SizedBox(
-              height: 200,
-              child: Text(
-                "Average Rating of the Trending Movies: $avgRating",
-                style: const TextStyle(
-                  fontFamily: "Lato",
-                  fontSize: 20,
+              height: 75,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [ Text(
+                  (FlutterI18n.translate(context, "Chart.Avg_Rating")),
+                  style: const TextStyle(
+                    fontFamily: "Lato",
+                    fontSize: 20,
+                  ),
                 ),
+                  Text(
+                    "$avgRating",
+                    style: const TextStyle(
+                      fontFamily: "Lato",
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
               ),
             )
           ],

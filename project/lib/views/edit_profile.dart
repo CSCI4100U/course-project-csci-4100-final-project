@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/views/trending_movies_view.dart';
 import '../components/drawer.dart';
 class EditProfile extends StatefulWidget {
@@ -20,7 +21,7 @@ class _EditProfileState extends State<EditProfile> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text("Update Your Profile"),
+        title: Text((FlutterI18n.translate(context, "Update.Title"))),
       ),
       drawer: NavDrawer(),
       body:Form(
@@ -28,9 +29,9 @@ class _EditProfileState extends State<EditProfile> {
         child: Column(
           children: [
             TextFormField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: "Enter Your Full Name",
+                labelText: (FlutterI18n.translate(context, "Update.Input_n")),
                 hintText: "John Doe",
               ),
               validator: _notEmptyValidator,
@@ -39,9 +40,9 @@ class _EditProfileState extends State<EditProfile> {
               },
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: "Enter a Photo Url",
+                labelText: (FlutterI18n.translate(context, "Update.Input_p")),
                 hintText: "https://profilepic.com/user.jpg",
               ),
               validator: _notEmptyValidator,
@@ -67,7 +68,7 @@ class _EditProfileState extends State<EditProfile> {
   }
   String? _notEmptyValidator(String? value) {
     if (value != null && value.isEmpty) {
-      return "Please Enter a Value";
+      return (FlutterI18n.translate(context, "Rev_form.Enter"));
     }
     return null;
   }

@@ -21,7 +21,8 @@
     "P_match": "Las contraseñas no coinciden"
   },
   "Home": {
-    "Trending": "Tendencias Peliculas"
+    "Trending": "Tendencias Peliculas",
+    "TendingB": "Libros de moda"
   },
   "Drawer": {
     "Home": "Página de inicio",
@@ -29,6 +30,8 @@
     "Books": "Libros",
     "Find_loc": "Buscar ubicaciones",
     "Licenses": "Licencias",
+    "Notif": "Botón de notificación",
+    "Edit_prof": "Editar perfil",
     "Logout": "Cerrar sesión"
   },
   "Mov_tab": {
@@ -39,7 +42,8 @@
     "Book_list": "Mi lista de libros"
   },
   "Map": {
-    "Find_cin": "Encuentra cine cerca de mí"
+    "Find_cin": "Encuentra cines",
+    "Find_book": "Encuentra librerías"
   },
   "Review": {
     "Rev": "Reseñas",
@@ -58,5 +62,33 @@
     "Release": "Liberar",
     "URL": "Enlace del póster",
     "Hint": "La película"
+  },
+  "Chart": {
+    "Title": "Estadísticas de tendencias",
+    "Num_mov": "Número de películas",
+    "Rating": "Clasificación",
+    "Avg_Rating": "Valoración media de las películas de moda: ",
+    "C_title": "Calificaciones de las películas de moda"
+  },
+  "Update": {
+    "Title": "Actualiza tu perfil",
+    "Input_n": "Ingresa tu nombre completo",
+    "Input_p": "Ingrese un enlace de foto"
+  },
+  "Account": {
+    "Title": "Página de perfil",
+    "Acc_header": "Detalles de la cuenta",
+    "Name": "Su nombre es:",
+    "Email": "Tu correo es:",
+    "Pref_header": "Preferencias del usuario",
+    "Dark_mode": "Habilitar modo oscuro: ",
+    "Lang_pick": "Selección de idioma"
+  },
+  "M_details":{
+    "Cast": "Movie Cast",
+    "Review": "Reviews"
+  },
+  "B_details": {
+    "Author": "Autor"
   }
 }

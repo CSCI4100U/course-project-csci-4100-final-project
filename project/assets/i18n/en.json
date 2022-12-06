@@ -21,7 +21,8 @@
     "P_match": "Password does not match"
   },
   "Home": {
-    "Trending": "Trending Movies"
+    "Trending": "Trending Movies",
+    "TrendingB": "Trending Books"
   },
   "Drawer": {
     "Home": "Home",
@@ -29,6 +30,8 @@
     "Books": "My Books List",
     "Find_loc": "Find Locations",
     "Licenses": "Licenses",
+    "Notif": "Notif Button",
+    "Edit_prof": "Edit Profile",
     "Logout": "Logout"
   },
   "Mov_tab": {
@@ -39,7 +42,8 @@
     "Book_list": "My Book List"
   },
   "Map": {
-    "Find_cin": "Find Cinema Near Me"
+    "Find_cin": "Find Cinemas Near Me",
+    "Find_book": "Find Bookstores Near Me"
   },
   "Review": {
     "Rev": "Reviews",
@@ -58,5 +62,33 @@
     "Release": "Release Date",
     "URL": "Poster URL",
     "Hint": "The Movie"
+  },
+  "Chart": {
+    "Title": "Trending Stats",
+    "Num_mov": "Number of Movies",
+    "Rating": "Rating",
+    "Avg_Rating": "Average Rating of The Trending Movies: ",
+    "C_title": "Ratings of Trending Movies"
+  },
+  "Update": {
+    "Title": "Update Your Profile",
+    "Input_n": "Enter Your Full Name",
+    "Input_p": "Enter a Photo URL"
+  },
+  "Account": {
+    "Title": "Profile Page",
+    "Acc_header": "Account Details",
+    "Name": "Your name is:",
+    "Email": "Your email is:",
+    "Pref_header": "User Preferences",
+    "Dark_mode": "Enable dark mode:",
+    "Lang_pick": "Language Select"
+  },
+  "M_details":{
+    "Cast": "Movie Cast",
+    "Review": "Reviews"
+  },
+  "B_details": {
+    "Author": "Author"
   }
 }

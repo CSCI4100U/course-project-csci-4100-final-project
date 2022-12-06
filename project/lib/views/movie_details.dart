@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/views/movie_view.dart';
 import '../classes/movie.dart';
 import '../classes/movie_cast.dart';
@@ -131,10 +132,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                     );
                   }
                 }),
-            const SizedBox(
+            SizedBox(
               height: 50,
               child: Text(
-                "Movie Cast",
+                (FlutterI18n.translate(context, "M_details.Cast")),
                 style: TextStyle(fontSize: 30,
                     fontFamily: 'Lato',
                     fontWeight: FontWeight.bold),
@@ -224,8 +225,8 @@ class _MovieDetailsState extends State<MovieDetails> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  "Reviews",
+                Text(
+                  (FlutterI18n.translate(context, "M_details.Review")),
                   style: TextStyle(fontSize: 30,
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.bold),

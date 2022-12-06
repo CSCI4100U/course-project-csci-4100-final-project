@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/classes/book.dart';
 import 'package:project/models/book_model.dart';
 import 'package:project/models/fetch_data.dart';
@@ -113,10 +114,10 @@ class _BookDetailsState extends State<BookDetails> {
                         )
                       ],
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 50,
                       child: Text(
-                        "Book Authors",
+                        (FlutterI18n.translate(context, "B_details.Author")),
                         style: TextStyle(fontSize: 30,
                             fontFamily: 'Lato',
                             fontWeight: FontWeight.bold),

@@ -31,14 +31,14 @@ class _MyAppState extends State<TrendingMovies> {
           child: DropdownButtonHideUnderline(
             child: DropdownButton<String>(
               value: _value,
-              items: const <DropdownMenuItem<String>>[
+              items: <DropdownMenuItem<String>>[
                 DropdownMenuItem(
                   value: 'movie',
-                  child: Text('Trending Movies'),
+                  child: Text((FlutterI18n.translate(context, "Home.Trending"))),
                 ),
                 DropdownMenuItem(
                   value: 'book',
-                  child: Text('Trending Books'),
+                  child: Text((FlutterI18n.translate(context, "Home.TrendingB"))),
                 )
               ],
               onChanged: (String? value) {

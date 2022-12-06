@@ -55,14 +55,14 @@ class _mapBooksState extends State<mapBooks>  with TickerProviderStateMixin{
           child: DropdownButtonHideUnderline(
             child: DropdownButton<String>(
               value: _value,
-              items: const <DropdownMenuItem<String>>[
+              items: <DropdownMenuItem<String>>[
                 DropdownMenuItem(
                   value: 'cinema',
-                  child: Text('Find Cinemas Near me'),
+                  child: Text((FlutterI18n.translate(context, "Map.Find_cin"))),
                 ),
                 DropdownMenuItem(
                   value: 'bookstore',
-                  child: Text('Find Book Stores near me'),
+                  child: Text((FlutterI18n.translate(context, "Map.Find_book"))),
                 )
               ],
               onChanged: (String? value) {

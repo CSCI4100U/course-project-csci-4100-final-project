@@ -21,14 +21,17 @@
     "P_match": "Le mot de passe ne correspond pas"
   },
   "Home": {
-    "Trending": "Tendance Films"
+    "Trending": "Tendance Films",
+    "TrendingB": "Livres tendance"
   },
   "Drawer": {
     "Home": "Page d'accueil",
     "My_list": "Ma liste",
     "Books": "Livre",
     "Find_loc": "Trouver des emplacements",
-    "Licenses": "licences",
+    "Licenses": "Licences",
+    "Notif": "Bouton de notification",
+    "Edit_prof": "Editer le profil",
     "Logout": "Se déconnecter"
   },
   "Mov_tab": {
@@ -39,7 +42,8 @@
     "Book_list": "Ma liste de livres"
   },
   "Map": {
-    "Find_cin": "Trouver un cinéma près de moi"
+    "Find_cin": "Trouver des cinémas",
+    "Find_book": "Trouver des librairies"
   },
   "Review": {
     "Rev": "Commentaires",
@@ -58,6 +62,34 @@
     "Release": "Date de sortie",
     "URL": "Lien affiche",
     "Hint": "Le film"
+  },
+  "Chart": {
+    "Title": "Statistiques tendances",
+    "Num_mov": "Nombre de films",
+    "Rating": "Évaluation",
+    "Avg_Rating": "Note moyenne des films tendance: ",
+    "C_title": "Notes des films tendance"
+  },
+  "Update": {
+    "Title": "Mettez à jour votre profil",
+    "Input_n": "Entrez votre nom complet",
+    "Input_p": "Entrez un lien photo"
+  },
+  "Account": {
+    "Title": "Page de profil",
+    "Acc_header": "Détails du compte",
+    "Name": "Ton nom est:",
+    "Email": "Votre e-mail est:",
+    "Pref_header": "Préférences de l'utilisateur",
+    "Dark_mode": "Mode sombre: ",
+    "Lang_pick": "Sélection de la langue"
+  },
+  "M_details":{
+    "Cast": "Elenco de la película",
+    "Review": "Reseñas"
+  },
+  "B_details": {
+    "Author": "L'auteur"
   }
 
 

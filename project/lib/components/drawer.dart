@@ -159,7 +159,7 @@ class _NavDrawerState extends State<NavDrawer> {
             ),
             ListTile(
               leading: Icon(Icons.notification_important),
-              title: const Text('Notif Button'),
+              title: Text((FlutterI18n.translate(context, "Drawer.Notif"))),
               onTap: _notificationNow
 
             ),
@@ -167,7 +167,7 @@ class _NavDrawerState extends State<NavDrawer> {
             Divider(color: Colors.white,),
             ListTile(
               leading: Icon(Icons.person_outline_rounded),
-              title: Text("Edit Profile"),
+              title: Text((FlutterI18n.translate(context, "Drawer.Edit_prof"))),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {

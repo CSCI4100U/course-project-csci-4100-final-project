@@ -37,14 +37,14 @@ class _AccountViewState extends State<AccountView>{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text((FlutterI18n.translate(context, "Account.title"))),
+        title: Text((FlutterI18n.translate(context, "Account.Title"))),
       ),
       body: Column(
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Text(
-                  "Account Details",
+                  (FlutterI18n.translate(context, "Account.Acc_header")),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 22,
@@ -65,7 +65,7 @@ class _AccountViewState extends State<AccountView>{
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 25, 0, 0),
                   child: Text(
-                      "Your name is: ",
+                      (FlutterI18n.translate(context, "Account.Name")),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 20
@@ -88,7 +88,7 @@ class _AccountViewState extends State<AccountView>{
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
                   child: Text(
-                      "Your email is: ",
+                      (FlutterI18n.translate(context, "Account.Email")),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 20
@@ -109,7 +109,7 @@ class _AccountViewState extends State<AccountView>{
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Text(
-                  "User Preferences ",
+                  (FlutterI18n.translate(context, "Account.Pref_header")),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 22,
@@ -122,7 +122,7 @@ class _AccountViewState extends State<AccountView>{
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                   child: Text(
-                    "Enable dark mode:",
+                    (FlutterI18n.translate(context, "Account.Dark_mode")),
                     style: TextStyle(
                       fontSize: 20,
                     ),
@@ -134,7 +134,7 @@ class _AccountViewState extends State<AccountView>{
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 15, 0, 10),
               child: Text(
-                  "Language select",
+                  (FlutterI18n.translate(context, "Account.Lang_pick")),
                   style: TextStyle(
                     fontSize: 20,
                     decoration: TextDecoration.underline,
