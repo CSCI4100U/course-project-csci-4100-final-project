@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
+import 'package:project/classes/book_author.dart';
 import 'package:project/classes/movie.dart';
 import '../classes/book.dart';
 import '../classes/mapMarker.dart';
@@ -123,7 +124,9 @@ class Fetch{
         String loc = data['location'];
         return fetchBookDetails(loc.substring(loc.lastIndexOf('/') + 1));
       }
+      print("pre");
       Book book = Book.fromMap(id, data);
+      print("post");
       return book;
     } else {
       throw Exception('Failed to load book');
@@ -184,6 +187,12 @@ class Fetch{
     }
 
     return results;
+  }
+
+  Future<List<BookAuthor>> fetchBookAuthors(Book book) async {
+    List<BookAuthor> result = [];
+
+    return result;
   }
 
   //LOCATION FETCH FUNCTIONS

@@ -5,17 +5,17 @@ class Book{
   String id;
   String title;
   String key;
-  num? cover;
-  String author;
-  String publishDate;
+  int? cover;
+  String? publishDate;
+  String? description;
 
   Book({
     required this.id,
     required this.title,
     required this.key,
     required this.cover,
-    required this.author,
-    required this.publishDate,
+    this.publishDate,
+    this.description,
   });
 
   /*Book.fromMap(Map map) {
@@ -27,13 +27,21 @@ class Book{
   }*/
 
   factory Book.fromMap(String id, Map map) {
+    String? description;
+    if (map['description'] != null) {
+      if (map['description'] is String) {
+        description = map['description'];
+      } else {
+        description = map['description']['value'];
+      }
+    }
     return Book(
       id: id,
       title: map['title'] ?? 'Unknown Title',
-      author: 'Unknown Author',
       cover: map['covers'] == null ? null : map['covers'][0],
       key: map['key'] ?? 'Unknown',
-      publishDate: map['first_publish_date'] ?? 'Unknown',
+      publishDate: map['first_publish_date'],
+      description: description,
     );
   }
 
@@ -46,9 +54,9 @@ class Book{
       'id': id,
       'title': title,
       'cover': cover,
-      'author': author,
       'publish_date': publishDate,
       'key': key,
+      'description': description,
     };
   }
 }
