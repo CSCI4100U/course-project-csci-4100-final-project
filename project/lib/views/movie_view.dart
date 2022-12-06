@@ -6,6 +6,7 @@ import 'package:project/components/movie_tile.dart';
 import 'package:project/views/add_movie_form.dart';
 
 import '../components/drawer.dart';
+import 'movie_details.dart';
 
 class MoviesView extends StatefulWidget {
   const MoviesView({Key? key}) : super(key: key);
@@ -18,6 +19,8 @@ class _MoviesViewState extends State<MoviesView> {
   final MoviesModel _model = MoviesModel();
 
   @override Widget build(BuildContext context) {
+    int? selectedMovieId;
+    String? selectedMovieName;
     return Scaffold(
       appBar: AppBar(
         title: Text(FlutterI18n.translate(context, "Mov_tab.Mov_list")),
@@ -48,7 +51,19 @@ class _MoviesViewState extends State<MoviesView> {
                   itemBuilder: (context, index){
                   return GestureDetector(
                     onTap: (){
-
+                      selectedMovieId = snapshot.data![index].id;
+                      selectedMovieName = snapshot.data![index].title;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              duration: const Duration(seconds: 1),
+                              content: Text('Getting Movie Info for $selectedMovieName')
+                          ));
+                      Future.delayed(
+                          const Duration(seconds: 2),
+                              () async {
+                            await Navigator.push(context, MaterialPageRoute(builder: (_) => MovieDetails(movieID: selectedMovieId!, movieName: selectedMovieName,)));
+                          }
+                      );
                     },
                     child: MovieTile(movie: snapshot.data![index]),
                   );

@@ -10,6 +10,11 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
+    late String _title;
+    late String _release;
+    late String _poster;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Update Your Profile"),
