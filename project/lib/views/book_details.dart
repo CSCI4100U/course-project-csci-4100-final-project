@@ -108,14 +108,16 @@ class _BookDetailsState extends State<BookDetails> {
                         textAlign: TextAlign.center,
                       ),
                     ),
+
                     FutureBuilder<List<BookAuthor>>(
                       future: Fetch.fetchBookAuthors(currentBook!),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
                           return const Center(child: CircularProgressIndicator());
                         }
-                        return Expanded(
-                          child: ListView.builder(
+                        return ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
                             addAutomaticKeepAlives: false,
                             addRepaintBoundaries: false,
                             itemCount: snapshot.data!.length,
@@ -157,7 +159,6 @@ class _BookDetailsState extends State<BookDetails> {
                                 ),
                               );
                             },
-                          ),
                         );
                       },
                     ),
