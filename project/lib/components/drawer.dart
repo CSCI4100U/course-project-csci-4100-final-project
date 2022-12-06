@@ -91,19 +91,10 @@ class _NavDrawerState extends State<NavDrawer> {
                           ),
                         )
                       ],
-                    ),
-                      // child: UserAccountsDrawerHeader(
-                      //   accountName: Text(
-                      //     userName,
-                      //     style: TextStyle(fontSize: 18),
-                      //   ),
-                      //   accountEmail: Text(user!.email!),
-                      //   currentAccountPictureSize: Size.square(50),
-                      //   currentAccountPicture: Image.network(userPhoto),
-                      //   ),
-                      ),
                   ),
+                ),
               ),
+            ),
             ListTile(
               leading: Icon(Icons.home),
               title: Text(FlutterI18n.translate(context, "Drawer.Home"), style: TextStyle(),),
@@ -118,7 +109,7 @@ class _NavDrawerState extends State<NavDrawer> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.list_alt),
+              leading: Icon(Icons.local_movies),
               title: Text(FlutterI18n.translate(context, "Drawer.My_list")),
               onTap: () {
                 Navigator.pop(context);
@@ -131,7 +122,7 @@ class _NavDrawerState extends State<NavDrawer> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.book),
+              leading: Icon(Icons.bookmark_outlined),
               title: Text(FlutterI18n.translate(context, "Drawer.Books")),
               onTap: () {
                 Navigator.pop(context);

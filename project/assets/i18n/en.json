@@ -25,8 +25,8 @@
   },
   "Drawer": {
     "Home": "Home",
-    "My_list": "My List",
-    "Books": "Books",
+    "My_list": "My Movie List",
+    "Books": "My Books List",
     "Find_loc": "Find Locations",
     "Licenses": "Licenses",
     "Logout": "Logout"
