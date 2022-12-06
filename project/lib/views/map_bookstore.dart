@@ -8,16 +8,16 @@ import 'package:latlong2/latlong.dart';
 
 import '../classes/mapMarker.dart';
 import '../models/fetch_data.dart';
-import 'map_bookstore.dart';
+import 'map_view.dart';
 
-class mapView extends StatefulWidget {
-  mapView({Key? key}) : super(key: key);
+class mapBooks extends StatefulWidget {
+  mapBooks({Key? key}) : super(key: key);
   bool isLoad = false;
   @override
-  State<mapView> createState() => _mapViewState();
+  State<mapBooks> createState() => _mapBooksState();
 }
 
-class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
+class _mapBooksState extends State<mapBooks>  with TickerProviderStateMixin{
   String accessTok = "pk.eyJ1Ijoic2VqYWxzaGluZ2FsIiwiYSI6ImNsYjhrYTgyaTBsc3Izd3BqYmEzcG1tOXkifQ.2uiODbeyAxZZuYC-qj1OVQ";
   String accessTokFind = "PBYeQYsneEBM84M9wPPjPtQVcM1UQPOn";
   int selectedIndex = 0;
@@ -26,7 +26,7 @@ class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
   late LatLng _userLocation;
   final pageController = PageController();
   late LatLng _currentLocation;
-  String _value = "cinema";
+  String _value = "bookstore";
 
   @override
   void initState(){
@@ -67,12 +67,12 @@ class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
               onChanged: (String? value) {
                 setState(() {
                   _value = value!;
-                  if(_value == "bookstore"){
+                  if(_value == "cinema"){
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (_) =>
-                                mapBooks()
+                                mapView()
                         ));
                   }
                 });
@@ -106,7 +106,7 @@ class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
       drawer: const NavDrawer(),
       body: Center(
         child: widget.isLoad ? FutureBuilder<List<GeoLocation>>(
-          future: Fetch.fetchLocations(accessTokFind,_userLocation),
+          future: Fetch.fetchBookstores(accessTokFind,_userLocation),
           builder: (context, snapshot) {
             if (snapshot.data == null) {
               return const Center(
@@ -119,10 +119,10 @@ class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
                   FlutterMap(
                       mapController: mapController,
                       options: MapOptions(
-                      minZoom: 5,
-                      maxZoom: 18,
-                      zoom: 13,
-                      center: _currentLocation,
+                        minZoom: 5,
+                        maxZoom: 18,
+                        zoom: 13,
+                        center: _currentLocation,
                       ),
                       layers: [
                         TileLayerOptions(
@@ -133,30 +133,30 @@ class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
                           markers: [
                             for (dynamic i = 0; i < snapshot.data?.length; i++)
                               Marker(
-                                height: 40,
-                                width: 40,
-                                point: snapshot.data![i].latlng,
-                                builder: (context){
-                                  return Container(
-                                    child: IconButton(
-                                      onPressed: (){
-                                        setState(() {
-                                          pageController.animateToPage(i,
-                                              duration: Duration(milliseconds: 500),
-                                              curve: Curves.easeInOut
-                                          );
-                                          selectedIndex = i;
-                                          _currentLocation = snapshot.data![i].latlng;
-                                          _animatedMapMove(_currentLocation, 13);
-                                        });
+                                  height: 40,
+                                  width: 40,
+                                  point: snapshot.data![i].latlng,
+                                  builder: (context){
+                                    return Container(
+                                      child: IconButton(
+                                        onPressed: (){
+                                          setState(() {
+                                            pageController.animateToPage(i,
+                                                duration: Duration(milliseconds: 500),
+                                                curve: Curves.easeInOut
+                                            );
+                                            selectedIndex = i;
+                                            _currentLocation = snapshot.data![i].latlng;
+                                            _animatedMapMove(_currentLocation, 13);
+                                          });
                                         },
-                                      icon: Icon(Icons.location_on,
-                                          color: selectedIndex == i ?
-                                          Colors.blue : Colors.black),
-                                      iconSize: 45,
-                                    ),
-                                  );
-                                }
+                                        icon: Icon(Icons.location_on,
+                                            color: selectedIndex == i ?
+                                            Colors.blue : Colors.black),
+                                        iconSize: 45,
+                                      ),
+                                    );
+                                  }
                               ),
                           ],
                         ),
