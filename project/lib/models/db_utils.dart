@@ -12,8 +12,7 @@ class DBUtils {
         //   rating: What the user rated the movie on a scale of 1-5
 
         // books
-        db.execute("CREATE TABLE movies(imdb_id VARCHAR PRIMARY KEY, watched INTEGER, rating INTEGER)");
-        db.execute("CREATE TABLE books(id VARCHAR PRIMARY KEY)");
+        db.execute("CREATE TABLE books(id STRING PRIMARY KEY, title STRING, cover INTEGER, publish_date STRING, key STRING, description STRING )");
       },
       version: 2,
     );

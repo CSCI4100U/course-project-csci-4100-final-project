@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:project/components/book_tile.dart';
+import 'package:project/views/book_details.dart';
 import '../classes/book.dart';
 import '../components/drawer.dart';
 import 'add_book_form.dart';
@@ -16,16 +18,16 @@ class BooksView extends StatefulWidget {
 class _BooksViewState extends State<BooksView> {
   final _model = BookModel();
   List<Book> books = [];
+  String? selectedBookId;
+  String? selectedBookTitle;
 
   @override
   void initState(){
     super.initState();
-    _getData();
   }
 
   @override
   Widget build(BuildContext context) {
-    int? selectedBookID;
     String? selectedBookName;
     return Scaffold(
       appBar: AppBar(
@@ -33,37 +35,53 @@ class _BooksViewState extends State<BooksView> {
         title: Text(FlutterI18n.translate(context, "Book_tab.Book_list")),
       ),
       drawer: NavDrawer(),
-      body: Center(
-          child: ListView.builder(
-              itemCount: books.length,
-              itemBuilder: (context, index) {
-                return Container();
-              }
-          )
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () async {
-          String? id = await Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AddBookForm()));
-          if (id == null) {
-            return;
-          }
-          Book book = await Fetch.fetchBookDetails(id);
-          _model.insertBook(book);
-          setState(() => books.add(book));
-        },
-      )
+      body: FutureBuilder<List<Book>>(
+                  future: _model.getAllBooks(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      // Error
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.error, color: Colors.red, size: 50.0),
+                          Text(FlutterI18n.translate(context, "Mov_tab.Con_fail")),
+                        ],
+                      );
+                    } else if (!snapshot.hasData) {
+                      // Loading
+                      return const CircularProgressIndicator();
+                    } else {
+                      // Movie list
+                      return ListView.builder(
+                          addAutomaticKeepAlives: false,
+                          addRepaintBoundaries: false,
+                          itemCount: snapshot.data?.length,
+                          itemBuilder: (context, index){
+                            return GestureDetector(
+                              onTap: (){
+                                selectedBookId = snapshot.data![index].id;
+                                selectedBookName = snapshot.data![index].title;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        duration: const Duration(seconds: 1),
+                                        content: Text('Getting Book Info for $selectedBookName')
+                                    ));
+                                Future.delayed(
+                                    const Duration(seconds: 2),
+                                        () async {
+                                      await Navigator.push(context, MaterialPageRoute(builder: (_) => BookDetails(id: selectedBookId!, title: selectedBookName!,)));
+                                    }
+                                );
+                              },
+                              child: BookTile(book: snapshot.data![index]),
+                            );
+                          }
+                      );
+                    }
+                  },
+                )
     );
 
-  }
-  _getData() async{
-    books.clear();
-    List<Book> result = await _model.getAllBooks();
-    setState(() {
-      for(Book book in result){
-        books.add(book);
-      }
-    });
   }
 }
 

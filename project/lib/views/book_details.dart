@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project/classes/book.dart';
+import 'package:project/models/book_model.dart';
 import 'package:project/models/fetch_data.dart';
 import 'package:project/classes/book_author.dart';
+import 'package:project/views/books_view.dart';
 
 class BookDetails extends StatefulWidget {
   const BookDetails({Key? key, required this.id, required this.title}) : super(key: key);
@@ -13,13 +15,19 @@ class BookDetails extends StatefulWidget {
 
 class _BookDetailsState extends State<BookDetails> {
   Book? currentBook;
-
+  final BookModel _model = BookModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
         title: Text(widget.title),
+        actions: [
+          IconButton(
+              onPressed: _addToDB,
+              icon: Icon(Icons.playlist_add)
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -170,5 +178,22 @@ class _BookDetailsState extends State<BookDetails> {
         ],
       ),
     );
+  }
+  void _addToDB() async{
+    if(currentBook != null){
+      await _model.insertBook(currentBook!);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) =>
+              const BooksView()
+          ));
+    }
+    else {
+      const SnackBar(
+          duration: Duration(seconds: 1),
+          content: Text('Error Adding to Firebase')
+      );
+    }
   }
 }

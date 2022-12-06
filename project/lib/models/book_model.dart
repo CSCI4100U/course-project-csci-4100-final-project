@@ -14,7 +14,7 @@ class BookModel{
     );
   }
 
-  Future getAllBooks() async{
+  Future<List<Book>> getAllBooks() async{
     final db = await DBUtils.init();
     final List maps = await db.query('books');
     List<Book> result = [];

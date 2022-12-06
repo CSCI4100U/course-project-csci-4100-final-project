@@ -48,7 +48,7 @@ class Book{
 
   @override
   String toString(){
-    return 'Book(id: $id, title: $title';
+    return 'Book(id: $id, title: $title)';
   }
   Map<String, Object?> toMap(){
     return {
