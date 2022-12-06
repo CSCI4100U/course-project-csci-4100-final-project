@@ -28,6 +28,7 @@ class BookSearchDelegate extends SearchDelegate<Book?> {
   @override
   Widget buildResults(BuildContext context) {
     return Container();
+    /*
     return FutureBuilder<List<Book>>(
       future: Fetch.fetchBooksFromSearchQuery(query),
       builder: (context, snapshot) {
@@ -44,7 +45,7 @@ class BookSearchDelegate extends SearchDelegate<Book?> {
             }
         );
       }
-    );
+    );*/
   }
 
   @override
