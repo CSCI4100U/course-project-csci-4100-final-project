@@ -86,6 +86,10 @@ class Fetch{
   }
 
   static Future<List<Movie>> fetchMoviesFromSearchQuery(String query) async {
+    if (query == '') {
+      return [];
+    }
+
     List<Movie> results = [];
 
     var response = await http

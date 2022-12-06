@@ -76,7 +76,7 @@ class _MyAppState extends State<TrendingMovies> {
               );
               if (movie != null) {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) =>
-                    MovieDetails(movieID: movie!.id, movieName: movie.title)));
+                    MovieDetails(movieID: movie.id, movieName: movie.title)));
               }
             },
           ),
