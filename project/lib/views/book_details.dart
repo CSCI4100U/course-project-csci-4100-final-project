@@ -183,6 +183,28 @@ class _BookDetailsState extends State<BookDetails> {
               );
             },
           ),
+          Padding(padding: EdgeInsets.all(10)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                (FlutterI18n.translate(context, "M_details.Review")),
+                style: TextStyle(fontSize: 30,
+                    fontFamily: 'Lato',
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              IconButton(
+                onPressed: (){
+                },
+                icon: const Icon(
+                  Icons.reviews,
+                  size: 40,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
