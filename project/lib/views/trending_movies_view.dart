@@ -74,7 +74,10 @@ class _MyAppState extends State<TrendingMovies> {
                 context: context,
                 delegate: MovieSearchDelegate(),
               );
-              Navigator.of(context).push(MaterialPageRoute(builder: (_) => MovieDetails(movieID: movie!.id, movieName: movie.title)));
+              if (movie != null) {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) =>
+                    MovieDetails(movieID: movie!.id, movieName: movie.title)));
+              }
             },
           ),
         ],
