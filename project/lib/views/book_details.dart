@@ -4,6 +4,9 @@ import 'package:project/models/book_model.dart';
 import 'package:project/models/fetch_data.dart';
 import 'package:project/classes/book_author.dart';
 import 'package:project/views/books_view.dart';
+import'package:project/classes/notification_manager.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 class BookDetails extends StatefulWidget {
   const BookDetails({Key? key, required this.id, required this.title}) : super(key: key);
@@ -17,7 +20,11 @@ class _BookDetailsState extends State<BookDetails> {
   Book? currentBook;
   final BookModel _model = BookModel();
   @override
+  final _notifications = Notifications();
+
   Widget build(BuildContext context) {
+    tz.initializeTimeZones();
+    _notifications.init();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
@@ -181,6 +188,7 @@ class _BookDetailsState extends State<BookDetails> {
   }
   void _addToDB() async{
     if(currentBook != null){
+      _notifications.sendNotificationNow("A New Book Has Been Added to your List","Check it out!","");
       await _model.insertBook(currentBook!);
       Navigator.push(
           context,
