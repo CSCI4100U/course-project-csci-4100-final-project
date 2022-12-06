@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:project/views/auth/login_page.dart';
+import 'package:project/views/trending_movies_view.dart';
 import '../components/theme_button.dart';
 import 'package:project/components/drawer.dart';
 
@@ -28,75 +31,164 @@ class _AccountViewState extends State<AccountView>{
   }
   @override
   Widget build(BuildContext context){
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-      ?'DarkTheme'
-        :'Lightheme';
+    // final text = MediaQuery.of(context).platformBrightness == Brightness.dark
+    //   ?'DarkTheme'
+    //     :'Lightheme';
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.purple,
-        title: const Text("Account Page"),
-        actions: [
-          ChangeThemeButtonWidget(),
-        ]
-
+        backgroundColor: Colors.purple,
+        title: Text((FlutterI18n.translate(context, "Account.title"))),
       ),
       body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-            child: CircleAvatar(
-              radius: 60,
-              backgroundImage: NetworkImage(userPhoto),
-              backgroundColor: Colors.transparent,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+              child: Text(
+                  "Account Details",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 22,
+                    decoration: TextDecoration.underline,
+                  )
+              ),
             ),
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 25, 0, 0),
-                child: Text(
-                    "Your name is: ",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                    fontSize: 20
-                    )
-                ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+              child: CircleAvatar(
+                radius: 60,
+                backgroundImage: NetworkImage(userPhoto),
+                backgroundColor: Colors.transparent,
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 30,0,0),
-                child: Text(
-                    userName,
-                    style: TextStyle(
-                      fontSize: 20
-                    )
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 25, 0, 0),
+                  child: Text(
+                      "Your name is: ",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 20
+                      )
+                  ),
                 ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
-                child: Text(
-                    "Your email is: ",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 20
-                    )
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 25,0,0),
+                  child: Text(
+                      userName,
+                      style: TextStyle(
+                          fontSize: 20
+                      )
+                  ),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
+                  child: Text(
+                      "Your email is: ",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 20
+                      )
+                  ),
                 ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
+                  child: Text(
+                      user!.email!,
+                      style: TextStyle(
+                          fontSize: 20
+                      )
+                  ),
+                )
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+              child: Text(
+                  "User Preferences ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 22,
+                    decoration: TextDecoration.underline,
+                  )
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
-                child: Text(
-                    user!.email!,
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Text(
+                    "Enable dark mode:",
                     style: TextStyle(
-                        fontSize: 20
-                    )
+                      fontSize: 20,
+                    ),
+                  ),
                 ),
-              )
-            ],
-          ),
-        ]
+                ChangeThemeButtonWidget(),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 15, 0, 10),
+              child: Text(
+                  "Language select",
+                  style: TextStyle(
+                    fontSize: 20,
+                    decoration: TextDecoration.underline,
+                  )
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    Locale newLocale = Locale('en');
+                    setState(() {
+                      FlutterI18n.refresh(context, newLocale);
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => TrendingMovies()));
+                    });
+                  },
+                  child: Image.network(
+                    'https://static.vecteezy.com/system/resources/thumbnails/001/416/623/small/canada-isolated-flag-vector.jpg',
+                    height: 75,
+                    width: 75,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    Locale newLocale = Locale('fr');
+                    setState(() {
+                      FlutterI18n.refresh(context, newLocale);
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => TrendingMovies()));
+                    });
+                  },
+                  child: Image.network(
+                    'https://t3.ftcdn.net/jpg/00/10/13/60/360_F_10136081_MY1gsMpkrvLTjKQJcIGqWeZ75gnN0EqD.jpg',
+                    height: 75,
+                    width: 75,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    Locale newLocale = Locale('es');
+                    setState(() {
+                      FlutterI18n.refresh(context, newLocale);
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => TrendingMovies()));
+                    });
+                  },
+                  child: Image.network(
+                    'https://media.istockphoto.com/id/176621296/vector/flag-of-spain-icon-with-no-background.jpg?s=612x612&w=0&k=20&c=u5EEUpfx7Bvd-j9c_LcasZqRJII9A9GZhyHPAW4IBA4=',
+                    height: 75,
+                    width: 75,
+                  ),
+                )
+              ],
+            )
+          ]
       ),
     );
 
