@@ -6,6 +6,9 @@ import '../models/fetch_data.dart';
 import 'package:project/views/review_list.dart';
 
 import '../models/movie_model.dart';
+import'package:project/classes/notification_manager.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 class MovieDetails extends StatefulWidget {
   const MovieDetails({Key? key, required this.movieID, required this.movieName})
@@ -20,7 +23,10 @@ class _MovieDetailsState extends State<MovieDetails> {
   final MoviesModel _model = MoviesModel();
   Movie? currentMovie;
   @override
+  final _notifications = Notifications();
   Widget build(BuildContext context) {
+    tz.initializeTimeZones();
+    _notifications.init();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.purple,
@@ -250,6 +256,7 @@ class _MovieDetailsState extends State<MovieDetails> {
   }
   void _addToDB() async{
     if(currentMovie != null){
+      _notifications.sendNotificationNow("A New Movie Has Been Added to your List","Check it out!","");
       await _model.insertMovie(currentMovie!);
       Navigator.push(
           context,
@@ -265,4 +272,5 @@ class _MovieDetailsState extends State<MovieDetails> {
       );
     }
   }
+
 }
