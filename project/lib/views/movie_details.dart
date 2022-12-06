@@ -5,11 +5,10 @@ import '../models/fetch_data.dart';
 import 'package:project/views/review_list.dart';
 
 class MovieDetails extends StatefulWidget {
-  const MovieDetails({Key? key, required this.movieID, required this.movieName, this.future})
+  const MovieDetails({Key? key, required this.movieID, required this.movieName})
       : super(key: key);
   final int? movieID;
   final String? movieName;
-  final Future<Movie>? future;
   @override
   State<MovieDetails> createState() => _MovieDetailsState();
 }
@@ -25,7 +24,7 @@ class _MovieDetailsState extends State<MovieDetails> {
           children: [
             FutureBuilder<Movie>(
                 // future uses the widget's future field if it's not null, otherwise the pre-defined Fetch function
-                future: widget.future ?? Fetch.fetchMovieDetails(widget.movieID),
+                future: Fetch.fetchMovieDetails(widget.movieID),
                 builder: (context, snapshot) {
                   if (snapshot.data == null) {
                     return const Center(
