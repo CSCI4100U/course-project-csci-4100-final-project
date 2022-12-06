@@ -4,6 +4,7 @@ import 'package:project/components/book_tile.dart';
 import 'package:project/views/book_details.dart';
 import '../classes/book.dart';
 import '../components/drawer.dart';
+import '../models/book_search_delegate.dart';
 import 'add_book_form.dart';
 import '../models/book_model.dart';
 import 'package:project/models/fetch_data.dart';
@@ -33,6 +34,21 @@ class _BooksViewState extends State<BooksView> {
       appBar: AppBar(
         backgroundColor: Colors.purple,
         title: Text(FlutterI18n.translate(context, "Book_tab.Book_list")),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () async {
+                var book = await showSearch(
+                  context: context,
+                  delegate: BookSearchDelegate(),
+                );
+                if (book != null) {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) =>
+                      BookDetails(id: book.id, title: book.title)));
+                }
+              },
+            ),
+          ]
       ),
       drawer: NavDrawer(),
       body: FutureBuilder<List<Book>>(
