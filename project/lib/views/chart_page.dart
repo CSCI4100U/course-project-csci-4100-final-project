@@ -24,48 +24,52 @@ class _ChartPageState extends State<ChartPage> {
       appBar: AppBar(
         title: const Text("Trending Stats"),
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 500,
-            child: charts.BarChart(
-              [
-                charts.Series(
-                  id: "Trending Ratings",
-                  domainFn: (rf, _) => rf.rating,
-                  measureFn: (rf, _) => rf.frequency,
-                  data: _calculateFrequencies(),
-                ),
-              ],
-              animate: true,
-              behaviors: [
-                charts.ChartTitle('Ratings of Trending Movies',
-                    behaviorPosition: charts.BehaviorPosition.top,
-                    titleOutsideJustification: charts.OutsideJustification.start,
-                    innerPadding: 30),
-                charts.ChartTitle('Rating',
-                    behaviorPosition: charts.BehaviorPosition.bottom,
-                    titleOutsideJustification:
-                    charts.OutsideJustification.middleDrawArea),
-                charts.ChartTitle('Number of Movies',
-                    behaviorPosition: charts.BehaviorPosition.start,
-                    titleOutsideJustification:
-                    charts.OutsideJustification.middleDrawArea),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 200,
-            child: Text(
-              "Average Rating of the Trending Movies: $avgRating",
-              style: const TextStyle(
-                fontFamily: "Lato",
-                fontSize: 20,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 500,
+              child: charts.BarChart(
+                [
+                  charts.Series(
+                    id: "Trending Ratings",
+                    domainFn: (rf, _) => rf.rating,
+                    measureFn: (rf, _) => rf.frequency,
+                    data: _calculateFrequencies(),
+                  ),
+                ],
+                animate: true,
+                behaviors: [
+                  charts.ChartTitle('Ratings of Trending Movies',
+                      behaviorPosition: charts.BehaviorPosition.top,
+                      titleOutsideJustification: charts.OutsideJustification.start,
+                      innerPadding: 30),
+                  charts.ChartTitle('Rating',
+                      behaviorPosition: charts.BehaviorPosition.bottom,
+                      titleOutsideJustification:
+                      charts.OutsideJustification.middleDrawArea),
+                  charts.ChartTitle('Number of Movies',
+                      behaviorPosition: charts.BehaviorPosition.start,
+                      titleOutsideJustification:
+                      charts.OutsideJustification.middleDrawArea),
+                ],
               ),
             ),
-          )
-        ],
+            SizedBox(
+              height: 200,
+              child: Text(
+                "Average Rating of the Trending Movies: $avgRating",
+                style: const TextStyle(
+                  fontFamily: "Lato",
+                  fontSize: 20,
+                ),
+              ),
+            )
+          ],
+        )
       )
+
+
     );
   }
 

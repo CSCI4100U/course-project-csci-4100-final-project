@@ -35,7 +35,6 @@ class _NavDrawerState extends State<NavDrawer> {
   }
   @override
   Widget build(BuildContext context) {
-    print(user!.displayName);
     tz.initializeTimeZones();
     _notifications.init();
     return Drawer(
