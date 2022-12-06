@@ -85,6 +85,22 @@ class Fetch{
     }
   }
 
+  static Future<List<Movie>> fetchMoviesFromSearchQuery(String query) async {
+    List<Movie> results = [];
+
+    var response = await http
+        .get(Uri.parse('https://api.themoviedb.org/3/search/movie/?query=$query&api_key=3504ebf3ee269a0d7dbc3e0e586c0768&language=en-US')
+    );
+    if (response.statusCode == 200) {
+      Map data = jsonDecode(response.body);
+      for (Map entry in data['results']) {
+        results.add(Movie.fromMap(entry));
+      }
+    }
+
+    return results;
+  }
+
   //BOOK FETCH FUNCTIONS
   static Future<Book> fetchBookDetails(String id) async {
     var response = await http

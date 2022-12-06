@@ -9,6 +9,7 @@ import 'dart:async';
 import 'movie_details.dart';
 import '../models/fetch_data.dart';
 import 'package:project/views/chart_page.dart';
+import 'package:project/models/movie_search_delegate.dart';
 
 class TrendingMovies extends StatefulWidget {
   const TrendingMovies({Key? key}) : super(key: key);
@@ -65,7 +66,17 @@ class _MyAppState extends State<TrendingMovies> {
                     builder: (_) => ChartPage(trending: _trending)));
               }
             },
-          )
+          ),
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () async {
+              var movie = await showSearch(
+                context: context,
+                delegate: MovieSearchDelegate(),
+              );
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => MovieDetails(movieID: movie!.id, movieName: movie.title)));
+            },
+          ),
         ],
       ),
         drawer: const NavDrawer(),
@@ -109,4 +120,3 @@ class _MyAppState extends State<TrendingMovies> {
     );
   }
 }
-
