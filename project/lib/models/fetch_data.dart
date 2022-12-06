@@ -7,7 +7,7 @@ import '../classes/book.dart';
 import '../classes/mapMarker.dart';
 import '../classes/movie_cast.dart';
 import '../classes/trending.dart';
-import '../classes/trending_book.dart';
+import 'package:project/classes/book_author.dart';
 
 class Fetch{
   // Stores movies from My List after the initial load to prevent unnecessary API calls
@@ -124,9 +124,13 @@ class Fetch{
         String loc = data['location'];
         return fetchBookDetails(loc.substring(loc.lastIndexOf('/') + 1));
       }
-      print("pre");
+      List<String> authors = [];
+      for (Map data in data['authors']) {
+        String key = data['author']['key'];
+        authors.add(key.substring(key.lastIndexOf('/') + 1));
+      }
       Book book = Book.fromMap(id, data);
-      print("post");
+      book.authors = authors;
       return book;
     } else {
       throw Exception('Failed to load book');
@@ -189,8 +193,21 @@ class Fetch{
     return results;
   }
 
-  Future<List<BookAuthor>> fetchBookAuthors(Book book) async {
+  static Future<List<BookAuthor>> fetchBookAuthors(Book book) async {
     List<BookAuthor> result = [];
+
+    if (book.authors == null) {
+      return [];
+    }
+    for (String author in book.authors!) {
+      var response = await http
+          .get(Uri.parse('http://openlibrary.org/authors/$author.json')
+      );
+      if (response.statusCode == 200) {
+        Map data = jsonDecode(response.body);
+        result.add(BookAuthor(name: data['name']));
+      }
+    }
 
     return result;
   }

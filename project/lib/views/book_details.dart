@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/classes/book.dart';
 import 'package:project/models/fetch_data.dart';
+import 'package:project/classes/book_author.dart';
 
 class BookDetails extends StatefulWidget {
   const BookDetails({Key? key, required this.id, required this.title}) : super(key: key);
@@ -95,7 +96,70 @@ class _BookDetailsState extends State<BookDetails> {
                           ),
                         )
                       ],
-                    )
+                    ),
+                    const SizedBox(
+                      height: 50,
+                      child: Text(
+                        "Book Authors",
+                        style: TextStyle(fontSize: 30,
+                            fontFamily: 'Lato',
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    FutureBuilder<List<BookAuthor>>(
+                      future: Fetch.fetchBookAuthors(currentBook!),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Center(child: CircularProgressIndicator());
+                        }
+                        return Expanded(
+                          child: ListView.builder(
+                            addAutomaticKeepAlives: false,
+                            addRepaintBoundaries: false,
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                elevation: 50,
+                                shadowColor: Colors.black,
+                                child: SizedBox(
+                                  width: 200,
+                                  height: 150,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 60,
+                                          child: Image.network("https://static.thenounproject.com/attribution/4289718-600.png")
+                                        ),
+                                        const Padding(padding: EdgeInsets.all(10)),
+                                        SizedBox(
+                                          width: 140,
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                "Author Name: ${snapshot
+                                                    .data![index].name}",
+                                                style: const TextStyle(
+                                                    fontSize: 15,
+                                                    fontFamily: 'Lato',
+                                                    fontWeight: FontWeight.bold),
+                                                textAlign: TextAlign.left,
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 ),
               );

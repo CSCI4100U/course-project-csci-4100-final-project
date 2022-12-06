@@ -8,6 +8,7 @@ class Book{
   int? cover;
   String? publishDate;
   String? description;
+  List<String>? authors;
 
   Book({
     required this.id,
