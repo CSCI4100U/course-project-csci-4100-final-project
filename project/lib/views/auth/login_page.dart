@@ -103,12 +103,12 @@ class _LoginPageState extends State<LoginPage> {
             ),
             ElevatedButton.icon(
 
-              icon: const Icon(Icons.lock_open),
-              label: Text(FlutterI18n.translate(context, "Login.Sign_in")),
-              onPressed: _signIn,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
-              )
+                icon: const Icon(Icons.lock_open),
+                label: Text(FlutterI18n.translate(context, "Login.Sign_in")),
+                onPressed: _signIn,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple,
+                )
             ),
             TextButton(
               style: TextButton.styleFrom(
