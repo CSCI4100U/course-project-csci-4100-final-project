@@ -112,10 +112,12 @@ class _LoginPageState extends State<LoginPage> {
             ),
             TextButton(
               style: TextButton.styleFrom(
-                backgroundColor: Colors.purple,
               ),
               onPressed: _register,
-              child: Text(FlutterI18n.translate(context, "Login.Register")),
+              child: Text(
+                  style: const TextStyle(color: Colors.purple),
+                  FlutterI18n.translate(context, "Login.Register")
+              ),
             )
           ],
         ),

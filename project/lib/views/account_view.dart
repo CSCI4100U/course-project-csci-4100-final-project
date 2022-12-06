@@ -31,14 +31,30 @@ class _AccountViewState extends State<AccountView>{
 
       ),
       body: Column(
-        children: const [
-          Text(
-              "Your email is: ",
-              textAlign: TextAlign.center
+        children: [
+          Row(
+            children: const [
+              Text(
+                  "Your email is: ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                  fontSize: 20
+                  )
+              ),
+              Text(
+                  "Val 4 now",
+                  style: TextStyle(
+                    fontSize: 20
+                  )
+              )
+            ],
           ),
           Text(
               "Your password is: ",
               textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20
+            )
           ),
         ]
       ),
