@@ -1,12 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/views/account_view.dart';
 import 'package:project/views/books_view.dart';
+import 'package:project/views/edit_profile.dart';
 import 'package:project/views/map_view.dart';
 import '../views/trending_movies_view.dart';
 import '../views/movie_view.dart';
 import'package:project/classes/notification_manager.dart';
-import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -19,9 +20,22 @@ class NavDrawer extends StatefulWidget {
 
 class _NavDrawerState extends State<NavDrawer> {
   final _notifications = Notifications();
-
+  var user = FirebaseAuth.instance.currentUser;
+  String userName = "John Doe";
+  String userPhoto = "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg";
+  @override
+  void initState(){
+    super.initState();
+    if (user!.displayName != null){
+      userName = user!.displayName!;
+    }
+    if (user!.photoURL != null){
+      userPhoto = user!.photoURL!;
+    }
+  }
   @override
   Widget build(BuildContext context) {
+    print(user!.displayName);
     tz.initializeTimeZones();
     _notifications.init();
     return Drawer(
@@ -31,7 +45,7 @@ class _NavDrawerState extends State<NavDrawer> {
           padding: EdgeInsets.zero,
           children: [
             SizedBox(
-              height: 150,
+              height: 250,
               child: GestureDetector(
                 onTap: () {
                   setState(() {
@@ -45,12 +59,18 @@ class _NavDrawerState extends State<NavDrawer> {
                       decoration: const BoxDecoration(
                         color: Colors.purple,
                       ),
-                      child: Container(
-
-                      )
+                      child: UserAccountsDrawerHeader(
+                        accountName: Text(
+                          userName,
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        accountEmail: Text(user!.email!),
+                        currentAccountPictureSize: Size.square(50),
+                        currentAccountPicture: Image.network(userPhoto),
+                        ),
+                      ),
                   ),
               ),
-            ),
             ListTile(
               leading: Icon(Icons.home),
               title: Text(FlutterI18n.translate(context, "Drawer.Home"), style: TextStyle(),),
@@ -121,6 +141,19 @@ class _NavDrawerState extends State<NavDrawer> {
             ),
             const SizedBox(height: 30),
             Divider(color: Colors.white,),
+            ListTile(
+              leading: Icon(Icons.person_outline_rounded),
+              title: Text("Edit Profile"),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EditProfile()),
+                  );
+                });
+              }
+            ),
             ListTile(
               leading: Icon(Icons.logout),
               title: Text(FlutterI18n.translate(context, "Drawer.Logout")),
