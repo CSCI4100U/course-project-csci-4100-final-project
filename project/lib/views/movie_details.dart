@@ -177,7 +177,6 @@ class _MovieDetailsState extends State<MovieDetails> {
                                                 textAlign: TextAlign.left,
                                               )
                                             ],
-
                                           ),
                                         )
                                       ],

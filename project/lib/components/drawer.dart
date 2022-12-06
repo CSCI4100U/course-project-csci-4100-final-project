@@ -45,7 +45,7 @@ class _NavDrawerState extends State<NavDrawer> {
           padding: EdgeInsets.zero,
           children: [
             SizedBox(
-              height: 250,
+              height: 200,
               child: GestureDetector(
                 onTap: () {
                   setState(() {
@@ -56,18 +56,52 @@ class _NavDrawerState extends State<NavDrawer> {
                   });
                 },
                 child: DrawerHeader(
-                      decoration: const BoxDecoration(
-                        color: Colors.purple,
-                      ),
-                      child: UserAccountsDrawerHeader(
-                        accountName: Text(
-                          userName,
-                          style: TextStyle(fontSize: 18),
+                  decoration: const BoxDecoration(
+                    color: Colors.purple,
+                  ), 
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundImage: NetworkImage(userPhoto),
+                              backgroundColor: Colors.transparent,
+                            ),
+                          ]
                         ),
-                        accountEmail: Text(user!.email!),
-                        currentAccountPictureSize: Size.square(50),
-                        currentAccountPicture: Image.network(userPhoto),
-                        ),
+                        Padding(padding: EdgeInsets.all(10)),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  userName,
+                                  style: TextStyle(fontSize: 20, fontFamily: "Lato",color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  user!.email!,
+                                  style: TextStyle(fontSize: 15, fontFamily: "Lato",color: Colors.white),
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                      // child: UserAccountsDrawerHeader(
+                      //   accountName: Text(
+                      //     userName,
+                      //     style: TextStyle(fontSize: 18),
+                      //   ),
+                      //   accountEmail: Text(user!.email!),
+                      //   currentAccountPictureSize: Size.square(50),
+                      //   currentAccountPicture: Image.network(userPhoto),
+                      //   ),
                       ),
                   ),
               ),
