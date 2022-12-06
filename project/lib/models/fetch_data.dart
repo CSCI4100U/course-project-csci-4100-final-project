@@ -16,6 +16,13 @@ class Fetch{
   // The timestamp of when the cachedTrendingMovies map was last updated
   static DateTime cachedTrendingMoviesLastUpdated = DateTime(0);
 
+  // Stores books from My List after the initial load to prevent unnecessary API calls
+  static Map<int, Book> cachedBooks = {};
+  // Stores all trending books after the initial load to prevent unnecessary API calls
+  static List<Book> cachedTrendingBooks = [];
+  // The timestamp of when the cachedTrendingBooks map was last updated
+  static DateTime cachedTrendingBooksLastUpdated = DateTime(0);
+
   //MOVIE FETCH FUNCTIONS
   static Future<List<Trending<Movie>>> fetchTrendingMovies() async {
     // If the last time the trending movies were updated was below a threshold,
@@ -111,35 +118,72 @@ class Fetch{
         .get(Uri.parse('https://openlibrary.org/works/$id.json')
     );
     if (response.statusCode == 200) {
-      Map raw = jsonDecode(response.body);
-      print(raw['title']);
-      print(raw['description']);
-      Book book = Book(
-        id: id,
-        title: raw['title'],
-        description: raw['description'] != null ? raw['description']['value'] : 'No description found.',
-      );
+      Map data = jsonDecode(response.body);
+      if (data['type']['key'] == '/type/redirect') {
+        String loc = data['location'];
+        return fetchBookDetails(loc.substring(loc.lastIndexOf('/') + 1));
+      }
+      Book book = Book.fromMap(id, data);
       return book;
     } else {
       throw Exception('Failed to load book');
     }
   }
 
-  static Future<List<TrendingBook>> fetchTrendingBooks() async {
+  static Future<List<Book>> fetchTrendingBooks() async {
+    // If the last time the trending movies were updated was below a threshold,
+    // return the cached version
+    DateTime now = DateTime.now();
+    if (now.difference(cachedTrendingBooksLastUpdated).inDays < 1) {
+      return cachedTrendingBooks;
+    }
+
+    // Enough time has passed, so refresh trending movies from the API
+    cachedTrendingBooksLastUpdated = now;
     var response = await http
         .get(Uri.parse('https://openlibrary.org/trending/weekly.json')
     );
     if (response.statusCode == 200) {
       List userMap = jsonDecode(response.body)['works'];
-      List<TrendingBook> trending = [];
-      for (var item in userMap){
-        TrendingBook book = TrendingBook.fromMap(item);
+      List<Book> trending = [];
+      for (int i = 0; i < 20; i++){
+        Map data = userMap[i];
+        //Book book = Book.fromMap(item);
+        String loc = data['key'];
+        Book book = await fetchBookDetails(loc.substring(loc.lastIndexOf('/') + 1));
+        //Book book = await fetchBookDetails(data['key']['openlibrary_work']);
         trending.add(book);
       }
+      cachedTrendingBooks = trending;
       return trending;
     } else {
       throw Exception('Failed to load book');
     }
+  }
+
+  static Future<List<Book>> fetchBooksFromSearchQuery(String query) async {
+    if (query == '') {
+      return [];
+    }
+
+    List<Book> results = [];
+
+    var response = await http
+        .get(Uri.parse('http://openlibrary.org/search.json?q=$query')
+    );
+    if (response.statusCode == 200) {
+      Map data = jsonDecode(response.body);
+      for (int i = 0; i < 10; i++) {
+        if (i >= data['numFound']) {
+          break;
+        }
+        Map entry = data['docs'][i];
+        String id = entry['key'];
+        results.add(await fetchBookDetails(id.substring(id.lastIndexOf('/') + 1)));
+      }
+    }
+
+    return results;
   }
 
   //LOCATION FETCH FUNCTIONS

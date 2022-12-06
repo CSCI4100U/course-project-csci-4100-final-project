@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/classes/book.dart';
 import 'package:project/models/fetch_data.dart';
+import 'package:project/components/book_tile.dart';
 
 class BookSearchDelegate extends SearchDelegate<Book?> {
   @override
@@ -27,8 +28,6 @@ class BookSearchDelegate extends SearchDelegate<Book?> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return Container();
-    /*
     return FutureBuilder<List<Book>>(
       future: Fetch.fetchBooksFromSearchQuery(query),
       builder: (context, snapshot) {
@@ -39,13 +38,13 @@ class BookSearchDelegate extends SearchDelegate<Book?> {
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               return GestureDetector(
-                child: BookTile(movie: snapshot.data![index]),
+                child: BookTile(book: snapshot.data![index]),
                 onTap: () => close(context, snapshot.data![index]),
               );
             }
         );
       }
-    );*/
+    );
   }
 
   @override

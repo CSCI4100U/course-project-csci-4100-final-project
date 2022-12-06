@@ -2,52 +2,53 @@ import 'package:project/views/books_view.dart';
 
 import '';
 class Book{
-  // int? id;
-  late String id;
-  late String description;
-  late String title;
-  // String? author;
-  // int? rating;
+  String id;
+  String title;
+  String key;
+  num? cover;
+  String author;
+  String publishDate;
 
   Book({
-    // this.id,
     required this.id,
     required this.title,
-    required this.description,
-    // required this.author,
-    // this.rating,
+    required this.key,
+    required this.cover,
+    required this.author,
+    required this.publishDate,
   });
 
-  // factory Book.fromJson(Map<String, dynamic> json) {
-  //   return Book(
-  //     id: json['id'],
-  //     title: json['title'],
-  //     author: json['author'],
-  //     rating: json['rating'],
-  //   );
-  // }
-
-  /*Book.fromMap(Map map){
-    // this.id = map['id'];
+  /*Book.fromMap(Map map) {
     id = map['id'];
-    description = map['description'];
     title = map['title'];
-    // this.author = map['author'];
-    // this.rating = map['rating'];
+    cover = map['cover'];
+    author = map['author'];
+    publishYear = map['publish_year'];
   }*/
+
+  factory Book.fromMap(String id, Map map) {
+    return Book(
+      id: id,
+      title: map['title'] ?? 'Unknown Title',
+      author: 'Unknown Author',
+      cover: map['covers'] == null ? null : map['covers'][0],
+      key: map['key'] ?? 'Unknown',
+      publishDate: map['first_publish_date'] ?? 'Unknown',
+    );
+  }
 
   @override
   String toString(){
-    //return 'BooksView[id: $id], title: $title, author: $author, rating: $rating';
-    return 'Book(id: $id, description: $description, title: $title';
+    return 'Book(id: $id, title: $title';
   }
   Map<String, Object?> toMap(){
     return {
       'id': id,
-      //'title': title,
-      //'description':description,
-      // 'author': this.author,
-      // 'rating': this.rating,
+      'title': title,
+      'cover': cover,
+      'author': author,
+      'publish_date': publishDate,
+      'key': key,
     };
   }
 }

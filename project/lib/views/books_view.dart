@@ -29,18 +29,14 @@ class _BooksViewState extends State<BooksView> {
     String? selectedBookName;
     return Scaffold(
       appBar: AppBar(
-        title: Text(FlutterI18n.translate(context, "Book_tab.Book_list"))
+        title: Text(FlutterI18n.translate(context, "Book_tab.Book_list")),
       ),
       drawer: NavDrawer(),
       body: Center(
           child: ListView.builder(
               itemCount: books.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text("${books[index].title}"),
-                  subtitle: Text(
-                      "Author: ${"${books[index].title}"} Rating: ${books[index].description}"),
-                );
+                return Container();
               }
           )
       ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:project/classes/trending_book.dart';
+import 'package:project/classes/book.dart';
 import 'package:project/views/trending_movies_view.dart';
 import '../components/drawer.dart';
 import '../models/fetch_data.dart';
 import 'book_details.dart';
+import 'package:project/components/book_tile.dart';
+import 'package:project/models/book_search_delegate.dart';
 
 class TrendingBooks extends StatefulWidget {
   const TrendingBooks({Key? key}) : super(key: key);
@@ -53,10 +55,25 @@ class _TrendingBooksState extends State<TrendingBooks> {
           ),
         ),
         // title: Text(FlutterI18n.translate(context, "Home.Trending")),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () async {
+              var book = await showSearch(
+                context: context,
+                delegate: BookSearchDelegate(),
+              );
+              if (book != null) {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) =>
+                    BookDetails(id: book.id, title: book.title)));
+              }
+            },
+          ),
+        ]
       ),
       drawer: const NavDrawer(),
       body: Center(
-        child: FutureBuilder<List<TrendingBook>>(
+        child: FutureBuilder<List<Book>>(
           future: Fetch.fetchTrendingBooks(),
           builder: (context, snapshot) {
             if (snapshot.data == null) {
@@ -92,11 +109,7 @@ class _TrendingBooksState extends State<TrendingBooks> {
                             }
                         );
                       },
-                      child: ListTile(
-                        leading: Image.network("https://covers.openlibrary.org/b/id/${snapshot.data![index].cover}.jpg"),
-                        title: Text("${snapshot.data![index].title} by ${snapshot.data![index].author}"),
-                        subtitle: Text("Published in: ${snapshot.data![index].publishYear}"),
-                      )
+                      child: BookTile(book: snapshot.data![index]),
                     );
                   });
             }},
