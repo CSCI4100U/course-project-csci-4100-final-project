@@ -6,6 +6,8 @@ import 'package:project/views/trending_movies_view.dart';
 import '../components/theme_button.dart';
 import 'package:project/components/drawer.dart';
 
+import 'edit_profile.dart';
+
 class AccountView extends StatefulWidget {
   const AccountView({Key? key}) : super(key: key);
   @override
@@ -38,7 +40,18 @@ class _AccountViewState extends State<AccountView>{
       appBar: AppBar(
         backgroundColor: Colors.purple,
         title: Text((FlutterI18n.translate(context, "Account.Title"))),
+        actions: [
+          IconButton(
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EditProfile()),
+                );
+              },
+              icon: Icon(Icons.edit))
+        ],
       ),
+      drawer: NavDrawer(),
       body: Column(
           children: [
             Padding(

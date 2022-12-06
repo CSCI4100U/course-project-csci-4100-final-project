@@ -173,7 +173,7 @@ class _NavDrawerState extends State<NavDrawer> {
                 setState(() {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => EditProfile()),
+                    MaterialPageRoute(builder: (context) => AccountView()),
                   );
                 });
               }

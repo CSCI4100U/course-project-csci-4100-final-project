@@ -27,11 +27,11 @@
   "Drawer": {
     "Home": "Página de inicio",
     "My_list": "Mi lista",
-    "Books": "Libros",
+    "Books": "Mi Libros",
     "Find_loc": "Buscar ubicaciones",
     "Licenses": "Licencias",
     "Notif": "Botón de notificación",
-    "Edit_prof": "Editar perfil",
+    "Edit_prof": "Mi perfil",
     "Logout": "Cerrar sesión"
   },
   "Mov_tab": {
