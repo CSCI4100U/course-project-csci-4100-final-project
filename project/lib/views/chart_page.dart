@@ -22,6 +22,7 @@ class _ChartPageState extends State<ChartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: const Text("Trending Stats"),
       ),
       body: SingleChildScrollView(

@@ -25,6 +25,7 @@ class _AddReviewFormState extends State<AddReviewForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: Text(FlutterI18n.translate(context, "Rev_form.Add_rev")),
       ),
       floatingActionButton: FloatingActionButton(

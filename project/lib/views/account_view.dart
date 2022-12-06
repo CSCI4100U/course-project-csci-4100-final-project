@@ -23,6 +23,7 @@ class _AccountViewState extends State<AccountView>{
         :'Lightheme';
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Colors.purple,
         title: const Text("Account Page"),
         actions: [
           ChangeThemeButtonWidget(),

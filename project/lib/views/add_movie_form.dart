@@ -19,6 +19,7 @@ class _AddMovieFormState extends State<AddMovieForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: Text(FlutterI18n.translate(context, "Add_mov.Add_movT")),
       ),
       body: Form(

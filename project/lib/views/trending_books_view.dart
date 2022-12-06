@@ -23,6 +23,7 @@ class _TrendingBooksState extends State<TrendingBooks> {
     String? selectedBookName;
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Colors.purple,
         title: Theme(
           data: ThemeData.dark(),
           child: DropdownButtonHideUnderline(

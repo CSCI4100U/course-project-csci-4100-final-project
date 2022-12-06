@@ -22,6 +22,7 @@ class _ReviewListState extends State<ReviewList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: Text(FlutterI18n.translate(context, "Review.Rev")),
       ),
       floatingActionButton: FloatingActionButton(

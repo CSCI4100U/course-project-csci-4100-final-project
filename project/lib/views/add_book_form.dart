@@ -18,6 +18,7 @@ class _AddBookFormState extends State<AddBookForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: const Text("Add Book"),
       ),
       body: Form(

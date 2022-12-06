@@ -19,6 +19,7 @@ class _EditProfileState extends State<EditProfile> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: Text("Update Your Profile"),
       ),
       drawer: NavDrawer(),

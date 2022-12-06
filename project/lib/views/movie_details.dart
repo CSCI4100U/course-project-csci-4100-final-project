@@ -23,6 +23,7 @@ class _MovieDetailsState extends State<MovieDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.purple,
           title: Text("${widget.movieName}"),
           actions: [
             IconButton(

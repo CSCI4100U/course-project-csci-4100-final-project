@@ -49,6 +49,7 @@ class _mapBooksState extends State<mapBooks>  with TickerProviderStateMixin{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: Theme(
           data: ThemeData.dark(),
           child: DropdownButtonHideUnderline(

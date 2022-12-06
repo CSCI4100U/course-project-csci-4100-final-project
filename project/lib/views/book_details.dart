@@ -18,6 +18,7 @@ class _BookDetailsState extends State<BookDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: Text(widget.title),
       ),
       body: Column(

@@ -31,6 +31,7 @@ class _MoviesViewState extends State<MoviesView> {
     String? selectedMovieName;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: Text(FlutterI18n.translate(context, "Mov_tab.Mov_list")),
         actions: [
           IconButton(

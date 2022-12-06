@@ -19,6 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: Text(FlutterI18n.translate(context, "Register.Register")),
       ),
       body: Form(

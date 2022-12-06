@@ -19,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Colors.purple,
           title: Text(FlutterI18n.translate(context, "Login.Title")),
           actions: [
             Container(
@@ -101,11 +102,18 @@ class _LoginPageState extends State<LoginPage> {
               },
             ),
             ElevatedButton.icon(
+
               icon: const Icon(Icons.lock_open),
               label: Text(FlutterI18n.translate(context, "Login.Sign_in")),
               onPressed: _signIn,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.purple,
+              )
             ),
             TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.purple,
+              ),
               onPressed: _register,
               child: Text(FlutterI18n.translate(context, "Login.Register")),
             )

@@ -29,6 +29,7 @@ class _BooksViewState extends State<BooksView> {
     String? selectedBookName;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: Text(FlutterI18n.translate(context, "Book_tab.Book_list")),
       ),
       drawer: NavDrawer(),
