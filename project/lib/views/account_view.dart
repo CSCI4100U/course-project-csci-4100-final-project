@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../components/theme_button.dart';
+
 class AccountView extends StatefulWidget {
   const AccountView({Key? key}) : super(key: key);
   @override
@@ -16,13 +18,27 @@ class _AccountViewState extends State<AccountView>{
   }
   @override
   Widget build(BuildContext context){
+    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
+      ?'DarkTheme'
+        :'Lightheme';
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Account Page")
+        title: const Text("Account Page"),
+        actions: [
+          ChangeThemeButtonWidget(),
+        ]
+
       ),
       body: Column(
-        children: [
-
+        children: const [
+          Text(
+              "Your email is: ",
+              textAlign: TextAlign.center
+          ),
+          Text(
+              "Your password is: ",
+              textAlign: TextAlign.center,
+          ),
         ]
       ),
     );
@@ -30,3 +46,4 @@ class _AccountViewState extends State<AccountView>{
   }
 
 }
+

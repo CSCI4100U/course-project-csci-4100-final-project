@@ -40,7 +40,7 @@ class _NavDrawerState extends State<NavDrawer> {
     _notifications.init();
     return Drawer(
       child: Container(
-        color: Colors.purple[50],
+        color: Colors.transparent,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [

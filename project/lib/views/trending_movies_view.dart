@@ -25,6 +25,7 @@ class _MyAppState extends State<TrendingMovies> {
     String? selectedMovieName;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.purple,
         title: Theme(
           data: ThemeData.dark(),
           child: DropdownButtonHideUnderline(
