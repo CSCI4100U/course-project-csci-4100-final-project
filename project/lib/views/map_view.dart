@@ -19,7 +19,7 @@ class mapView extends StatefulWidget {
 
 class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
   String accessTok = "pk.eyJ1Ijoic2VqYWxzaGluZ2FsIiwiYSI6ImNsYjhrYTgyaTBsc3Izd3BqYmEzcG1tOXkifQ.2uiODbeyAxZZuYC-qj1OVQ";
-  String accessTokFind = "PBYeQYsneEBM84M9wPPjPtQVcM1UQPOn";
+  String accessTokFind = "fcq7RrhzgpFSjqrWvbFlNQCH2UGSA5sM";
   int selectedIndex = 0;
   List<GeoLocation> placeholder = [];
   MapController mapController = MapController();
@@ -110,6 +110,7 @@ class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
           future: Fetch.fetchLocations(accessTokFind,_userLocation),
           builder: (context, snapshot) {
             if (snapshot.data == null) {
+              print("no data");
               return const Center(
                 child: CircularProgressIndicator(),
               );

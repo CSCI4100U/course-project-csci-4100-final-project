@@ -24,6 +24,14 @@ class Fetch{
   // The timestamp of when the cachedTrendingBooks map was last updated
   static DateTime cachedTrendingBooksLastUpdated = DateTime(0);
 
+  // Stores all cinema loctaions after the initial load to prevent unnecessary API calls
+  static List<GeoLocation> cachedCinemas = [];
+  static List<GeoLocation> cachedBookstores = [];
+  // The timestamp of when the cachedTrendingBooks map was last updated
+  static DateTime cachedGeolocationLastUpdated = DateTime(0);
+  static DateTime cachedGeolocationLastUpdatedBooks = DateTime(0);
+
+
   //MOVIE FETCH FUNCTIONS
   static Future<List<Trending<Movie>>> fetchTrendingMovies() async {
     // If the last time the trending movies were updated was below a threshold,
@@ -214,6 +222,12 @@ class Fetch{
 
   //LOCATION FETCH FUNCTIONS
   static Future<List<GeoLocation>> fetchLocations(String accessTokFind, LatLng l) async {
+
+    DateTime now = DateTime.now();
+    if (now.difference(cachedGeolocationLastUpdated).inDays < 1) {
+      return cachedCinemas;
+    }
+    cachedGeolocationLastUpdated = now;
     List<GeoLocation> nearby = [];
     double lat = l.latitude;
     double long = l.longitude;
@@ -233,6 +247,7 @@ class Fetch{
         GeoLocation G = GeoLocation(name: name.title, address: add.address, latlng: LatLng(loc.lat, loc.long));
         nearby.add(G);
       }
+      cachedCinemas = nearby;
       return nearby;
     }else {
       throw Exception('Failed to load nearby cinemas');
@@ -242,6 +257,12 @@ class Fetch{
     List<GeoLocation> nearby = [];
     double lat = l.latitude;
     double long = l.longitude;
+
+    DateTime now = DateTime.now();
+    if (now.difference(cachedGeolocationLastUpdatedBooks).inDays < 1) {
+      return cachedBookstores;
+    }
+    cachedGeolocationLastUpdatedBooks = now;
     //print('https://api.tomtom.com/search/2/search/cinema.json?key=$accessTokFind&lat=$lat&lon=$long&radius=25000&language=en-US');
     var response = await http
         .get(Uri.parse('https://api.tomtom.com/search/2/search/bookstore.json?key=$accessTokFind&lat=$lat&lon=$long&radius=15000&language=en-US')
@@ -258,6 +279,7 @@ class Fetch{
         GeoLocation G = GeoLocation(name: name.title, address: add.address, latlng: LatLng(loc.lat, loc.long));
         nearby.add(G);
       }
+      cachedBookstores = nearby;
       return nearby;
     }else {
       throw Exception('Failed to load nearby cinemas');

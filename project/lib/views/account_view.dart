@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project/views/auth/login_page.dart';
 import '../components/theme_button.dart';
 import 'package:project/components/drawer.dart';
 
