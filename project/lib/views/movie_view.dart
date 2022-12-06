@@ -48,7 +48,7 @@ class _MoviesViewState extends State<MoviesView> {
           ),
           IconButton(
               onPressed: pickDate,
-              icon: const Icon(Icons.filter),
+              icon: const Icon(Icons.date_range),
           )
         ],
       ),
