@@ -3,8 +3,8 @@ import 'package:project/classes/review.dart';
 
 class ReviewTile extends StatelessWidget {
   final Review review;
-
-  const ReviewTile({Key? key, required this.review}) : super(key: key);
+  TextStyle style = const TextStyle(fontFamily: "Lato");
+  ReviewTile({Key? key, required this.review}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +18,14 @@ class ReviewTile extends StatelessWidget {
         title: Row(
           children: [
             Expanded(
-              child: Text(review.title),
+              child: Text(review.title, style: style,),
             ),
             const Padding(padding: EdgeInsets.symmetric(horizontal: 5.0)),
             const Icon(Icons.star, color: Colors.amber),
-            Text(review.rating.toString()),
+            Text(review.rating.toString(), style: style,),
           ],
         ),
-        subtitle: Text("${review.author}\n\n${review.content}"),
+        subtitle: Text("${review.author}\n\n${review.content}", style: style,),
       ),
     );
   }

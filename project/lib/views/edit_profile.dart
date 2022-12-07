@@ -11,43 +11,47 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   final user = FirebaseAuth.instance.currentUser;
+  TextStyle style = const TextStyle(fontFamily: "Lato");
+
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-    late String _name;
-    late String _photoUrl;
+    final formKey = GlobalKey<FormState>();
+    late String name;
+    late String photoUrl;
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text((FlutterI18n.translate(context, "Update.Title"))),
+        title: Text((FlutterI18n.translate(context, "Update.Title")), style: style,),
       ),
-      drawer: NavDrawer(),
+      drawer: const NavDrawer(),
       body:Form(
-        key: _formKey,
+        key: formKey,
         child: Column(
           children: [
             TextFormField(
               decoration: InputDecoration(
-                border: UnderlineInputBorder(),
+                border: const UnderlineInputBorder(),
                 labelText: (FlutterI18n.translate(context, "Update.Input_n")),
                 hintText: "John Doe",
               ),
               validator: _notEmptyValidator,
               onSaved: (value) {
-                _name = value!;
+                name = value!;
               },
+              style: style,
             ),
             TextFormField(
               decoration: InputDecoration(
-                border: UnderlineInputBorder(),
+                border: const UnderlineInputBorder(),
                 labelText: (FlutterI18n.translate(context, "Update.Input_p")),
                 hintText: "https://profilepic.com/user.jpg",
               ),
               validator: _notEmptyValidator,
               onSaved: (value) {
-                _photoUrl = value!;
+                photoUrl = value!;
               },
+              style: style,
             ),
           ],
         ),
@@ -55,10 +59,10 @@ class _EditProfileState extends State<EditProfile> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.save),
         onPressed: () async{
-          if (_formKey.currentState!.validate()) {
-            _formKey.currentState!.save();
-            await user?.updateDisplayName(_name);
-            await user?.updatePhotoURL(_photoUrl);
+          if (formKey.currentState!.validate()) {
+            formKey.currentState!.save();
+            await user?.updateDisplayName(name);
+            await user?.updatePhotoURL(photoUrl);
             Navigator.pop(context);
           }
         },

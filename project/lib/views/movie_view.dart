@@ -22,7 +22,7 @@ class _MoviesViewState extends State<MoviesView> {
       start: DateTime.now(),
       end: DateTime.now()
   );
-
+  TextStyle style = const TextStyle(fontFamily: "Lato");
   @override Widget build(BuildContext context) {
     final start = range.start;
     final finish = range.end;
@@ -32,7 +32,7 @@ class _MoviesViewState extends State<MoviesView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text(FlutterI18n.translate(context, "Mov_tab.Mov_list")),
+        title: Text(FlutterI18n.translate(context, "Mov_tab.Mov_list"), style: style,),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
@@ -64,7 +64,7 @@ class _MoviesViewState extends State<MoviesView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.error, color: Colors.red, size: 50.0),
-                      Text(FlutterI18n.translate(context, "Mov_tab.Con_fail")),
+                      Text(FlutterI18n.translate(context, "Mov_tab.Con_fail"), style: style,),
                     ],
                   );
                 } else if (!snapshot.hasData) {
@@ -84,7 +84,7 @@ class _MoviesViewState extends State<MoviesView> {
                           ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                   duration: const Duration(seconds: 1),
-                                  content: Text('Getting Movie Info for $selectedMovieName')
+                                  content: Text('Getting Movie Info for $selectedMovieName', style: style,)
                               ));
                           Future.delayed(
                               const Duration(seconds: 2),
@@ -108,7 +108,7 @@ class _MoviesViewState extends State<MoviesView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.error, color: Colors.red, size: 50.0),
-                      Text(FlutterI18n.translate(context, "Mov_tab.Con_fail")),
+                      Text(FlutterI18n.translate(context, "Mov_tab.Con_fail"), style: style,),
                     ],
                   );
                 } else if (!snapshot.hasData) {
@@ -128,7 +128,7 @@ class _MoviesViewState extends State<MoviesView> {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                     duration: const Duration(seconds: 1),
-                                    content: Text('Getting Movie Info for $selectedMovieName')
+                                    content: Text('Getting Movie Info for $selectedMovieName', style: style,)
                                 ));
                             Future.delayed(
                                 const Duration(seconds: 2),

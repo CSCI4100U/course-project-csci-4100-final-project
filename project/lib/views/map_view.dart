@@ -5,19 +5,18 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
-
 import '../classes/mapMarker.dart';
 import '../models/fetch_data.dart';
 import 'map_bookstore.dart';
 
-class mapView extends StatefulWidget {
-  mapView({Key? key}) : super(key: key);
+class MapCinema extends StatefulWidget {
+  MapCinema({Key? key}) : super(key: key);
   bool isLoad = false;
   @override
-  State<mapView> createState() => _mapViewState();
+  State<MapCinema> createState() => _MapCinemaState();
 }
 
-class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
+class _MapCinemaState extends State<MapCinema>  with TickerProviderStateMixin{
   String accessTok = "pk.eyJ1Ijoic2VqYWxzaGluZ2FsIiwiYSI6ImNsYjhrYTgyaTBsc3Izd3BqYmEzcG1tOXkifQ.2uiODbeyAxZZuYC-qj1OVQ";
   String accessTokFind = "fcq7RrhzgpFSjqrWvbFlNQCH2UGSA5sM";
   int selectedIndex = 0;
@@ -27,6 +26,7 @@ class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
   final pageController = PageController();
   late LatLng _currentLocation;
   String _value = "cinema";
+  TextStyle style = const TextStyle(fontFamily: "Lato");
 
   @override
   void initState(){
@@ -58,11 +58,11 @@ class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
               items: <DropdownMenuItem<String>>[
                 DropdownMenuItem(
                   value: 'cinema',
-                  child: Text((FlutterI18n.translate(context, "Map.Find_cin"))),
+                  child: Text((FlutterI18n.translate(context, "Map.Find_cin")), style: style,),
                 ),
                 DropdownMenuItem(
                   value: 'bookstore',
-                  child: Text((FlutterI18n.translate(context, "Map.Find_book"))),
+                  child: Text((FlutterI18n.translate(context, "Map.Find_book")),style: style,),
                 )
               ],
               onChanged: (String? value) {
@@ -206,7 +206,8 @@ class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
                                                 style: const TextStyle(
                                                     fontSize: 20,
                                                     fontWeight: FontWeight.bold,
-                                                    color: Colors.white
+                                                    color: Colors.white,
+                                                  fontFamily: "Lato"
                                                 ),
                                               ),
                                             ],
@@ -222,7 +223,8 @@ class _mapViewState extends State<mapView>  with TickerProviderStateMixin{
                                                 style: const TextStyle(
                                                     fontSize: 20,
                                                     fontWeight: FontWeight.bold,
-                                                    color: Colors.white
+                                                    color: Colors.white,
+                                                  fontFamily: "Lato"
                                                 ),
                                               ),
                                             ],

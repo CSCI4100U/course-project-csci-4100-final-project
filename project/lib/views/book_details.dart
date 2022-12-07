@@ -6,8 +6,6 @@ import 'package:project/models/fetch_data.dart';
 import 'package:project/classes/book_author.dart';
 import 'package:project/views/books_view.dart';
 import'package:project/classes/notification_manager.dart';
-import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz;
 
 class BookDetails extends StatefulWidget {
   const BookDetails({Key? key, required this.id, required this.title}) : super(key: key);
@@ -20,20 +18,20 @@ class BookDetails extends StatefulWidget {
 class _BookDetailsState extends State<BookDetails> {
   Book? currentBook;
   final BookModel _model = BookModel();
-  @override
   final _notifications = Notifications();
+  TextStyle style = const TextStyle(fontFamily: "Lato");
 
+  @override
   Widget build(BuildContext context) {
-    tz.initializeTimeZones();
     _notifications.init();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text(widget.title),
+        title: Text(widget.title, style: style,),
         actions: [
           IconButton(
               onPressed: _addToDB,
-              icon: Icon(Icons.playlist_add)
+              icon: const Icon(Icons.playlist_add)
           ),
         ],
       ),
@@ -92,7 +90,7 @@ class _BookDetailsState extends State<BookDetails> {
                             flex: 1,
                             child: Container(
                               width: 50,
-                              padding: EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(5),
                               child: Image.network(
                                 "https://covers.openlibrary.org/b/id/${snapshot.data!.cover}.jpg"
                               ),
@@ -106,7 +104,9 @@ class _BookDetailsState extends State<BookDetails> {
                               Text(
                                 snapshot.data!.description ?? "No Description.",
                                 style: const TextStyle(
-                                    fontSize: 15, fontFamily: 'Lato'),
+                                    fontSize: 15,
+                                    fontFamily: 'Lato'
+                                ),
                                 textAlign: TextAlign.left,
                               ),
                             ],
@@ -118,7 +118,7 @@ class _BookDetailsState extends State<BookDetails> {
                       height: 50,
                       child: Text(
                         (FlutterI18n.translate(context, "B_details.Author")),
-                        style: TextStyle(fontSize: 30,
+                        style: const TextStyle(fontSize: 30,
                             fontFamily: 'Lato',
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
@@ -183,14 +183,14 @@ class _BookDetailsState extends State<BookDetails> {
               );
             },
           ),
-          Padding(padding: EdgeInsets.all(10)),
+          const Padding(padding: EdgeInsets.all(10)),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 (FlutterI18n.translate(context, "M_details.Review")),
-                style: TextStyle(fontSize: 30,
+                style: const TextStyle(fontSize: 30,
                     fontFamily: 'Lato',
                     fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,

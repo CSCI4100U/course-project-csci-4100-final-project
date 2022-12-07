@@ -19,6 +19,7 @@ class _BooksViewState extends State<BooksView> {
   List<Book> books = [];
   String? selectedBookId;
   String? selectedBookTitle;
+  TextStyle style = const TextStyle(fontFamily: "Lato");
 
   @override
   void initState(){
@@ -31,7 +32,7 @@ class _BooksViewState extends State<BooksView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text(FlutterI18n.translate(context, "Book_tab.Book_list")),
+        title: Text(FlutterI18n.translate(context, "Book_tab.Book_list"), style: style,),
           actions: [
             IconButton(
               icon: const Icon(Icons.search),
@@ -57,8 +58,8 @@ class _BooksViewState extends State<BooksView> {
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.error, color: Colors.red, size: 50.0),
-                          Text(FlutterI18n.translate(context, "Mov_tab.Con_fail")),
+                          const Icon(Icons.error, color: Colors.red, size: 50.0),
+                          Text(FlutterI18n.translate(context, "Mov_tab.Con_fail"), style: style,),
                         ],
                       );
                     } else if (!snapshot.hasData) {
@@ -78,7 +79,7 @@ class _BooksViewState extends State<BooksView> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                         duration: const Duration(seconds: 1),
-                                        content: Text('Getting Book Info for $selectedBookName')
+                                        content: Text('Getting Book Info for $selectedBookName', style: style,)
                                     ));
                                 Future.delayed(
                                     const Duration(seconds: 2),

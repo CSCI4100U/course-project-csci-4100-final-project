@@ -20,13 +20,14 @@ class _AddReviewFormState extends State<AddReviewForm> {
   late String _title;
   late String _content;
   int rating = 3;
+  TextStyle style = const TextStyle(fontFamily: "Lato");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text(FlutterI18n.translate(context, "Rev_form.Add_rev")),
+        title: Text(FlutterI18n.translate(context, "Rev_form.Add_rev"), style: style,),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -52,6 +53,7 @@ class _AddReviewFormState extends State<AddReviewForm> {
               onSaved: (value) {
                 _author = value!;
               },
+              style: style,
             ),
             TextFormField(
               decoration: InputDecoration(
@@ -63,6 +65,7 @@ class _AddReviewFormState extends State<AddReviewForm> {
               onSaved: (value) {
                 _title = value!;
               },
+              style: style,
             ),
             TextFormField(
               decoration: InputDecoration(
@@ -74,6 +77,7 @@ class _AddReviewFormState extends State<AddReviewForm> {
               onSaved: (value) {
                 _content = value!;
               },
+              style: style,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -21,6 +21,7 @@ class _NavDrawerState extends State<NavDrawer> {
   var user = FirebaseAuth.instance.currentUser;
   String userName = "John Doe";
   String userPhoto = "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg";
+  TextStyle style = const TextStyle(fontFamily: "Lato");
   @override
   void initState(){
     super.initState();
@@ -68,20 +69,20 @@ class _NavDrawerState extends State<NavDrawer> {
                             ),
                           ]
                         ),
-                        Padding(padding: EdgeInsets.all(10)),
+                        const Padding(padding: EdgeInsets.all(10)),
                         Expanded(
                           child: Column(
                             children: [
                               Expanded(
                                 child: Text(
                                   userName,
-                                  style: TextStyle(fontSize: 20, fontFamily: "Lato",color: Colors.white, fontWeight: FontWeight.bold),
+                                  style: const TextStyle(fontSize: 20, fontFamily: "Lato",color: Colors.white, fontWeight: FontWeight.bold),
                                 ),
                               ),
                               Expanded(
                                 child: Text(
                                   user!.email!,
-                                  style: TextStyle(fontSize: 15, fontFamily: "Lato",color: Colors.white),
+                                  style: const TextStyle(fontSize: 15, fontFamily: "Lato",color: Colors.white),
                                 ),
                               ),
 
@@ -94,8 +95,8 @@ class _NavDrawerState extends State<NavDrawer> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text(FlutterI18n.translate(context, "Drawer.Home"), style: TextStyle(),),
+              leading: const Icon(Icons.home),
+              title: Text(FlutterI18n.translate(context, "Drawer.Home"), style: style,),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
@@ -108,7 +109,7 @@ class _NavDrawerState extends State<NavDrawer> {
             ),
             ListTile(
               leading: Icon(Icons.local_movies),
-              title: Text(FlutterI18n.translate(context, "Drawer.My_list")),
+              title: Text(FlutterI18n.translate(context, "Drawer.My_list"), style: style,),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
@@ -121,7 +122,7 @@ class _NavDrawerState extends State<NavDrawer> {
             ),
             ListTile(
               leading: Icon(Icons.bookmark_outlined),
-              title: Text(FlutterI18n.translate(context, "Drawer.Books")),
+              title: Text(FlutterI18n.translate(context, "Drawer.Books"), style: style,),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
@@ -134,13 +135,13 @@ class _NavDrawerState extends State<NavDrawer> {
             ),
             ListTile(
               leading: Icon(Icons.not_listed_location),
-              title: Text(FlutterI18n.translate(context, "Drawer.Find_loc")),
+              title: Text(FlutterI18n.translate(context, "Drawer.Find_loc"), style: style,),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => mapView()),
+                    MaterialPageRoute(builder: (context) => MapCinema()),
                   );
                 });
               },
@@ -149,7 +150,7 @@ class _NavDrawerState extends State<NavDrawer> {
             Divider(color: Colors.white,),
             ListTile(
               leading: Icon(Icons.info),
-              title: Text(FlutterI18n.translate(context, "Drawer.Licenses")),
+              title: Text(FlutterI18n.translate(context, "Drawer.Licenses"), style: style,),
               onTap: () {
                 Navigator.pop(context);
                 _showAboutDialog(context);
@@ -159,7 +160,7 @@ class _NavDrawerState extends State<NavDrawer> {
             Divider(color: Colors.white,),
             ListTile(
               leading: Icon(Icons.person_outline_rounded),
-              title: Text((FlutterI18n.translate(context, "Drawer.Edit_prof"))),
+              title: Text((FlutterI18n.translate(context, "Drawer.Edit_prof")),style: style,),
               onTap: () {
                 Navigator.pop(context);
                 setState(() {
@@ -172,7 +173,7 @@ class _NavDrawerState extends State<NavDrawer> {
             ),
             ListTile(
               leading: Icon(Icons.logout),
-              title: Text(FlutterI18n.translate(context, "Drawer.Logout")),
+              title: Text(FlutterI18n.translate(context, "Drawer.Logout"),style: style,),
               onTap: _logout,
             )
           ],

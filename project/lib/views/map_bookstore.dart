@@ -27,6 +27,7 @@ class _mapBooksState extends State<mapBooks>  with TickerProviderStateMixin{
   final pageController = PageController();
   late LatLng _currentLocation;
   String _value = "bookstore";
+  TextStyle style = const TextStyle(fontFamily: "Lato");
 
   @override
   void initState(){
@@ -58,11 +59,11 @@ class _mapBooksState extends State<mapBooks>  with TickerProviderStateMixin{
               items: <DropdownMenuItem<String>>[
                 DropdownMenuItem(
                   value: 'cinema',
-                  child: Text((FlutterI18n.translate(context, "Map.Find_cin"))),
+                  child: Text((FlutterI18n.translate(context, "Map.Find_cin")), style: style,),
                 ),
                 DropdownMenuItem(
                   value: 'bookstore',
-                  child: Text((FlutterI18n.translate(context, "Map.Find_book"))),
+                  child: Text((FlutterI18n.translate(context, "Map.Find_book")),style: style,),
                 )
               ],
               onChanged: (String? value) {
@@ -73,7 +74,7 @@ class _mapBooksState extends State<mapBooks>  with TickerProviderStateMixin{
                         context,
                         MaterialPageRoute(
                             builder: (_) =>
-                                mapView()
+                                MapCinema()
                         ));
                   }
                 });
@@ -138,24 +139,22 @@ class _mapBooksState extends State<mapBooks>  with TickerProviderStateMixin{
                                   width: 40,
                                   point: snapshot.data![i].latlng,
                                   builder: (context){
-                                    return Container(
-                                      child: IconButton(
-                                        onPressed: (){
-                                          setState(() {
-                                            pageController.animateToPage(i,
-                                                duration: Duration(milliseconds: 500),
-                                                curve: Curves.easeInOut
-                                            );
-                                            selectedIndex = i;
-                                            _currentLocation = snapshot.data![i].latlng;
-                                            _animatedMapMove(_currentLocation, 13);
-                                          });
-                                        },
-                                        icon: Icon(Icons.location_on,
-                                            color: selectedIndex == i ?
-                                            Colors.blue : Colors.black),
-                                        iconSize: 45,
-                                      ),
+                                    return IconButton(
+                                      onPressed: (){
+                                        setState(() {
+                                          pageController.animateToPage(i,
+                                              duration: const Duration(milliseconds: 500),
+                                              curve: Curves.easeInOut
+                                          );
+                                          selectedIndex = i;
+                                          _currentLocation = snapshot.data![i].latlng;
+                                          _animatedMapMove(_currentLocation, 13);
+                                        });
+                                      },
+                                      icon: Icon(Icons.location_on,
+                                          color: selectedIndex == i ?
+                                          Colors.blue : Colors.black),
+                                      iconSize: 45,
                                     );
                                   }
                               ),
@@ -181,7 +180,7 @@ class _mapBooksState extends State<mapBooks>  with TickerProviderStateMixin{
                         itemBuilder: (context, index){
                           var item = snapshot.data![index];
                           return Padding(
-                            padding: EdgeInsets.all(15.0),
+                            padding: const EdgeInsets.all(15.0),
                             child: Card(
                               elevation: 5,
                               shape: RoundedRectangleBorder(
@@ -205,7 +204,8 @@ class _mapBooksState extends State<mapBooks>  with TickerProviderStateMixin{
                                                 style: const TextStyle(
                                                     fontSize: 20,
                                                     fontWeight: FontWeight.bold,
-                                                    color: Colors.white
+                                                    color: Colors.white,
+                                                    fontFamily: "Lato"
                                                 ),
                                               ),
                                             ],
@@ -221,7 +221,8 @@ class _mapBooksState extends State<mapBooks>  with TickerProviderStateMixin{
                                                 style: const TextStyle(
                                                     fontSize: 20,
                                                     fontWeight: FontWeight.bold,
-                                                    color: Colors.white
+                                                    color: Colors.white,
+                                                    fontFamily: "Lato"
                                                 ),
                                               ),
                                             ],

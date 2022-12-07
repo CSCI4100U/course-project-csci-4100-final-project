@@ -19,6 +19,8 @@ class TrendingMovies extends StatefulWidget {
 class _MyAppState extends State<TrendingMovies> {
   List<Trending<Movie>> _trending = [];
   String _value = "movie";
+  TextStyle style = const TextStyle(fontFamily: "Lato");
+
   @override
   Widget build(BuildContext context) {
     int? selectedMovieID;
@@ -34,11 +36,11 @@ class _MyAppState extends State<TrendingMovies> {
               items: <DropdownMenuItem<String>>[
                 DropdownMenuItem(
                   value: 'movie',
-                  child: Text((FlutterI18n.translate(context, "Home.Trending"))),
+                  child: Text((FlutterI18n.translate(context, "Home.Trending")), style: style,),
                 ),
                 DropdownMenuItem(
                   value: 'book',
-                  child: Text((FlutterI18n.translate(context, "Home.TrendingB"))),
+                  child: Text((FlutterI18n.translate(context, "Home.TrendingB")), style: style,),
                 )
               ],
               onChanged: (String? value) {
@@ -57,7 +59,6 @@ class _MyAppState extends State<TrendingMovies> {
             ),
           ),
         ),
-        // title: Text(FlutterI18n.translate(context, "Home.Trending")),
         actions: [
           IconButton(
             icon: const Icon(Icons.insert_chart),
@@ -106,7 +107,7 @@ class _MyAppState extends State<TrendingMovies> {
                           ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                   duration: const Duration(seconds: 1),
-                                  content: Text('Getting Movie Info for $selectedMovieName')
+                                  content: Text('Getting Movie Info for $selectedMovieName', style: style,)
                               ));
                             Future.delayed(
                                 const Duration(seconds: 2),

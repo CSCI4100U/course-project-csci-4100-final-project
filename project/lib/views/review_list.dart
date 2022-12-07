@@ -17,13 +17,14 @@ class ReviewList extends StatefulWidget {
 
 class _ReviewListState extends State<ReviewList> {
   final ReviewModel _model = ReviewModel();
+  TextStyle style = const TextStyle(fontFamily: "Lato");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text(FlutterI18n.translate(context, "Review.Rev")),
+        title: Text(FlutterI18n.translate(context, "Review.Rev"), style: style,),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addReview,
@@ -40,8 +41,8 @@ class _ReviewListState extends State<ReviewList> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.question_mark, color: Colors.blue, size: 50.0),
-                  Text(FlutterI18n.translate(context, "Review.No_rev"))
+                  const Icon(Icons.question_mark, color: Colors.blue, size: 50.0),
+                  Text(FlutterI18n.translate(context, "Review.No_rev"), style: style,)
                 ],
               ),
             );

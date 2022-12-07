@@ -15,6 +15,8 @@ class ChartPage extends StatefulWidget {
 
 class _ChartPageState extends State<ChartPage> {
   var avgRating = 0;
+  TextStyle style = const TextStyle(fontFamily: "Lato");
+
   @override
   void initState(){
     _calculateFrequencies();
@@ -24,7 +26,7 @@ class _ChartPageState extends State<ChartPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text((FlutterI18n.translate(context, "Chart.Title"))),
+        title: Text((FlutterI18n.translate(context, "Chart.Title")), style: style,),
       ),
       body: SingleChildScrollView(
         child: Column(

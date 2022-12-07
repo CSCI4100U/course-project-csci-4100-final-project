@@ -23,19 +23,21 @@ class MovieDetails extends StatefulWidget {
 class _MovieDetailsState extends State<MovieDetails> {
   final MoviesModel _model = MoviesModel();
   Movie? currentMovie;
-  @override
   final _notifications = Notifications();
+  TextStyle style = const TextStyle(fontFamily: "Lato");
+
+  @override
   Widget build(BuildContext context) {
     tz.initializeTimeZones();
     _notifications.init();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.purple,
-          title: Text("${widget.movieName}"),
+          title: Text("${widget.movieName}", style: style,),
           actions: [
             IconButton(
                 onPressed: _addToDB,
-                icon: Icon(Icons.playlist_add)
+                icon: const Icon(Icons.playlist_add)
             ),
           ],
         ),
@@ -136,7 +138,7 @@ class _MovieDetailsState extends State<MovieDetails> {
               height: 50,
               child: Text(
                 (FlutterI18n.translate(context, "M_details.Cast")),
-                style: TextStyle(fontSize: 30,
+                style: const TextStyle(fontSize: 30,
                     fontFamily: 'Lato',
                     fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
@@ -220,14 +222,14 @@ class _MovieDetailsState extends State<MovieDetails> {
                     );
                   }
                 }),
-            Padding(padding: EdgeInsets.all(10)),
+            const Padding(padding: EdgeInsets.all(10)),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   (FlutterI18n.translate(context, "M_details.Review")),
-                  style: TextStyle(fontSize: 30,
+                  style: const TextStyle(fontSize: 30,
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
