@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:project/views/trending_movies_view.dart';
 import '../components/drawer.dart';
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -63,7 +64,12 @@ class _EditProfileState extends State<EditProfile> {
             formKey.currentState!.save();
             await user?.updateDisplayName(name);
             await user?.updatePhotoURL(photoUrl);
-            Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) =>
+                      TrendingMovies(),
+                ));
           }
         },
       ),
