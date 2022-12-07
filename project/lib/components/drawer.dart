@@ -1,9 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:project/views/account_view.dart';
 import 'package:project/views/books_view.dart';
-import 'package:project/views/edit_profile.dart';
 import 'package:project/views/map_view.dart';
 import '../views/trending_movies_view.dart';
 import '../views/movie_view.dart';
@@ -157,12 +155,6 @@ class _NavDrawerState extends State<NavDrawer> {
                 _showAboutDialog(context);
               },
             ),
-            ListTile(
-              leading: Icon(Icons.notification_important),
-              title: Text((FlutterI18n.translate(context, "Drawer.Notif"))),
-              onTap: _notificationNow
-
-            ),
             const SizedBox(height: 30),
             Divider(color: Colors.white,),
             ListTile(
@@ -188,9 +180,6 @@ class _NavDrawerState extends State<NavDrawer> {
       ),
 
     );
-  }
-  void _notificationNow() async {
-    _notifications.sendNotificationNow("Movie", "Book", "Book");
   }
 
   void _logout() async {
