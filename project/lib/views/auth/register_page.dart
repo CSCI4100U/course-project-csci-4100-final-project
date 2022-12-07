@@ -14,20 +14,21 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _email;
   String? _password;
   final _regexEmail = RegExp('^.+@.+\..+\$');
+  TextStyle style = const TextStyle(fontFamily: "Lato");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text(FlutterI18n.translate(context, "Register.Register")),
+        title: Text(FlutterI18n.translate(context, "Register.Register"), style: style,),
       ),
       body: Form(
         key: _formKey,
         child: Column(
           children: [
             TextFormField(
-                decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Register.Email"))),
+                decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Register.Email"), style: style,)),
                 autocorrect: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -43,7 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 }
             ),
             TextFormField(
-              decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Register.Password"))),
+              decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Register.Password"), style: style,)),
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
@@ -65,7 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
               },
             ),
             TextFormField(
-              decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Register.Pass_confirm"))),
+              decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Register.Pass_confirm"), style: style,)),
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
@@ -84,7 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             ElevatedButton.icon(
               icon: const Icon(Icons.lock_open),
-              label: Text(FlutterI18n.translate(context, "Register.Register")),
+              label: Text(FlutterI18n.translate(context, "Register.Register"), style: style,),
               onPressed: _register,
             )
           ],

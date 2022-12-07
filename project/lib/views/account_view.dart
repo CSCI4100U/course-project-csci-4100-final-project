@@ -1,18 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:project/views/auth/login_page.dart';
 import 'package:project/views/trending_movies_view.dart';
 import '../components/theme_button.dart';
 import 'package:project/components/drawer.dart';
-
 import 'edit_profile.dart';
 
 class AccountView extends StatefulWidget {
   const AccountView({Key? key}) : super(key: key);
   @override
   State<AccountView> createState() => _AccountViewState();
-
 }
 
 class _AccountViewState extends State<AccountView>{
@@ -20,6 +17,7 @@ class _AccountViewState extends State<AccountView>{
   var numPosts;
   String userPhoto = "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg";
   String userName = "John Doe";
+  TextStyle style = const TextStyle(fontFamily: "Lato");
 
   @override
   void initState(){
@@ -33,25 +31,22 @@ class _AccountViewState extends State<AccountView>{
   }
   @override
   Widget build(BuildContext context){
-    // final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-    //   ?'DarkTheme'
-    //     :'Lightheme';
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text((FlutterI18n.translate(context, "Account.Title"))),
+        title: Text((FlutterI18n.translate(context, "Account.Title")), style: style,),
         actions: [
           IconButton(
               onPressed: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EditProfile()),
+                  MaterialPageRoute(builder: (context) => const EditProfile()),
                 );
               },
-              icon: Icon(Icons.edit))
+              icon: const Icon(Icons.edit))
         ],
       ),
-      drawer: NavDrawer(),
+      drawer: const NavDrawer(),
       body: Column(
           children: [
             Padding(
@@ -59,9 +54,10 @@ class _AccountViewState extends State<AccountView>{
               child: Text(
                   (FlutterI18n.translate(context, "Account.Acc_header")),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 22,
                     decoration: TextDecoration.underline,
+                    fontFamily: "Lato"
                   )
               ),
             ),
@@ -76,21 +72,23 @@ class _AccountViewState extends State<AccountView>{
             Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 25, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(20, 25, 0, 0),
                   child: Text(
                       (FlutterI18n.translate(context, "Account.Name")),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 20
+                      style: const TextStyle(
+                          fontSize: 20,
+                        fontFamily: "Lato"
                       )
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(10, 25,0,0),
+                  padding: const EdgeInsets.fromLTRB(10, 25,0,0),
                   child: Text(
                       userName,
-                      style: TextStyle(
-                          fontSize: 20
+                      style: const TextStyle(
+                          fontSize: 15,
+                        fontFamily: "Lato"
                       )
                   ),
                 )
@@ -99,21 +97,23 @@ class _AccountViewState extends State<AccountView>{
             Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(20, 5, 0, 0),
                   child: Text(
                       (FlutterI18n.translate(context, "Account.Email")),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 20
+                      style: const TextStyle(
+                          fontSize: 20,
+                        fontFamily: "Lato"
                       )
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
                   child: Text(
                       user!.email!,
-                      style: TextStyle(
-                          fontSize: 20
+                      style: const TextStyle(
+                          fontSize: 15,
+                        fontFamily: "Lato"
                       )
                   ),
                 )
@@ -124,9 +124,10 @@ class _AccountViewState extends State<AccountView>{
               child: Text(
                   (FlutterI18n.translate(context, "Account.Pref_header")),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 22,
                     decoration: TextDecoration.underline,
+                    fontFamily: "Lato"
                   )
               ),
             ),
@@ -136,8 +137,9 @@ class _AccountViewState extends State<AccountView>{
                   padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                   child: Text(
                     (FlutterI18n.translate(context, "Account.Dark_mode")),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
+                      fontFamily: "Lato"
                     ),
                   ),
                 ),
@@ -148,9 +150,10 @@ class _AccountViewState extends State<AccountView>{
               padding: const EdgeInsets.fromLTRB(0, 15, 0, 10),
               child: Text(
                   (FlutterI18n.translate(context, "Account.Lang_pick")),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     decoration: TextDecoration.underline,
+                    fontFamily: "Lato"
                   )
               ),
             ),
@@ -159,10 +162,10 @@ class _AccountViewState extends State<AccountView>{
               children: [
                 GestureDetector(
                   onTap: () async {
-                    Locale newLocale = Locale('en');
+                    Locale newLocale = const Locale('en');
                     setState(() {
                       FlutterI18n.refresh(context, newLocale);
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => TrendingMovies()));
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => const TrendingMovies()));
                     });
                   },
                   child: Image.network(
@@ -173,10 +176,10 @@ class _AccountViewState extends State<AccountView>{
                 ),
                 GestureDetector(
                   onTap: () async {
-                    Locale newLocale = Locale('fr');
+                    Locale newLocale = const Locale('fr');
                     setState(() {
                       FlutterI18n.refresh(context, newLocale);
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => TrendingMovies()));
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => const TrendingMovies()));
                     });
                   },
                   child: Image.network(
@@ -187,10 +190,10 @@ class _AccountViewState extends State<AccountView>{
                 ),
                 GestureDetector(
                   onTap: () async {
-                    Locale newLocale = Locale('es');
+                    Locale newLocale = const Locale('es');
                     setState(() {
                       FlutterI18n.refresh(context, newLocale);
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => TrendingMovies()));
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => const TrendingMovies()));
                     });
                   },
                   child: Image.network(

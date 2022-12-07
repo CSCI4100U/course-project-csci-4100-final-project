@@ -5,7 +5,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
-
+  final TextStyle style = const TextStyle(fontFamily: "Lato");
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -15,31 +15,32 @@ class _LoginPageState extends State<LoginPage> {
   String? _email;
   String? _password;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.purple,
-          title: Text(FlutterI18n.translate(context, "Login.Title")),
+          title: Text(FlutterI18n.translate(context, "Login.Title"), style: widget.style),
           actions: [
             Container(
               padding: const EdgeInsets.fromLTRB(50, 20, 0, 20),
-              child: Text(FlutterI18n.translate(context, "Login.Lang_mod")),
+              child: Text(FlutterI18n.translate(context, "Login.Lang_mod"), style: widget.style,),
             ),
             PopupMenuButton(
                 itemBuilder: (context){
                   return [
                     PopupMenuItem<int>(
                       value: 0,
-                      child: Text("EN"),
+                      child: Text("EN", style: widget.style,),
                     ),
                     PopupMenuItem<int>(
                       value: 1,
-                      child: Text("ES"),
+                      child: Text("ES", style: widget.style,),
                     ),
                     PopupMenuItem<int>(
                       value: 2,
-                      child: Text("FR"),
+                      child: Text("FR", style: widget.style,),
                     ),
                   ];
                 },
@@ -74,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             TextFormField(
-                decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Login.Email"))),
+                decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Login.Email"), style: widget.style,)),
                 autocorrect: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -87,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                 }
             ),
             TextFormField(
-              decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Login.Password"))),
+              decoration: InputDecoration(label: Text(FlutterI18n.translate(context, "Login.Password"), style: widget.style,)),
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
@@ -104,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton.icon(
 
                 icon: const Icon(Icons.lock_open),
-                label: Text(FlutterI18n.translate(context, "Login.Sign_in")),
+                label: Text(FlutterI18n.translate(context, "Login.Sign_in"), style: widget.style,),
                 onPressed: _signIn,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple,
@@ -115,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               onPressed: _register,
               child: Text(
-                  style: const TextStyle(color: Colors.purple),
+                  style: const TextStyle(color: Colors.purple, fontFamily: "Lato"),
                   FlutterI18n.translate(context, "Login.Register")
               ),
             )
@@ -146,11 +147,11 @@ class _LoginPageState extends State<LoginPage> {
         await showDialog<void>(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Login Error'),
-            content: Text(msg),
+            title: Text('Login Error', style: widget.style,),
+            content: Text(msg, style: widget.style,),
             actions: [
               TextButton(
-                child: const Text('OK'),
+                child: Text('OK', style: widget.style,),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ],
