@@ -1,4 +1,7 @@
 # CSCI4100 Group Project
+### U can create your own user or use our test account while running the app:
+### Email: test@test.com
+### Password: abcabc
 
 Group members (3-5) (no Student IDs, only names and github usernames):
 
